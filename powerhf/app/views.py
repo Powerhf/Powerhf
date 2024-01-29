@@ -7,7 +7,6 @@ from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
-import pandas as pd
 
 
 
