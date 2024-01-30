@@ -256,10 +256,11 @@
                                         <div class="col-md-6">
                                             <h5 class="fw-normal">Energy Report</h5>
                                         </div>
+                                        {% if all_fuel_drawn_data %}
                                         <div class="col-md-6 text-end">
                                             <button type="button" id="btn-download-id"
                                                 class="bg-secondary btn-downloadall">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15"
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12"
                                                     style="margin-bottom: 4px;" viewBox="0 0 512 512">
                                                     <path fill="#ffffff"
                                                         d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
@@ -267,6 +268,7 @@
                                                 Download all
                                             </button>
                                         </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="filter-reports mt-4">
@@ -354,6 +356,8 @@
                                                             <img src="{{feul.Receipt_Image_Upload.url}}" height="50px"
                                                                 width="100" alt="{{feul.Receipt_Image_Upload}}">
                                                         </a>
+                                                        {% else %}
+                                                        No
                                                         {% endif %}
                                                     </td>
                                                     <td>{{feul.Vehicle_Plate}}</td>
@@ -538,115 +542,58 @@
         </div>
         <!-- Hidden Table -->
         <div class="hide-dfr-data">
-            {% if all_dfr_data %}
-            <table class="table dt-table hidden-table">
+            {% if all_fuel_drawn_data %}
+            <table class="table dt-table">
                 <thead>
                     <tr class="table-head">
-                        <th scope="col" class="read-status">Global ID</th>
-                        <th scope="col" class="read-status">Site Name</th>
-                        <th scope="col" class="size-expand">Site Address</th>
-                        <th scope="col" class="read-status">Cluster</th>
-                        <th scope="col" class="read-status">CE</th>
-                        <th scope="col" class="read-status">Site Tenancy</th>
-                        <th scope="col" class="read-status">DG NON DG</th>
-                        <th scope="col" style="min-width: 150px;">DG Capacity kva</th>
-                        <th scope="col" class="read-status">EB Status</th>
-                        <th scope="col" class="read-status">Card Number</th>
-                        <th scope="col" style="min-width: 200px;">Last Month Approved CPH
+                        <th scope="col" style="min-width: 150px;">FT ID</th>
+                        <th scope="col" style="min-width: 150px;">FT Name</th>
+                        <th scope="col" style="min-width: 150px;">FT Mobile No.</th>
+                        <th scope="col" style="min-width: 150px;">Cluster Name</th>
+                        <th scope="col" style="min-width: 150px;">Fuel Drawn Date</th>
+                        <th scope="col" style="min-width: 150px;">Card No.</th>
+                        <th scope="col" style="min-width: 200px;">City Township Fuel Station
                         </th>
-                        <th scope="col" style="min-width: 150px;">DG Serial Number</th>
-                        <th scope="col" style="min-width: 150px;">DG HMR Status</th>
-                        <th scope="col" style="min-width: 150px;">DG HMR Reading</th>
-                        <th scope="col" style="min-width: 150px;">DG PIU Status</th>
-                        <th scope="col" style="min-width: 200px;">Current DG PIU Reading
+                        <th scope="col" style="min-width: 200px;">Customer</th>
+                        <th scope="col" style="min-width: 200px;">Fuel Station Name</th>
+                        <th scope="col" style="min-width: 200px;">Diesel Purchased Qty</th>
+                        <th scope="col" style="min-width: 200px;">Diesel Per Ltr Cost Rs
                         </th>
-                        <th scope="col" style="min-width: 150px;">Diesel Filling Done</th>
-                        <th scope="col" style="min-width: 150px;">Date Of Diesel
-                            Filling</th>
-                        <th scope="col" style="min-width: 200px;">Diesel Balance Before
-                            Filling (in Ltr)</th>
-                        <th scope="col" style="min-width: 150px;">Fuel Qty Filled (in Ltr)
-                        </th>
-                        <th scope="col" style="min-width: 150px;">Current Diesel Balance (in
-                            Ltr)
-                        </th>
-                        <th scope="col" style="min-width: 130px;">EB Meter Status</th>
-                        <th scope="col" style="min-width: 150px;">Current EB MTR KWH</th>
-                        <th scope="col" style="min-width: 150px;">EB PIU Meter Status</th>
-                        <th scope="col" style="min-width: 180px;">Current EB PIU Reading
-                        </th>
-                        <th scope="col" class="read-status">Remarks</th>
-                        <th scope="col" class="read-status">FT ID</th>
-                        <th scope="col" class="read-status">FT Name</th>
-                        <th scope="col" style="min-width: 150px;">FT Mobile Number</th>
-                        <th scope="col" class="read-status">Receipt No</th>
-                        <th scope="col" class="read-status">Card Number</th>
-                        <th scope="col" class="read-status">Vehicle Plate</th>
-                        <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
-                        <th scope="col" style="min-width: 250px;">After Fuel Filling CM
-                            Photo</th>
-                        <th scope="col" style="min-width: 140px;">DG Running HRS</th>
-                        <th scope="col" class="read-status">CPH</th>
-                        <th scope="col" style="min-width: 300px;">CPH & Comparison With
-                            Approved CPH</th>
-                        <th scope="col" class="read-status">EB KWH</th>
+                        <th scope="col" style="min-width: 200px;">Total Diesel Cost Rs</th>
+                        <th scope="col" style="min-width: 200px;">Receipt No.</th>
+                        <th scope="col" style="min-width: 250px;">Receipt Image Upload</th>
+                        <th scope="col" style="min-width: 200px;">Vehicle Plate</th>
+                        <th scope="col" style="min-width: 200px;">Remarks</th>
                     </tr>
                 </thead>
                 <tbody id="report-fkift6t">
-                    {% for feul in all_dfr_data %}
+                    {% for feul in all_fuel_drawn_data %}
                     <tr class="table-dt-data">
-                        <td>{{feul.global_id}}</td>
-                        <td>{{feul.global_id.site_name}}</td>
-                        <td>{{feul.global_id.site_address}}</td>
-                        <td>{{feul.global_id.cluster}}</td>
-                        <td>{{feul.global_id.CE}}</td>
-                        <td>{{feul.global_id.site_tenancy}}</td>
-                        <td>{{feul.global_id.DG_NON_DG}}</td>
-                        <td>{{feul.global_id.DG_capacity_kva}}</td>
-                        <td>{{feul.global_id.EB_status}}</td>
-                        <td>{{feul.global_id.card_number}}</td>
-                        <td>{{feul.global_id.last_month_approved_CPH}}</td>
-                        <td>{{feul.DG_Serial_Number}}</td>
-                        <td>{{feul.DG_HMR_Status}}</td>
-                        <td>{{feul.DG_HMR_Reading}}</td>
-                        <td>{{feul.DG_PIU_Status}}</td>
-                        <td>{{feul.Current_DG_PIU_Reading}}</td>
-                        <td>{{feul.Diesel_Filling_Done}}</td>
-                        <td>{{feul.Date_Of_Diesel_Filling | date:"d M Y"}}</td>
-                        <td>{{feul.Diesel_Balance_Before_Filling}}</td>
-                        <td>{{feul.Fuel_Qty_Filled}}</td>
-                        <td>{{feul.Current_Diesel_Balance}}</td>
-                        <td>{{feul.EB_Meter_Status}}</td>
-                        <td>{{feul.Current_EB_MTR_KWH}}</td>
-                        <td>{{feul.EB_PIU_Meter_Status}}</td>
-                        <td>{{feul.Current_EB_PIU_Reading}}</td>
-                        <td>{{feul.Remarks}}</td>
                         <td>{{feul.FT_ID}}</td>
                         <td>{{feul.FT_name}}</td>
                         <td>{{feul.FT_mobile_no}}</td>
+                        <td>{{feul.Cluster_Name}}</td>
+                        <td>{{feul.Fuel_Drawn_Date | date:"d M Y"}}</td>
+                        <td>{{feul.Card_No}}</td>
+                        <td>{{feul.City_Township_Fuel_Station}}</td>
+                        <td>{{feul.Customer}}</td>
+                        <td>{{feul.Fuel_Station_Name}}</td>
+                        <td>{{feul.Diesel_Purchased_Qty}}</td>
+                        <td>{{feul.Diesel_Per_Ltr_Cost_Rs}}</td>
+                        <td>{{feul.Total_Diesel_Cost_Rs}}</td>
                         <td>{{feul.Receipt_No}}</td>
-                        <td>{{feul.Card_Number}}</td>
+                        <td>
+                            {% if feul.Receipt_Image_Upload %}
+                            <a href="{{feul.Receipt_Image_Upload.url}}" target="_blank">
+                                <img src="{{feul.Receipt_Image_Upload.url}}" height="50px" width="100"
+                                    alt="{{feul.Receipt_Image_Upload}}">
+                            </a>
+                            {% else %}
+                            No
+                            {% endif %}
+                        </td>
                         <td>{{feul.Vehicle_Plate}}</td>
-                        <td>
-                            {% if feul.Before_Fuel_CM_Photo %}
-                            <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
-                                <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px" width="100"
-                                    alt="{{feul.Before_Fuel_CM_Photo}}">
-                            </a>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if feul.After_Fuel_Filling_CM_Photo %}
-                            <a href="{{feul.After_Fuel_Filling_CM_Photo.url}}" target="_blank">
-                                <img src="{{feul.After_Fuel_Filling_CM_Photo.url}}" height="50px" width="100"
-                                    alt="{{feul.After_Fuel_Filling_CM_Photo}}">
-                            </a>
-                            {% endif %}
-                        </td>
-                        <td>{{feul.DG_Running_HRS}}</td>
-                        <td>{{feul.CPH}}</td>
-                        <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
-                        <td>{{feul.EB_KWH}}</td>
+                        <td>{{feul.Remarks}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

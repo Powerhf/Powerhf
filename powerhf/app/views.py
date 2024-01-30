@@ -82,7 +82,7 @@ class FuelDrawnReport(TemplateView):
             paginator = Paginator(Pagination_fuel_drawn, 50, orphans=1)
             page_number = request.GET.get('page')
             data_obj = paginator.get_page(page_number)
-            context = {'fuel_drawn':data_obj}
+            context = {'fuel_drawn':data_obj, 'all_fuel_drawn_data':Pagination_fuel_drawn}
             return render(request, 'app/reports/energy_report_fuel_drawn.html', context)
         else:
             return redirect('auth')
@@ -95,7 +95,7 @@ class EnergyReadingReport(TemplateView):
             paginator = Paginator(pagination_fuel_report, 50, orphans=1)
             page_number = request.GET.get('page')
             data_obj = paginator.get_page(page_number)
-            context = {'fuel_report':data_obj, 'all_dfr_data':pagination_fuel_report}
+            context = {'fuel_report':data_obj, 'all_reading_data':pagination_fuel_report}
             return render(request, 'app/reports/energy_report_diesel_reading.html', context)
         else:
             return redirect('auth')

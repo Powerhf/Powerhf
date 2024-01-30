@@ -545,7 +545,8 @@ td {
 .btn_filter_dt {
     padding: 5px;
     width: auto;
-    font-size: 13px;
+    font-size: 10px;
+    font-weight: 550;
     background-color: #7a7a7a;
     color: #ffffff;
     border: none;
@@ -641,12 +642,13 @@ h3 {
 }
 
 .btn-downloadall {
-    font-size: 13px;
+    font-size: 10px;
+    font-weight: 550;
     width: auto;
     border: none;
     border-radius: 5px;
     color: #ffffff;
-    padding: 10px;
+    padding: 7px;
 }
 
 
