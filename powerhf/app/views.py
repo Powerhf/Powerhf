@@ -168,7 +168,6 @@ class FuelDrawnFilters(TemplateView):
             return redirect('auth')
 
 
-# {% include 'app/tables/dfr_table.html' %}
 
 # End Reports
 
