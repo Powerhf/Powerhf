@@ -6,9 +6,13 @@ from django.conf import settings
 from app.views import *
 
 urlpatterns = [
+    # Admin:
     path('admin/', admin.site.urls),
+
+    # Login:
     path('accounts/authentications/', UserLogin, name='auth'),
     
+    # app folder:
     path('', include('app.urls')),
 ]
 
