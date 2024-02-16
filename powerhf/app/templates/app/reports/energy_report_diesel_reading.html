@@ -363,7 +363,11 @@
                                                     <td>{{feul.global_id.card_number}}</td>
                                                     <td>{{feul.global_id.last_month_approved_CPH}}</td>
                                                     <td>{{feul.DG_Serial_Number}}</td>
-                                                    <td>{{feul.DG_HMR_Status}}</td>
+                                                    <td>
+                                                        {% if feul.DG_HMR_Status != 'NA' %}
+                                                        {{feul.DG_HMR_Status}}
+                                                        {% endif %}
+                                                    </td>
                                                     <td>{{feul.DG_HMR_Reading}}</td>
                                                     <td>{{feul.DG_PIU_Status}}</td>
                                                     <td>{{feul.Current_DG_PIU_Reading}}</td>
@@ -376,15 +380,43 @@
                                                     <td>{{feul.Current_EB_PIU_Reading}}</td>
                                                     <td>{{feul.Total_DC_Load}}</td>
                                                     <td>{{feul.Total_EB_KWH_Reading_from_all_Channels}}</td>
-                                                    <td>{{feul.Remarks}}</td>
-                                                    <td>{{feul.FT_ID}}</td>
-                                                    <td>{{feul.FT_name}}</td>
-                                                    <td>{{feul.FT_mobile_no}}</td>
-                                                    <td>{{feul.Receipt_No}}</td>
-                                                    <td>{{feul.Card_Number}}</td>
-                                                    <td>{{feul.Vehicle_Plate}}</td>
                                                     <td>
-                                                        {% if feul.Before_Fuel_CM_Photo %}
+                                                        {% if feul.Remarks != 'NA' %}
+                                                        {{feul.Remarks}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.FT_ID != "NA" %}
+                                                        {{feul.FT_ID}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.FT_name != 'NA' %}
+                                                        {{feul.FT_name}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.FT_mobile_no != 'NA' %}
+                                                        {{feul.FT_mobile_no}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.Receipt_No != 'NA' %}
+                                                        {{feul.Receipt_No}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.Card_Number != 'NA' %}
+                                                        {{feul.Card_Number}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.Vehicle_Plate != 'NA' %}
+                                                        {{feul.Vehicle_Plate}}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if feul.Before_Fuel_CM_Photo != 'NA' %}
                                                         <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                                             <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px"
                                                                 width="100" alt="{{feul.Before_Fuel_CM_Photo}}">
