@@ -103,7 +103,7 @@ TASKS = (
 )
 
 class EnergyFuel(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     global_id = models.ForeignKey(SiteFixed, on_delete=models.CASCADE)
     Tasks = models.CharField(verbose_name='Tasks', max_length=50, choices=TASKS)
     DG_Serial_Number = models.TextField(verbose_name='DG Serial Number')
