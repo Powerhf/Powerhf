@@ -69,6 +69,9 @@ class UserAuthentication(AuthenticationForm):
 
 
 class DieselFillingOrReadingForm(forms.ModelForm):
+    DG_Serial_Number = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={'class':'inputformsfill'}
+    ))
     DG_HMR_Reading = forms.CharField(required=False, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
@@ -116,7 +119,6 @@ class DieselFillingOrReadingForm(forms.ModelForm):
             'Diesel_Filling_Done': forms.Select(attrs={'class':'inputformsfill'}),
             'EB_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBMeter_status'}),
             'EB_PIU_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBPIU_Status'}),
-            'DG_Serial_Number': forms.TextInput(attrs={'class':'inputformsfill'}),
             'Date_Of_Diesel_Filling': forms.DateInput(attrs={'class':'inputformsfill', 'type':'date'}),
             'FT_ID': forms.TextInput(attrs={'class':'inputformsfill'}),
             'FT_name': forms.TextInput(attrs={'class':'inputformsfill'}),
