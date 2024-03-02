@@ -7,6 +7,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
+import pandas as pd
 
 
 
@@ -395,7 +396,43 @@ class FuelDrawnViews(TemplateView):
 
 
 # End Forms    
+
+# CSV file upload start 
+
+class DataUploadFromCSVToDB(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            if request.user.username == "amarpreet":
+                return render(request, 'app/csv_file_upload.html')
+            else:
+                return HttpResponse('<h2>This URL is not found, Please <a href="/">go back</a></h2>')
+        else:
+            return redirect('auth')
     
+    def post(self, request):
+        if request.user.is_authenticated:
+            if request.user.username == "amarpreet":
+                csv_file = request.FILES['csv_file']
+                df_data = pd.read_csv(csv_file)
+                for index, df in df_data.iterrows():
+                    reg = EnergyFuel(global_id=df['global_id_id'],DG_Serial_Number=df['DG_Serial_Number'],DG_HMR_Status=df['DG_HMR_Status'],
+                    DG_HMR_Reading=df['DG_HMR_Reading'],DG_PIU_Status=df['DG_PIU_Status'],Current_DG_PIU_Reading=df['Current_DG_PIU_Reading'],Diesel_Filling_Done=df['Diesel_Filling_Done'],
+                    Date_Of_Diesel_Filling=df['Date_Of_Diesel_Filling'],Diesel_Balance_Before_Filling=df['Diesel_Balance_Before_Filling'],
+                    Fuel_Qty_Filled=df['Fuel_Qty_Filled'],Current_Diesel_Balance=df['Current_Diesel_Balance'],EB_Meter_Status=df['EB_Meter_Status'],
+                    Current_EB_MTR_KWH=df['Current_EB_MTR_KWH'],EB_PIU_Meter_Status=df['EB_PIU_Meter_Status'],Current_EB_PIU_Reading=df['Current_EB_PIU_Reading'],
+                    Tasks=df['Tasks'],Total_DC_Load=df['Total_DC_Load'],Total_EB_KWH_Reading_from_all_Channels=df['Total_EB_KWH_Reading_from_all_Channels'],
+                    Remarks=df['Remarks'],FT_ID=df['FT_ID'],FT_name=df['FT_name'],FT_mobile_no=df['FT_mobile_no'],Receipt_No=df['Receipt_No'],Card_Number=df['Card_Number'],
+                    Vehicle_Plate=df['Vehicle_Plate'],Before_Fuel_CM_Photo=df['Before_Fuel_CM_Photo'],After_Fuel_Filling_CM_Photo=df['After_Fuel_Filling_CM_Photo'],
+                    DG_Running_HRS=df['DG_Running_HRS'], CPH_CPH_Comparison_With_Last_CPH=df['CPH_CPH_Comparison_With_Last_CPH'], CPH=df['CPH'], EB_KWH=df['EB_KWH'])
+                    messages.success(request, 'Your fil has been uploaded successfully.')
+                    reg.save()
+                    return redirect('fileuplodedcsv')
+            else:
+                return HttpResponse('<h2>This URL is not found, Please <a href="/">go back</a></h2>')
+        else:
+            return redirect('auth')
+    
+# CSV file upload end
 
 class LogOut(LogoutView):
     next_page = '/accounts/authentications/'

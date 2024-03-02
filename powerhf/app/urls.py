@@ -20,6 +20,9 @@ urlpatterns = [
     path('forms/diesel-meter/filling-reading-fill-form/', DieselFillingOrReadingViews.as_view(), name='atcform'),
     path('forms/fuel-drawn-fill-form/', FuelDrawnViews.as_view(), name='fueldrawnform'),
 
+    # File Upload to CSV to DB:
+    path('file-upload-csv-to-db/', DataUploadFromCSVToDB.as_view(), name='fileuplodedcsv'),
+
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),
 ]
