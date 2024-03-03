@@ -422,7 +422,7 @@
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        {% if feul.Before_Fuel_CM_Photo != 'NA' %}
+                                                        {% if feul.Before_Fuel_CM_Photo != '' %}
                                                         <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                                             <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px"
                                                                 width="100" alt="{{feul.Before_Fuel_CM_Photo}}">
@@ -432,7 +432,7 @@
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        {% if feul.After_Fuel_Filling_CM_Photo != 'NA' %}
+                                                        {% if feul.After_Fuel_Filling_CM_Photo != '' %}
                                                         <a href="{{feul.After_Fuel_Filling_CM_Photo.url}}"
                                                             target="_blank">
                                                             <img src="{{feul.After_Fuel_Filling_CM_Photo.url}}"
