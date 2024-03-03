@@ -67,7 +67,7 @@ class Users(AbstractBaseUser):
 
 
 class SiteFixed(models.Model):
-    global_id = models.BigIntegerField(verbose_name='global ID', primary_key=True)
+    global_id = models.CharField(verbose_name='global ID', max_length=8, primary_key=True)
     site_name = models.CharField(verbose_name='Site Name', max_length=100)
     site_address = models.TextField(verbose_name='Site Address')
     cluster = models.CharField(verbose_name='Cluster', max_length=100)
@@ -105,7 +105,7 @@ TASKS = (
 class EnergyFuel(models.Model):
     id = models.BigAutoField(primary_key=True)
     global_id = models.ForeignKey(SiteFixed, on_delete=models.CASCADE)
-    Tasks = models.CharField(verbose_name='Tasks', max_length=50, choices=TASKS)
+    Tasks = models.CharField(verbose_name='Tasks', max_length=200, choices=TASKS)
     DG_Serial_Number = models.TextField(verbose_name='DG Serial Number')
     DG_HMR_Status = models.CharField(verbose_name='DG HMR Status', max_length=30, choices=WORKING_NOTWORKING)
     DG_HMR_Reading = models.IntegerField(verbose_name='DG HMR Reading')
