@@ -67,7 +67,7 @@ class Users(AbstractBaseUser):
 
 
 class SiteFixed(models.Model):
-    global_id = models.CharField(verbose_name='global ID', max_length=7, primary_key=True)
+    global_id = models.BigIntegerField(verbose_name='global ID', primary_key=True)
     site_name = models.CharField(verbose_name='Site Name', max_length=100)
     site_address = models.TextField(verbose_name='Site Address')
     cluster = models.CharField(verbose_name='Cluster', max_length=100)

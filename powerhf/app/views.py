@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 import pandas as pd
+import csv
+from django.db import transaction
+from openpyxl import load_workbook
 
 
 
@@ -413,9 +416,11 @@ class DataUploadFromCSVToDB(TemplateView):
         if request.user.is_authenticated:
             if request.user.username == "amarpreet":
                 csv_file = request.FILES['csv_file']
+
                 df_data = pd.read_csv(csv_file)
+                
                 for index, df in df_data.iterrows():
-                    reg = EnergyFuel(global_id=df['global_id_id'],DG_Serial_Number=df['DG_Serial_Number'],DG_HMR_Status=df['DG_HMR_Status'],
+                    reg = EnergyFuel(DG_Serial_Number=df['DG_Serial_Number'],DG_HMR_Status=df['DG_HMR_Status'],
                     DG_HMR_Reading=df['DG_HMR_Reading'],DG_PIU_Status=df['DG_PIU_Status'],Current_DG_PIU_Reading=df['Current_DG_PIU_Reading'],Diesel_Filling_Done=df['Diesel_Filling_Done'],
                     Date_Of_Diesel_Filling=df['Date_Of_Diesel_Filling'],Diesel_Balance_Before_Filling=df['Diesel_Balance_Before_Filling'],
                     Fuel_Qty_Filled=df['Fuel_Qty_Filled'],Current_Diesel_Balance=df['Current_Diesel_Balance'],EB_Meter_Status=df['EB_Meter_Status'],
@@ -426,9 +431,29 @@ class DataUploadFromCSVToDB(TemplateView):
                     DG_Running_HRS=df['DG_Running_HRS'], CPH_CPH_Comparison_With_Last_CPH=df['CPH_CPH_Comparison_With_Last_CPH'], CPH=df['CPH'], EB_KWH=df['EB_KWH'])
                     messages.success(request, 'Your fil has been uploaded successfully.')
                     reg.save()
-                    return redirect('fileuplodedcsv')
+
+                # csv_file = 'C:\ATC_data\s2\dup data\Odissa all data.csv'
+                # with open(csv_file, 'r') as file:
+                #     reader = csv.reader(file)
+                #     next(reader)
+
+                #     with transaction.atomic():
+                #         for df in reader:
+                #             reg = EnergyFuel(Tasks=df[0], DG_Serial_Number=df[1],DG_HMR_Status=df[2],
+                #             DG_HMR_Reading=df[3],DG_PIU_Status=df[4],Current_DG_PIU_Reading=df[5],Diesel_Filling_Done=df[6],
+                #             Date_Of_Diesel_Filling=df[7],Diesel_Balance_Before_Filling=df[8],
+                #             Fuel_Qty_Filled=df[9],Current_Diesel_Balance=df[10],EB_Meter_Status=df[11],
+                #             Current_EB_MTR_KWH=df[12],EB_PIU_Meter_Status=df[13],Current_EB_PIU_Reading=df[14],
+                #             Total_DC_Load=df[15],Total_EB_KWH_Reading_from_all_Channels=df[16],
+                #             Remarks=df[17],FT_ID=df[18],FT_name=df[19],FT_mobile_no=df[20],Receipt_No=df[21],Card_Number=df[22],
+                #             Vehicle_Plate=df[23],Before_Fuel_CM_Photo=df[24],After_Fuel_Filling_CM_Photo=df[25],
+                #             DG_Running_HRS=df[26], CPH_CPH_Comparison_With_Last_CPH=df[27], CPH=df[28], EB_KWH=df[29], global_id=df[30])
+                #             messages.success(request, 'Your fil has been uploaded successfully.')
+                #             reg.save()
+
+                return redirect('fileuplodedcsv')
             else:
-                return HttpResponse('<h2>This URL is not found, Please <a href="/">go back</a></h2>')
+                return HttpResponse('<h2>This page is not found, Please <a href="/">go back</a></h2>')
         else:
             return redirect('auth')
     
