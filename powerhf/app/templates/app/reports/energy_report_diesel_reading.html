@@ -754,9 +754,9 @@
             $("#btn-download-id").click(function () {
                 let table = document.getElementsByClassName("hidden-reading-table");
                 TableToExcel.convert(table[0], {
-                    name: `diesel_reading.xlsx`,
+                    name: `Energy_reading.xlsx`,
                     sheet: {
-                        name: 'Diesel Reading'
+                        name: 'Energy Reading'
                     }
                 });
             });
