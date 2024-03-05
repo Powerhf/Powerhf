@@ -246,9 +246,9 @@
                                     <div class="row row-cols-1 row-cols-md-2 g-2">
                                         <div class="col-md-6">
                                             <h5 class="fw-normal">Energy Report</h5>
-                                        </div>
-                                        {% if all_dfr_data %}
+                                        </div>                                        
                                         <div class="col-md-6 text-end">
+                                            {% if all_dfr_data %}
                                             <button type="button" id="btn-download-id"
                                                 class="bg-secondary btn-downloadall">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12"
@@ -258,8 +258,8 @@
                                                 </svg>
                                                 Download all
                                             </button>
-                                        </div>
-                                        {% endif %}
+                                            {% endif %}
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <div class="filter-reports mt-4">
@@ -351,6 +351,8 @@
                                                     <th scope="col" class="read-status">CPH</th>
                                                     <th scope="col" style="min-width: 300px;">CPH & Comparison With
                                                         Approved CPH</th>
+                                                    <th scope="col" class="read-status">CPH as par HMR</th>
+                                                    <th scope="col" class="read-status">CPH as par PIU</th>
                                                     <th scope="col" class="read-status">EB KWH</th>
                                                 </tr>
                                             </thead>
@@ -443,9 +445,10 @@
                                                         No
                                                         {% endif %}
                                                     </td>
-                                                    <td>{{feul.DG_Running_HRS}}</td>
-                                                    <td>{{feul.CPH}}</td>
+                                                    <td>{{feul.DG_Running_HRS}}</td>                                                    
                                                     <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
+                                                    <td>{{feul.CPH_as_par_HMR}}</td>
+                                                    <td>{{feul.CPH_as_par_PIU}}</td>
                                                     <td>{{feul.EB_KWH}}</td>
                                                 </tr>
                                                 {% endfor %}
@@ -675,9 +678,10 @@
                         <th scope="col" style="min-width: 250px;">After Fuel Filling CM
                             Photo</th>
                         <th scope="col" style="min-width: 140px;">DG Running HRS</th>
-                        <th scope="col" class="read-status">CPH</th>
                         <th scope="col" style="min-width: 300px;">CPH & Comparison With
                             Approved CPH</th>
+                        <th scope="col" class="read-status">CPH as par HMR</th>
+                        <th scope="col" class="read-status">CPH as par PIU</th>
                         <th scope="col" class="read-status">EB KWH</th>
                     </tr>
                 </thead>
@@ -737,8 +741,9 @@
                             {% endif %}
                         </td>
                         <td>{{feul.DG_Running_HRS}}</td>
-                        <td>{{feul.CPH}}</td>
                         <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
+                        <td>{{feul.CPH_as_par_HMR}}</td>
+                        <td>{{feul.CPH_as_par_PIU}}</td>
                         <td>{{feul.EB_KWH}}</td>
                     </tr>
                     {% endfor %}
