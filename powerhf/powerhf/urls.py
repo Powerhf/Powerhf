@@ -11,6 +11,7 @@ urlpatterns = [
 
     # Login:
     path('accounts/authentications/', UserLogin, name='auth'),
+    path('accounts/registration/', Userregistation, name='register'),
     
     # app folder:
     path('', include('app.urls')),
