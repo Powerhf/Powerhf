@@ -14,7 +14,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 # Path to your CSV file
-csv_file = 'C:\ATC_data\s2\dup data\Odissa all data.csv'
+# csv_file = 'C:\ATC_data\s2\dup data\Odissa all data.csv'
 # csv_file = 'C:\ATC_data\s2\dup data\All Feb energy data.csv'
 
 # Open the CSV file and iterate over its rows to insert data into the database
