@@ -260,8 +260,10 @@ class DieselFillingOrReadingViews(TemplateView):
                 if last_data_1 == None:
                     # This is DG_Running_HRS:
                     hr_dg_sum = 0
-                    # This is CPH:
-                    cph_div = 0
+                    # This is CPH as par hmr:
+                    cph_hmr_div = 0
+                    # This is CPH as par piu:
+                    cph_piu_div = 0
                     # This is KWH:
                     KWH_mtr = 0
                     # This is CPH approved:
@@ -288,7 +290,7 @@ class DieselFillingOrReadingViews(TemplateView):
                     else:
                         hr_dg_sum = dghr
 
-                    # This is CPH:
+                    # This is CPH as par hmr:
                     minus = 0
                     lst_d_b = int(last_data.Fuel_Qty_Filled)
                     current_d_b = int(last_data.Current_Diesel_Balance)
@@ -302,9 +304,36 @@ class DieselFillingOrReadingViews(TemplateView):
                         diesel_hmr_div = (diesel / hmr)   
                     dieselhmrdiv = str(round(diesel_hmr_div, 2))  
                     if dieselhmrdiv[:1] == '-':
-                        cph_div = dieselhmrdiv[1:]
+                        cph_hmr_div = dieselhmrdiv[1:]
                     else:
-                        cph_div = dieselhmrdiv 
+                        cph_hmr_div = dieselhmrdiv 
+                    
+                    # This is CPH as par piu:
+                    DG_piu = int(Current_DG_PIU_Reading)               
+                    dgpiu_int = int(last_data.Current_DG_PIU_Reading)
+                    dg_piu = (DG_piu - dgpiu_int)
+                    dgpiu = str(dg_piu)
+                    hr_piu_sum = 0
+                    if dgpiu[:1] == '-':
+                        hr_piu_sum = dgpiu[1:]
+                    else:
+                        hr_piu_sum = dgpiu
+                    piu_minus = 0
+                    lst_d_b_piu = int(last_data.Fuel_Qty_Filled)
+                    current_d_b_piu = int(last_data.Current_Diesel_Balance)
+                    piu_minus = (current_d_b_piu - lst_d_b_piu)
+                    piu = int(hr_piu_sum)
+                    diesel_piu = int(piu_minus)
+                    diesel_piu_div = 0
+                    if piu == 0 or diesel_piu == 0:
+                        diesel_piu_div = 0
+                    else:
+                        diesel_piu_div = (diesel_piu / piu)   
+                    dieselpiudiv = str(round(diesel_piu_div, 2))  
+                    if dieselpiudiv[:1] == '-':
+                        cph_piu_div = dieselpiudiv[1:]
+                    else:
+                        cph_piu_div = dieselpiudiv 
 
                     # This is KWH:
                     min_KWH_mtr = 0
@@ -341,7 +370,8 @@ class DieselFillingOrReadingViews(TemplateView):
                 Tasks=tasks,Total_DC_Load=Total_DC_Load,Total_EB_KWH_Reading_from_all_Channels=Total_EB_KWH_Reading_from_all_Channels,
                 Remarks=Remarks,FT_ID=FT_ID,FT_name=FT_name,FT_mobile_no=FT_mobile_no,Receipt_No=Receipt_No,Card_Number=Card_Number,
                 Vehicle_Plate=Vehicle_Plate,Before_Fuel_CM_Photo=Before_Fuel_CM_Photo,After_Fuel_Filling_CM_Photo=After_Fuel_Filling_CM_Photo,
-                DG_Running_HRS=hr_dg_sum, CPH_CPH_Comparison_With_Last_CPH=approved_cph_data, CPH=cph_div, EB_KWH=KWH_mtr)
+                DG_Running_HRS=hr_dg_sum, CPH_CPH_Comparison_With_Last_CPH=approved_cph_data, CPH_as_par_HMR=cph_hmr_div, CPH_as_par_PIU=cph_piu_div,
+                EB_KWH=KWH_mtr)
 
                 messages.success(request, 'Your data has been submitted successfully.')
 

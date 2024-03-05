@@ -133,7 +133,8 @@ class EnergyFuel(models.Model):
     After_Fuel_Filling_CM_Photo = models.ImageField(verbose_name='After Fuel Filling(CM) Photo', upload_to='After Fuel Filling (CM)/%y')
     DG_Running_HRS = models.TextField(verbose_name='DG Running Hrs')
     CPH_CPH_Comparison_With_Last_CPH = models.TextField(verbose_name='CPH and CPH Comparioson with Approved')
-    CPH = models.TextField(verbose_name='CPH')	
+    CPH_as_par_HMR = models.TextField(verbose_name='CPH', null=True)	
+    CPH_as_par_PIU = models.TextField(verbose_name='CPH', null=True)	
     EB_KWH = models.TextField(verbose_name='EB KWH')
 
     def __str__(self):
