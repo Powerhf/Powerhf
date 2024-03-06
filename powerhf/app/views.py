@@ -302,7 +302,7 @@ class DieselFillingOrReadingViews(TemplateView):
                         diesel_hmr_div = 0
                     else:
                         diesel_hmr_div = (diesel / hmr)   
-                    dieselhmrdiv = str(round(diesel_hmr_div, 2))  
+                    dieselhmrdiv = str(round(diesel_hmr_div, 1))  
                     if dieselhmrdiv[:1] == '-':
                         cph_hmr_div = dieselhmrdiv[1:]
                     else:
@@ -329,7 +329,7 @@ class DieselFillingOrReadingViews(TemplateView):
                         diesel_piu_div = 0
                     else:
                         diesel_piu_div = (diesel_piu / piu)   
-                    dieselpiudiv = str(round(diesel_piu_div, 2))  
+                    dieselpiudiv = str(round(diesel_piu_div, 1))  
                     if dieselpiudiv[:1] == '-':
                         cph_piu_div = dieselpiudiv[1:]
                     else:
@@ -356,7 +356,7 @@ class DieselFillingOrReadingViews(TemplateView):
                         div_with_last_cph = 0
                     else:
                         div_with_last_cph = (last_cph_div / last_approve_cph)
-                    div_last_cph = str(round(div_with_last_cph, 2))
+                    div_last_cph = str(round(div_with_last_cph, 1))
                     if div_last_cph[:1] == '-':
                         approved_cph_data = div_last_cph[1:]
                     else:

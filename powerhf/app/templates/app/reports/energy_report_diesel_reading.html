@@ -417,7 +417,7 @@
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        {% if feul.Before_Fuel_CM_Photo != '' %}
+                                                        {% if feul.Before_Fuel_CM_Photo != 'NA' %}
                                                         <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                                             <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px"
                                                                 width="100" alt="{{feul.Before_Fuel_CM_Photo}}">
@@ -698,7 +698,7 @@
                         <td>{{feul.Card_Number}}</td>
                         <td>{{feul.Vehicle_Plate}}</td>
                         <td>
-                            {% if feul.Before_Fuel_CM_Photo %}
+                            {% if feul.Before_Fuel_CM_Photo != 'NA' %}
                             <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                 <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px" width="100"
                                     alt="{{feul.Before_Fuel_CM_Photo}}">
