@@ -583,7 +583,7 @@
                         <td>{{feul.Total_Diesel_Cost_Rs}}</td>
                         <td>{{feul.Receipt_No}}</td>
                         <td>
-                            {% if feul.Receipt_Image_Upload %}
+                            {% if feul.Receipt_Image_Upload != '' %}
                             <a href="{{feul.Receipt_Image_Upload.url}}" target="_blank">
                                 <img src="{{feul.Receipt_Image_Upload.url}}" height="50px" width="100"
                                     alt="{{feul.Receipt_Image_Upload}}">
