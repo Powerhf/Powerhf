@@ -293,9 +293,8 @@ class DieselFillingOrReadingViews(TemplateView):
                     # This is CPH as par hmr:
                     minus = 0
                     lst_d_b = int(last_data.Fuel_Qty_Filled)
-                    # current_d_b = int(last_data.Current_Diesel_Balance)
-                    # minus = (current_d_b - lst_d_b)
-                    minus = lst_d_b
+                    current_d_b = int(last_data.Current_Diesel_Balance)
+                    minus = (current_d_b - lst_d_b)
                     hmr = int(hr_dg_sum)
                     diesel = int(minus)
                     diesel_hmr_div = 0
@@ -321,8 +320,8 @@ class DieselFillingOrReadingViews(TemplateView):
                         hr_piu_sum = dgpiu
                     piu_minus = 0
                     lst_d_b_piu = int(last_data.Fuel_Qty_Filled)
-                    # current_d_b_piu = int(last_data.Current_Diesel_Balance)
-                    piu_minus = lst_d_b_piu
+                    current_d_b_piu = int(last_data.Current_Diesel_Balance)
+                    piu_minus = (current_d_b_piu - lst_d_b_piu)
                     piu = int(hr_piu_sum)
                     diesel_piu = int(piu_minus)
                     diesel_piu_div = 0
