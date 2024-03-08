@@ -344,9 +344,9 @@
                                                     <th scope="col" class="read-status">Receipt No</th>
                                                     <th scope="col" class="read-status">Card Number</th>
                                                     <th scope="col" class="read-status">Vehicle Plate</th>
-                                                    <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
+                                                    <!-- <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
                                                     <th scope="col" style="min-width: 250px;">After Fuel Filling CM
-                                                        Photo</th>
+                                                        Photo</th> -->
                                                     <th scope="col" style="min-width: 140px;">DG Running HRS</th>
                                                     <th scope="col" style="min-width: 300px;">CPH & Comparison With
                                                         Approved CPH</th>
@@ -422,7 +422,7 @@
                                                         {{feul.Vehicle_Plate}}
                                                         {% endif %}
                                                     </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         {% if feul.Before_Fuel_CM_Photo != '' %}
                                                         <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                                             <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px"
@@ -443,7 +443,7 @@
                                                         {% else %}
                                                         No
                                                         {% endif %}
-                                                    </td>
+                                                    </td> -->
                                                     <td>{{feul.DG_Running_HRS}}</td>                                                    
                                                     <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
                                                     <td>{{feul.CPH_as_par_HMR}}</td>
@@ -673,9 +673,9 @@
                         <th scope="col" class="read-status">Receipt No</th>
                         <th scope="col" class="read-status">Card Number</th>
                         <th scope="col" class="read-status">Vehicle Plate</th>
-                        <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
+                        <!-- <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
                         <th scope="col" style="min-width: 250px;">After Fuel Filling CM
-                            Photo</th>
+                            Photo</th> -->
                         <th scope="col" style="min-width: 140px;">DG Running HRS</th>
                         <th scope="col" style="min-width: 300px;">CPH & Comparison With
                             Approved CPH</th>
@@ -719,7 +719,7 @@
                         <td>{{feul.Receipt_No}}</td>
                         <td>{{feul.Card_Number}}</td>
                         <td>{{feul.Vehicle_Plate}}</td>
-                        <td>
+                        <!-- <td>
                             {% if feul.Before_Fuel_CM_Photo != '' %}
                             <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
                                 <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px" width="100"
@@ -738,7 +738,7 @@
                             {% else %}
                             No
                             {% endif %}
-                        </td>
+                        </td> -->
                         <td>{{feul.DG_Running_HRS}}</td>
                         <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
                         <td>{{feul.CPH_as_par_HMR}}</td>

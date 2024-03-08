@@ -18,8 +18,9 @@ class EnergyFuelAdmin(admin.ModelAdmin):
     'Diesel_Filling_Done','Date_Of_Diesel_Filling','Diesel_Balance_Before_Filling','Fuel_Qty_Filled',
     'EB_Meter_Status','Current_EB_MTR_KWH','EB_PIU_Meter_Status','Current_EB_PIU_Reading', 'Total_DC_Load', 
     'Total_EB_KWH_Reading_from_all_Channels','Remarks','FT_ID','FT_name','FT_mobile_no','Receipt_No','Card_Number',
-    'Vehicle_Plate','Before_Fuel_CM_Photo','After_Fuel_Filling_CM_Photo','DG_Running_HRS','CPH_CPH_Comparison_With_Last_CPH','CPH_as_par_HMR','CPH_as_par_PIU','EB_KWH'
-    ]
+    'Vehicle_Plate','EB_Cumulative_KWH_Image','EB_Running_Hours_Cumulative_Image','DG_Running_Hours_Reading_Image',
+    'DG_Running_Hours_as_per_piu_Reading_Image','Diesel_Bill_Number_Image','DG_Running_HRS','CPH_CPH_Comparison_With_Last_CPH',
+    'CPH_as_par_HMR','CPH_as_par_PIU','EB_KWH']
     search_fields = ['id','global_id','Date_Of_Diesel_Filling']
 
     filter_horizontal = []

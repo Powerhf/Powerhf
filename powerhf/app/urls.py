@@ -17,8 +17,10 @@ urlpatterns = [
     path('reports/fuel-drawn-filter/', FuelDrawnFilters.as_view(), name='fuel_drawn_filter'),
 
     # Forms:
-    path('forms/diesel-meter/filling-reading-fill-form/', DieselFillingOrReadingViews.as_view(), name='atcform'),
+    # path('forms/diesel-meter/filling-reading-fill-form/', DieselFillingOrReadingViews.as_view(), name='atcform'),
     path('forms/fuel-drawn-fill-form/', FuelDrawnViews.as_view(), name='fueldrawnform'),
+
+    path('forms/diesel-meter/filling-reading-fill-form/', DieselFillingOrReadingViewsDuplicate.as_view(), name='atcform'),
 
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),

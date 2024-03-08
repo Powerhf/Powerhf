@@ -68,10 +68,84 @@ class UserAuthentication(AuthenticationForm):
 
 
 
+# class DieselFillingOrReadingForm(forms.ModelForm):
+#     DG_Serial_Number = forms.CharField(required=False, widget=forms.TextInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     DG_HMR_Reading = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Current_DG_PIU_Reading = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Total_DC_Load = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Total_EB_KWH_Reading_from_all_Channels = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Diesel_Balance_Before_Filling = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill amount', 'id':'DieselBefroe'}
+#     ))
+#     Fuel_Qty_Filled = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill amount', 'id':'FuelQFilled'}
+#     ))
+#     Current_Diesel_Balance = forms.CharField(disabled=True,required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill', 'id':'total_amount'}
+#     ))
+#     Current_EB_MTR_KWH = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Current_EB_PIU_Reading = forms.CharField(required=False, widget=forms.NumberInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     Remarks = forms.CharField(required=False, widget=forms.TextInput(
+#         attrs={'class':'inputformsfill'}
+#     ))
+#     EB_Cumulative_KWH_Image = forms.ImageField(required=True, widget=forms.FileInput(
+#         attrs={'class':'img-input'}
+#     ))
+#     EB_Running_Hours_Cumulative_Image = forms.ImageField(required=True, widget=forms.FileInput(
+#         attrs={'class':'img-input'}
+#     ))
+#     DG_Running_Hours_Reading_Image = forms.ImageField(required=True, widget=forms.FileInput(
+#         attrs={'class':'img-input'}
+#     ))
+#     DG_Running_Hours_as_per_piu_Reading_Image = forms.ImageField(required=True, widget=forms.FileInput(
+#         attrs={'class':'img-input'}
+#     ))
+#     Diesel_Bill_Number_Image = forms.ImageField(required=True, widget=forms.FileInput(
+#         attrs={'class':'img-input'}
+#     ))
+
+#     class Meta:
+#         model = EnergyFuel
+#         widgets = {
+#             'global_id': forms.Select(attrs={'class':'inputformsfill js-example-basic-single', 'name':'cars', 'id':'cars'}),
+#             'Tasks': forms.Select(attrs={'class':'inputformsfill', 'id':'tasks_id'}),
+#             'DG_HMR_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'HMR_status'}),
+#             'DG_PIU_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'status_PUI'}),
+#             'Diesel_Filling_Done': forms.Select(attrs={'class':'inputformsfill'}),
+#             'EB_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBMeter_status'}),
+#             'EB_PIU_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBPIU_Status'}),
+#             'Date_Of_Diesel_Filling': forms.DateTimeInput(attrs={'class':'inputformsfill', 'type':'date'}),
+#             'FT_ID': forms.TextInput(attrs={'class':'inputformsfill'}),
+#             'FT_name': forms.TextInput(attrs={'class':'inputformsfill'}),
+#             'FT_mobile_no': forms.TextInput(attrs={'class':'inputformsfill'}),
+#             'Receipt_No': forms.TextInput(attrs={'class':'inputformsfill'}),
+#             'Card_Number': forms.TextInput(attrs={'class':'inputformsfill'}),
+#             'Vehicle_Plate': forms.TextInput(attrs={'class':'inputformsfill'}),
+#         }
+#         fields = ['global_id','Tasks','DG_Serial_Number','DG_HMR_Status','DG_HMR_Reading','DG_PIU_Status','Current_DG_PIU_Reading',
+#                   'Diesel_Filling_Done','Date_Of_Diesel_Filling','Diesel_Balance_Before_Filling','Fuel_Qty_Filled',
+#                   'EB_Meter_Status','Current_EB_MTR_KWH','EB_PIU_Meter_Status','Current_EB_PIU_Reading', 'Total_DC_Load', 
+#                   'Total_EB_KWH_Reading_from_all_Channels','Remarks','FT_ID','FT_name','FT_mobile_no','Receipt_No','Card_Number',
+#                   'Vehicle_Plate','EB_Cumulative_KWH_Image','EB_Running_Hours_Cumulative_Image','DG_Running_Hours_Reading_Image',
+#                   'DG_Running_Hours_as_per_piu_Reading_Image','Diesel_Bill_Number_Image']
+
+
+
 class DieselFillingOrReadingForm(forms.ModelForm):
-    DG_Serial_Number = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={'class':'inputformsfill'}
-    ))
     DG_HMR_Reading = forms.CharField(required=False, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
@@ -81,31 +155,34 @@ class DieselFillingOrReadingForm(forms.ModelForm):
     Total_DC_Load = forms.CharField(required=False, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
-    Total_EB_KWH_Reading_from_all_Channels = forms.CharField(required=False, widget=forms.NumberInput(
+    Total_EB_KWH_Reading_from_all_Channels = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
-    Diesel_Balance_Before_Filling = forms.CharField(required=False, widget=forms.NumberInput(
+    Diesel_Balance_Before_Filling = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class':'inputformsfill amount', 'id':'DieselBefroe'}
     ))
-    Fuel_Qty_Filled = forms.CharField(required=False, widget=forms.NumberInput(
+    Fuel_Qty_Filled = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class':'inputformsfill amount', 'id':'FuelQFilled'}
     ))
-    Current_Diesel_Balance = forms.CharField(disabled=True,required=False, widget=forms.NumberInput(
-        attrs={'class':'inputformsfill', 'id':'total_amount'}
-    ))
-    Current_EB_MTR_KWH = forms.CharField(required=False, widget=forms.NumberInput(
+    Current_EB_MTR_KWH = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
-    Current_EB_PIU_Reading = forms.CharField(required=False, widget=forms.NumberInput(
+    Current_EB_PIU_Reading = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class':'inputformsfill'}
     ))
-    Remarks = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={'class':'inputformsfill'}
-    ))
-    Before_Fuel_CM_Photo = forms.ImageField(required=False, widget=forms.FileInput(
+    EB_Cumulative_KWH_Image = forms.ImageField(required=True, widget=forms.FileInput(
         attrs={'class':'img-input'}
     ))
-    After_Fuel_Filling_CM_Photo = forms.ImageField(required=False, widget=forms.FileInput(
+    EB_Running_Hours_Cumulative_Image = forms.ImageField(required=True, widget=forms.FileInput(
+        attrs={'class':'img-input'}
+    ))
+    DG_Running_Hours_Reading_Image = forms.ImageField(required=True, widget=forms.FileInput(
+        attrs={'class':'img-input'}
+    ))
+    DG_Running_Hours_as_per_piu_Reading_Image = forms.ImageField(required=True, widget=forms.FileInput(
+        attrs={'class':'img-input'}
+    ))
+    Diesel_Bill_Number_Image = forms.ImageField(required=True, widget=forms.FileInput(
         attrs={'class':'img-input'}
     ))
 
@@ -114,24 +191,14 @@ class DieselFillingOrReadingForm(forms.ModelForm):
         widgets = {
             'global_id': forms.Select(attrs={'class':'inputformsfill js-example-basic-single', 'name':'cars', 'id':'cars'}),
             'Tasks': forms.Select(attrs={'class':'inputformsfill', 'id':'tasks_id'}),
-            'DG_HMR_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'HMR_status'}),
-            'DG_PIU_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'status_PUI'}),
-            'Diesel_Filling_Done': forms.Select(attrs={'class':'inputformsfill'}),
             'EB_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBMeter_status'}),
-            'EB_PIU_Meter_Status': forms.Select(attrs={'class':'inputformsfill', 'id':'EBPIU_Status'}),
-            'Date_Of_Diesel_Filling': forms.DateInput(attrs={'class':'inputformsfill', 'type':'date'}),
-            'FT_ID': forms.TextInput(attrs={'class':'inputformsfill'}),
-            'FT_name': forms.TextInput(attrs={'class':'inputformsfill'}),
-            'FT_mobile_no': forms.TextInput(attrs={'class':'inputformsfill'}),
+            'Date_Of_Diesel_Filling': forms.DateTimeInput(attrs={'class':'inputformsfill', 'type':'date'}),
             'Receipt_No': forms.TextInput(attrs={'class':'inputformsfill'}),
-            'Card_Number': forms.TextInput(attrs={'class':'inputformsfill'}),
-            'Vehicle_Plate': forms.TextInput(attrs={'class':'inputformsfill'}),
         }
-        fields = ['global_id','Tasks','DG_Serial_Number','DG_HMR_Status','DG_HMR_Reading','DG_PIU_Status','Current_DG_PIU_Reading',
-                  'Diesel_Filling_Done','Date_Of_Diesel_Filling','Diesel_Balance_Before_Filling','Fuel_Qty_Filled',
-                  'EB_Meter_Status','Current_EB_MTR_KWH','EB_PIU_Meter_Status','Current_EB_PIU_Reading', 'Total_DC_Load', 
-                  'Total_EB_KWH_Reading_from_all_Channels','Remarks','FT_ID','FT_name','FT_mobile_no','Receipt_No','Card_Number',
-                  'Vehicle_Plate','Before_Fuel_CM_Photo','After_Fuel_Filling_CM_Photo',]
+        fields = ['global_id','Tasks','DG_HMR_Reading','Current_DG_PIU_Reading','Date_Of_Diesel_Filling','Diesel_Balance_Before_Filling','Fuel_Qty_Filled',
+                  'EB_Meter_Status','Current_EB_MTR_KWH','Current_EB_PIU_Reading', 'Total_DC_Load','Total_EB_KWH_Reading_from_all_Channels',
+                  'Receipt_No','EB_Cumulative_KWH_Image','EB_Running_Hours_Cumulative_Image','DG_Running_Hours_Reading_Image',
+                  'DG_Running_Hours_as_per_piu_Reading_Image','Diesel_Bill_Number_Image']
 
 
 

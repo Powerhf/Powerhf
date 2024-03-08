@@ -174,12 +174,231 @@ class FuelDrawnFilters(TemplateView):
 
 # Start Forms
 
-class DieselFillingOrReadingViews(TemplateView):
+# class DieselFillingOrReadingViews(TemplateView):
+#     def get(self, request):
+#         if request.user.is_authenticated:
+#             form = DieselFillingOrReadingForm()     
+#             context = {'forms':form}
+#             return render(request, 'app/forms/atcfillingform.html', context)
+#         else:
+#             return redirect('auth')
+        
+#     def post(self, request):
+#         if request.user.is_authenticated:
+#             form = DieselFillingOrReadingForm(data=request.POST, files=request.FILES)
+#             if form.is_valid():
+#                 global_id = form.cleaned_data['global_id']                
+#                 tasks = form.cleaned_data['Tasks']                
+#                 DG_Serial_Number = form.cleaned_data['DG_Serial_Number']
+
+#                 glb_id = str(global_id)
+#                 last_data_1 = EnergyFuel.objects.filter(global_id=glb_id).order_by('-id').first()
+
+#                 DG_HMR_Status = form.cleaned_data['DG_HMR_Status']
+#                 if DG_HMR_Status == 'Working':
+#                     DG_HMR_Reading = form.cleaned_data['DG_HMR_Reading']                                                                                                                                                                                                                                                                                                                                                                                                
+#                 else:
+#                     DG_HMR_Reading = 0
+
+#                 DG_PIU_Status = form.cleaned_data['DG_PIU_Status']
+#                 if DG_PIU_Status == 'Working':
+#                     Current_DG_PIU_Reading = form.cleaned_data['Current_DG_PIU_Reading']
+#                 else:
+#                     Current_DG_PIU_Reading = 0
+
+#                 Diesel_Filling_Done = form.cleaned_data['Diesel_Filling_Done']
+#                 Date_Of_Diesel_Filling = form.cleaned_data['Date_Of_Diesel_Filling']
+
+#                 if form.cleaned_data['Diesel_Balance_Before_Filling'] == '':                
+#                     Diesel_Balance_Before_Filling = 0
+#                 else:
+#                     Diesel_Balance_Before_Filling = form.cleaned_data['Diesel_Balance_Before_Filling']
+
+#                 if form.cleaned_data['Fuel_Qty_Filled'] == '':
+#                     Fuel_Qty_Filled = 0
+#                 else:
+#                     Fuel_Qty_Filled = form.cleaned_data['Fuel_Qty_Filled']     
+
+#                 Current_Diesel_Balance = 0
+#                 dbbf = 0
+#                 fqf = 0
+#                 dbbf = int(Diesel_Balance_Before_Filling)
+#                 fqf = int(Fuel_Qty_Filled)
+#                 Current_Diesel_Balance = dbbf + fqf
+                
+#                 EB_Meter_Status = form.cleaned_data['EB_Meter_Status']
+#                 if EB_Meter_Status == 'Working':
+#                     Current_EB_MTR_KWH = form.cleaned_data['Current_EB_MTR_KWH']
+#                 else:
+#                     Current_EB_MTR_KWH = 0
+
+#                 EB_PIU_Meter_Status = form.cleaned_data['EB_PIU_Meter_Status']
+#                 if EB_PIU_Meter_Status == 'Working':
+#                     Current_EB_PIU_Reading = form.cleaned_data['Current_EB_PIU_Reading']
+#                 else:
+#                     Current_EB_PIU_Reading = 0
+                
+#                 if form.cleaned_data['Total_DC_Load'] == '':
+#                     Total_DC_Load = 0
+#                 else:
+#                     Total_DC_Load = form.cleaned_data['Total_DC_Load']
+
+#                 if form.cleaned_data['Total_EB_KWH_Reading_from_all_Channels'] == '':
+#                     Total_EB_KWH_Reading_from_all_Channels = 0
+#                 else:
+#                     Total_EB_KWH_Reading_from_all_Channels = form.cleaned_data['Total_EB_KWH_Reading_from_all_Channels']
+#                 Remarks = form.cleaned_data['Remarks']
+#                 FT_ID = form.cleaned_data['FT_ID']
+#                 FT_name = form.cleaned_data['FT_name']
+#                 FT_mobile_no = form.cleaned_data['FT_mobile_no']
+#                 Receipt_No = form.cleaned_data['Receipt_No']
+#                 Card_Number = form.cleaned_data['Card_Number']
+#                 Vehicle_Plate = form.cleaned_data['Vehicle_Plate']
+#                 EB_Cumulative_KWH_Image = form.cleaned_data['EB_Cumulative_KWH_Image']
+#                 EB_Running_Hours_Cumulative_Image = form.cleaned_data['EB_Running_Hours_Cumulative_Image']
+#                 DG_Running_Hours_Reading_Image = form.cleaned_data['DG_Running_Hours_Reading_Image']
+#                 DG_Running_Hours_as_per_piu_Reading_Image = form.cleaned_data['DG_Running_Hours_as_per_piu_Reading_Image']
+#                 Diesel_Bill_Number_Image = form.cleaned_data['Diesel_Bill_Number_Image']
+                
+#                 if last_data_1 == None:
+#                     # This is DG_Running_HRS:
+#                     hr_dg_sum = 0
+#                     # This is CPH as par hmr:
+#                     cph_hmr_div = 0
+#                     # This is CPH as par piu:
+#                     cph_piu_div = 0
+#                     # This is KWH:
+#                     KWH_mtr = 0
+#                     # This is CPH approved:
+#                     approved_cph_data = 0
+                    
+#                 else:
+#                     last_data = EnergyFuel.objects.filter(global_id=glb_id).order_by('-id').first()
+#                     # This is DG_Running_HRS:
+#                     HMR_read = int(last_data_1.DG_HMR_Reading)
+#                     hmrread = int(DG_HMR_Reading)
+#                     if hmrread < HMR_read:
+#                         if DG_HMR_Status == 'Working':
+#                             DG_HMR_Reading = form.cleaned_data['DG_HMR_Reading']
+#                         else:
+#                             DG_HMR_Reading = 0
+#                     # This is DG hmr:
+#                     DG_hr = int(DG_HMR_Reading)               
+#                     dghr_int = int(last_data.DG_HMR_Reading)
+#                     dg_hr = (DG_hr - dghr_int)
+#                     dghr = str(dg_hr)
+#                     hr_dg_sum = 0
+#                     if dghr[:1] == '-':
+#                         hr_dg_sum = dghr[1:]
+#                     else:
+#                         hr_dg_sum = dghr
+
+#                     # This is CPH as par hmr:
+#                     minus = 0
+#                     lst_d_b = int(last_data.Fuel_Qty_Filled)
+#                     current_d_b = int(last_data.Current_Diesel_Balance)
+#                     minus = (current_d_b - lst_d_b)
+#                     hmr = int(hr_dg_sum)
+#                     diesel = int(minus)
+#                     diesel_hmr_div = 0
+#                     if hmr == 0 or diesel == 0:
+#                         diesel_hmr_div = 0
+#                     else:
+#                         diesel_hmr_div = (diesel / hmr)   
+#                     dieselhmrdiv = str(round(diesel_hmr_div, 1))  
+#                     if dieselhmrdiv[:1] == '-':
+#                         cph_hmr_div = dieselhmrdiv[1:]
+#                     else:
+#                         cph_hmr_div = dieselhmrdiv 
+                    
+#                     # This is CPH as par piu:
+#                     DG_piu = int(Current_DG_PIU_Reading)               
+#                     dgpiu_int = int(last_data.Current_DG_PIU_Reading)
+#                     dg_piu = (DG_piu - dgpiu_int)
+#                     dgpiu = str(dg_piu)
+#                     hr_piu_sum = 0
+#                     if dgpiu[:1] == '-':
+#                         hr_piu_sum = dgpiu[1:]
+#                     else:
+#                         hr_piu_sum = dgpiu
+#                     piu_minus = 0
+#                     lst_d_b_piu = int(last_data.Fuel_Qty_Filled)
+#                     current_d_b_piu = int(last_data.Current_Diesel_Balance)
+#                     piu_minus = (current_d_b_piu - lst_d_b_piu)
+#                     piu = int(hr_piu_sum)
+#                     diesel_piu = int(piu_minus)
+#                     diesel_piu_div = 0
+#                     if piu == 0 or diesel_piu == 0:
+#                         diesel_piu_div = 0
+#                     else:
+#                         diesel_piu_div = (diesel_piu / piu)   
+#                     dieselpiudiv = str(round(diesel_piu_div, 1))  
+#                     if dieselpiudiv[:1] == '-':
+#                         cph_piu_div = dieselpiudiv[1:]
+#                     else:
+#                         cph_piu_div = dieselpiudiv 
+
+#                     # This is KWH:
+#                     min_KWH_mtr = 0
+#                     lst_kwh_mtr = int(last_data.Current_EB_MTR_KWH)
+#                     present_mtr = int(Current_EB_MTR_KWH)
+#                     min_KWH_mtr = (present_mtr - lst_kwh_mtr)
+#                     minKWHmtr = str(min_KWH_mtr)
+#                     if minKWHmtr[:1] == '-':
+#                         KWH_mtr = minKWHmtr[1:]
+#                     else:
+#                         KWH_mtr = minKWHmtr
+
+#                     # This is CPH approve by CPH:
+#                     last_cph_div = 0
+#                     lastcph_data = SiteFixed.objects.filter(global_id=glb_id).order_by('-global_id').first()
+#                     last_approve_cph = float(lastcph_data.last_month_approved_CPH)
+#                     last_cph_div = (diesel_hmr_div - last_approve_cph)
+#                     div_with_last_cph = 0
+#                     if last_approve_cph == 0 or last_cph_div == 0:
+#                         div_with_last_cph = 0
+#                     else:
+#                         div_with_last_cph = (last_cph_div / last_approve_cph)
+#                     div_last_cph = str(round(div_with_last_cph, 1))
+#                     if div_last_cph[:1] == '-':
+#                         approved_cph_data = div_last_cph[1:]
+#                     else:
+#                         approved_cph_data = div_last_cph
+            
+#                 reg = EnergyFuel(global_id=global_id,DG_Serial_Number=DG_Serial_Number,DG_HMR_Status=DG_HMR_Status,
+#                 DG_HMR_Reading=DG_HMR_Reading,DG_PIU_Status=DG_PIU_Status,Current_DG_PIU_Reading=Current_DG_PIU_Reading,Diesel_Filling_Done=Diesel_Filling_Done,
+#                 Date_Of_Diesel_Filling=Date_Of_Diesel_Filling,Diesel_Balance_Before_Filling=Diesel_Balance_Before_Filling,
+#                 Fuel_Qty_Filled=Fuel_Qty_Filled,Current_Diesel_Balance=Current_Diesel_Balance,EB_Meter_Status=EB_Meter_Status,
+#                 Current_EB_MTR_KWH=Current_EB_MTR_KWH,EB_PIU_Meter_Status=EB_PIU_Meter_Status,Current_EB_PIU_Reading=Current_EB_PIU_Reading,
+#                 Tasks=tasks,Total_DC_Load=Total_DC_Load,Total_EB_KWH_Reading_from_all_Channels=Total_EB_KWH_Reading_from_all_Channels,
+#                 Remarks=Remarks,FT_ID=FT_ID,FT_name=FT_name,FT_mobile_no=FT_mobile_no,Receipt_No=Receipt_No,Card_Number=Card_Number,
+#                 Vehicle_Plate=Vehicle_Plate,EB_Cumulative_KWH_Image=EB_Cumulative_KWH_Image,EB_Running_Hours_Cumulative_Image=EB_Running_Hours_Cumulative_Image,
+#                 DG_Running_Hours_Reading_Image=DG_Running_Hours_Reading_Image,DG_Running_Hours_as_per_piu_Reading_Image=DG_Running_Hours_as_per_piu_Reading_Image,
+#                 Diesel_Bill_Number_Image=Diesel_Bill_Number_Image, DG_Running_HRS=hr_dg_sum, CPH_CPH_Comparison_With_Last_CPH=approved_cph_data, 
+#                 CPH_as_par_HMR=cph_hmr_div, CPH_as_par_PIU=cph_piu_div, EB_KWH=KWH_mtr)
+
+#                 messages.success(request, 'Your data has been submitted successfully.')
+
+#                 reg.save()
+
+#                 return redirect('atcform')
+#             else:
+#                 messages.error(request, 'Somethings went wrong, Please enter correct details.')
+                
+#                 return redirect('atcform')
+#         else:
+#             return redirect('auth')
+
+
+
+# ATC Duplicate Form:
+        
+class DieselFillingOrReadingViewsDuplicate(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
             form = DieselFillingOrReadingForm()     
             context = {'forms':form}
-            return render(request, 'app/forms/atcfillingform.html', context)
+            return render(request, 'app/forms/diesel_filling_and_reading.html', context)
         else:
             return redirect('auth')
         
@@ -189,24 +408,14 @@ class DieselFillingOrReadingViews(TemplateView):
             if form.is_valid():
                 global_id = form.cleaned_data['global_id']                
                 tasks = form.cleaned_data['Tasks']                
-                DG_Serial_Number = form.cleaned_data['DG_Serial_Number']
 
                 glb_id = str(global_id)
                 last_data_1 = EnergyFuel.objects.filter(global_id=glb_id).order_by('-id').first()
 
-                DG_HMR_Status = form.cleaned_data['DG_HMR_Status']
-                if DG_HMR_Status == 'Working':
-                    DG_HMR_Reading = form.cleaned_data['DG_HMR_Reading']                                                                                                                                                                                                                                                                                                                                                                                                
-                else:
-                    DG_HMR_Reading = 0
+                DG_HMR_Reading = form.cleaned_data['DG_HMR_Reading'] 
 
-                DG_PIU_Status = form.cleaned_data['DG_PIU_Status']
-                if DG_PIU_Status == 'Working':
-                    Current_DG_PIU_Reading = form.cleaned_data['Current_DG_PIU_Reading']
-                else:
-                    Current_DG_PIU_Reading = 0
+                Current_DG_PIU_Reading = form.cleaned_data['Current_DG_PIU_Reading']
 
-                Diesel_Filling_Done = form.cleaned_data['Diesel_Filling_Done']
                 Date_Of_Diesel_Filling = form.cleaned_data['Date_Of_Diesel_Filling']
 
                 if form.cleaned_data['Diesel_Balance_Before_Filling'] == '':                
@@ -227,16 +436,12 @@ class DieselFillingOrReadingViews(TemplateView):
                 Current_Diesel_Balance = dbbf + fqf
                 
                 EB_Meter_Status = form.cleaned_data['EB_Meter_Status']
-                if EB_Meter_Status == 'Working':
+                if EB_Meter_Status == 'Available':
                     Current_EB_MTR_KWH = form.cleaned_data['Current_EB_MTR_KWH']
                 else:
                     Current_EB_MTR_KWH = 0
 
-                EB_PIU_Meter_Status = form.cleaned_data['EB_PIU_Meter_Status']
-                if EB_PIU_Meter_Status == 'Working':
-                    Current_EB_PIU_Reading = form.cleaned_data['Current_EB_PIU_Reading']
-                else:
-                    Current_EB_PIU_Reading = 0
+                Current_EB_PIU_Reading = form.cleaned_data['Current_EB_PIU_Reading']
                 
                 if form.cleaned_data['Total_DC_Load'] == '':
                     Total_DC_Load = 0
@@ -247,15 +452,13 @@ class DieselFillingOrReadingViews(TemplateView):
                     Total_EB_KWH_Reading_from_all_Channels = 0
                 else:
                     Total_EB_KWH_Reading_from_all_Channels = form.cleaned_data['Total_EB_KWH_Reading_from_all_Channels']
-                Remarks = form.cleaned_data['Remarks']
-                FT_ID = form.cleaned_data['FT_ID']
-                FT_name = form.cleaned_data['FT_name']
-                FT_mobile_no = form.cleaned_data['FT_mobile_no']
+
                 Receipt_No = form.cleaned_data['Receipt_No']
-                Card_Number = form.cleaned_data['Card_Number']
-                Vehicle_Plate = form.cleaned_data['Vehicle_Plate']
-                Before_Fuel_CM_Photo = form.cleaned_data['Before_Fuel_CM_Photo']
-                After_Fuel_Filling_CM_Photo = form.cleaned_data['After_Fuel_Filling_CM_Photo']
+                EB_Cumulative_KWH_Image = form.cleaned_data['EB_Cumulative_KWH_Image']
+                EB_Running_Hours_Cumulative_Image = form.cleaned_data['EB_Running_Hours_Cumulative_Image']
+                DG_Running_Hours_Reading_Image = form.cleaned_data['DG_Running_Hours_Reading_Image']
+                DG_Running_Hours_as_per_piu_Reading_Image = form.cleaned_data['DG_Running_Hours_as_per_piu_Reading_Image']
+                Diesel_Bill_Number_Image = form.cleaned_data['Diesel_Bill_Number_Image']
                 
                 if last_data_1 == None:
                     # This is DG_Running_HRS:
@@ -271,24 +474,19 @@ class DieselFillingOrReadingViews(TemplateView):
                     
                 else:
                     last_data = EnergyFuel.objects.filter(global_id=glb_id).order_by('-id').first()
-                    # This is DG_Running_HRS:
-                    HMR_read = int(last_data_1.DG_HMR_Reading)
-                    hmrread = int(DG_HMR_Reading)
-                    if hmrread < HMR_read:
-                        if DG_HMR_Status == 'Working':
-                            DG_HMR_Reading = form.cleaned_data['DG_HMR_Reading']
-                        else:
-                            DG_HMR_Reading = 0
                     # This is DG hmr:
                     DG_hr = int(DG_HMR_Reading)               
                     dghr_int = int(last_data.DG_HMR_Reading)
-                    dg_hr = (DG_hr - dghr_int)
-                    dghr = str(dg_hr)
-                    hr_dg_sum = 0
-                    if dghr[:1] == '-':
-                        hr_dg_sum = dghr[1:]
+                    if DG_hr > dghr_int:
+                        dg_hr = (DG_hr - dghr_int)
+                        dghr = str(dg_hr)
+                        hr_dg_sum = 0
+                        if dghr[:1] == '-':
+                            hr_dg_sum = dghr[1:]
+                        else:
+                            hr_dg_sum = dghr
                     else:
-                        hr_dg_sum = dghr
+                        hr_dg_sum = 0
 
                     # This is CPH as par hmr:
                     minus = 0
@@ -311,13 +509,16 @@ class DieselFillingOrReadingViews(TemplateView):
                     # This is CPH as par piu:
                     DG_piu = int(Current_DG_PIU_Reading)               
                     dgpiu_int = int(last_data.Current_DG_PIU_Reading)
-                    dg_piu = (DG_piu - dgpiu_int)
-                    dgpiu = str(dg_piu)
-                    hr_piu_sum = 0
-                    if dgpiu[:1] == '-':
-                        hr_piu_sum = dgpiu[1:]
+                    if DG_piu > dgpiu_int:
+                        dg_piu = (DG_piu - dgpiu_int)
+                        dgpiu = str(dg_piu)
+                        hr_piu_sum = 0
+                        if dgpiu[:1] == '-':
+                            hr_piu_sum = dgpiu[1:]
+                        else:
+                            hr_piu_sum = dgpiu
                     else:
-                        hr_piu_sum = dgpiu
+                        hr_piu_sum = 0
                     piu_minus = 0
                     lst_d_b_piu = int(last_data.Fuel_Qty_Filled)
                     current_d_b_piu = int(last_data.Current_Diesel_Balance)
@@ -339,12 +540,15 @@ class DieselFillingOrReadingViews(TemplateView):
                     min_KWH_mtr = 0
                     lst_kwh_mtr = int(last_data.Current_EB_MTR_KWH)
                     present_mtr = int(Current_EB_MTR_KWH)
-                    min_KWH_mtr = (present_mtr - lst_kwh_mtr)
-                    minKWHmtr = str(min_KWH_mtr)
-                    if minKWHmtr[:1] == '-':
-                        KWH_mtr = minKWHmtr[1:]
+                    if present_mtr > lst_kwh_mtr:
+                        min_KWH_mtr = (present_mtr - lst_kwh_mtr)
+                        minKWHmtr = str(min_KWH_mtr)
+                        if minKWHmtr[:1] == '-':
+                            KWH_mtr = minKWHmtr[1:]
+                        else:
+                            KWH_mtr = minKWHmtr
                     else:
-                        KWH_mtr = minKWHmtr
+                        KWH_mtr = 0
 
                     # This is CPH approve by CPH:
                     last_cph_div = 0
@@ -362,16 +566,13 @@ class DieselFillingOrReadingViews(TemplateView):
                     else:
                         approved_cph_data = div_last_cph
             
-                reg = EnergyFuel(global_id=global_id,DG_Serial_Number=DG_Serial_Number,DG_HMR_Status=DG_HMR_Status,
-                DG_HMR_Reading=DG_HMR_Reading,DG_PIU_Status=DG_PIU_Status,Current_DG_PIU_Reading=Current_DG_PIU_Reading,Diesel_Filling_Done=Diesel_Filling_Done,
-                Date_Of_Diesel_Filling=Date_Of_Diesel_Filling,Diesel_Balance_Before_Filling=Diesel_Balance_Before_Filling,
+                reg = EnergyFuel(global_id=global_id,DG_HMR_Reading=DG_HMR_Reading,Current_DG_PIU_Reading=Current_DG_PIU_Reading,
+                 Date_Of_Diesel_Filling=Date_Of_Diesel_Filling,Diesel_Balance_Before_Filling=Diesel_Balance_Before_Filling,
                 Fuel_Qty_Filled=Fuel_Qty_Filled,Current_Diesel_Balance=Current_Diesel_Balance,EB_Meter_Status=EB_Meter_Status,
-                Current_EB_MTR_KWH=Current_EB_MTR_KWH,EB_PIU_Meter_Status=EB_PIU_Meter_Status,Current_EB_PIU_Reading=Current_EB_PIU_Reading,
-                Tasks=tasks,Total_DC_Load=Total_DC_Load,Total_EB_KWH_Reading_from_all_Channels=Total_EB_KWH_Reading_from_all_Channels,
-                Remarks=Remarks,FT_ID=FT_ID,FT_name=FT_name,FT_mobile_no=FT_mobile_no,Receipt_No=Receipt_No,Card_Number=Card_Number,
-                Vehicle_Plate=Vehicle_Plate,Before_Fuel_CM_Photo=Before_Fuel_CM_Photo,After_Fuel_Filling_CM_Photo=After_Fuel_Filling_CM_Photo,
-                DG_Running_HRS=hr_dg_sum, CPH_CPH_Comparison_With_Last_CPH=approved_cph_data, CPH_as_par_HMR=cph_hmr_div, CPH_as_par_PIU=cph_piu_div,
-                EB_KWH=KWH_mtr)
+                Current_EB_MTR_KWH=Current_EB_MTR_KWH,Current_EB_PIU_Reading=Current_EB_PIU_Reading,Tasks=tasks,Total_DC_Load=Total_DC_Load,Total_EB_KWH_Reading_from_all_Channels=Total_EB_KWH_Reading_from_all_Channels,Receipt_No=Receipt_No,EB_Cumulative_KWH_Image=EB_Cumulative_KWH_Image,EB_Running_Hours_Cumulative_Image=EB_Running_Hours_Cumulative_Image,
+                DG_Running_Hours_Reading_Image=DG_Running_Hours_Reading_Image,DG_Running_Hours_as_per_piu_Reading_Image=DG_Running_Hours_as_per_piu_Reading_Image,
+                Diesel_Bill_Number_Image=Diesel_Bill_Number_Image, DG_Running_HRS=hr_dg_sum, CPH_CPH_Comparison_With_Last_CPH=approved_cph_data, 
+                CPH_as_par_HMR=cph_hmr_div, CPH_as_par_PIU=cph_piu_div, EB_KWH=KWH_mtr)
 
                 messages.success(request, 'Your data has been submitted successfully.')
 
@@ -385,6 +586,7 @@ class DieselFillingOrReadingViews(TemplateView):
         else:
             return redirect('auth')
 
+# ATC Duplicate Form END
 
 
 class FuelDrawnViews(TemplateView):

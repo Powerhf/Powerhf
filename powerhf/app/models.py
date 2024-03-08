@@ -91,10 +91,15 @@ IS_YES_OR_NO = (
     ('No','No'),
 )
 
+# WORKING_NOTWORKING = (
+#     ('Working','Working'),
+#     ('Not-Working','Not-Working'),
+#     ('Missing','Missing'),
+# )
+
 WORKING_NOTWORKING = (
-    ('Working','Working'),
-    ('Not-Working','Not-Working'),
-    ('Missing','Missing'),
+    ('Available','Available'),
+    ('Not-Available','Not-Available'),
 )
 
 TASKS = (
@@ -129,8 +134,11 @@ class EnergyFuel(models.Model):
     Receipt_No = models.CharField(verbose_name='Receipt Number', null=True, max_length=200)
     Card_Number = models.CharField(verbose_name='Card Number', null=True, max_length=200)
     Vehicle_Plate = models.CharField(verbose_name='Vehicle Plate', null=True, max_length=200)
-    Before_Fuel_CM_Photo = models.ImageField(verbose_name='Before Fuel (CM) Photo', upload_to='Before Fuel Filling (CM)/%y')
-    After_Fuel_Filling_CM_Photo = models.ImageField(verbose_name='After Fuel Filling(CM) Photo', upload_to='After Fuel Filling (CM)/%y')
+    EB_Cumulative_KWH_Image = models.ImageField(verbose_name='EB Cumulative KWH (As Per EB Meter) Image', upload_to='EB Cumulative KWH (As Per EB Meter)/%y')
+    EB_Running_Hours_Cumulative_Image = models.ImageField(verbose_name='EB Cumulative KWH (As Per EB Meter) Image', upload_to='EB Cumulative KWH (As Per EB Meter)/%y')
+    DG_Running_Hours_Reading_Image = models.ImageField(verbose_name='DG Running Hours Reading (As Per HMR Meter) Image', upload_to='DG Running Hours Reading (As Per HMR Meter)/%y')
+    DG_Running_Hours_as_per_piu_Reading_Image = models.ImageField(verbose_name='DG Running Hours Reading (As Per PIU/12PMS/AMF) Image', upload_to='DG Running Hours Reading (As Per PIU/12PMS/AMF)/%y')
+    Diesel_Bill_Number_Image = models.ImageField(verbose_name='Diesel Bill Number Image', upload_to='Diesel Bill Number/%y')
     DG_Running_HRS = models.TextField(verbose_name='DG Running Hrs')
     CPH_CPH_Comparison_With_Last_CPH = models.TextField(verbose_name='CPH and CPH Comparioson with Approved')
     CPH_as_par_HMR = models.TextField(verbose_name='CPH', null=True)	
