@@ -29,6 +29,27 @@ class EnergyFuelAdmin(admin.ModelAdmin):
 admin.site.register(EnergyFuel, EnergyFuelAdmin)
 
 
+class EnergyDieselFillingAdmin(admin.ModelAdmin):
+    list_display = [
+        'file','File_id','Global_ID','Circle','Site_Name','Cluster','Region','User_Name','Assign_Date','Status','Previous_Reading_Date_Time',
+        'Current_Reading_Date_Time','Previous_EB_Cumulative_KWH_As_Per_EB_Meter','Current_EB_Cumulative_KWH_As_Per_EB_Meter',
+        'Previous_EB_Running_Hours_Cumulative_Available_Not_Available','Current_EB_Running_Hours_Cumulative_Available_Not_Available',
+        'Previous_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF','Current_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF',
+        'Type_of_DG_Static_Mobile','Previous_DG_Running_Hours_Reading_As_Per_HMR','Current_DG_Running_Hours_Reading_As_Per_HMR',
+        'Previous_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF','Current_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF',
+        'Previous_Opening_Diesel_stock_Before_Filling','Current_Opening_Diesel_stock_Before_Filling','Previous_Filled_Ltrs',
+        'Current_Filled_Ltrs','Previous_Diesel_Bill_Number','Current_Diesel_Bill_Number','Previous_Remarks_If_any','Current_Remarks_If_any',
+        'No_of_days_since_previous_filling','Calculated_CPH_HMR','Calculated_CPH_As_per_PIU_I2PMS_AMF','Calculated_DG_HR_HMR',
+        'Calculated_DG_HR_As_per_PIU_I2PMS_AMF','Calculated_EB_KWH_As_per_Meter','Calculated_EB_HR_As_per_PIU_I2PMS_AMF','Deviation'
+    ]
+    search_fields = ['File_id','Global_ID']
+
+    filter_horizontal = []
+    list_filter = []
+    fieldsets = []
+admin.site.register(EnergyDieelFilling, EnergyDieselFillingAdmin)
+
+
 class FuelDrawnAdmin(admin.ModelAdmin):
     list_display = [
         'id','FT_ID','FT_name','FT_mobile_no','Cluster_Name','Fuel_Drawn_Date','Card_No','City_Township_Fuel_Station',

@@ -616,7 +616,12 @@ class PDFUploading(TemplateView):
             else:
                 Reading_Date_Time = ''           
 
-            SIteGlobalID = pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text()
+            if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text():
+                SIteGlobalID = pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text()
+            else:
+                messages.error(request, "Please upload correct format PDF of diesel filling.")
+
+                return redirect('atcform')
 
             Static_ATC_data = SiteFixed.objects.get(global_id=SIteGlobalID)
 
@@ -727,7 +732,7 @@ class PDFUploading(TemplateView):
                         
                         minus_cph = float(cph_of_hmr) - float(Static_ATC_data.last_month_approved_CPH)
                         div_cph = minus_cph / float(Static_ATC_data.last_month_approved_CPH)
-                        lastcph = str(round(div_cph))
+                        lastcph = str(round(div_cph, 1))
                         if lastcph[:1] == '-':
                             last_approved_cph = lastcph[1:]
                         else:

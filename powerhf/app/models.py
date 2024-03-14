@@ -111,14 +111,13 @@ class EnergyFuel(models.Model):
     id = models.BigAutoField(primary_key=True)
     global_id = models.ForeignKey(SiteFixed, on_delete=models.CASCADE)
     Tasks = models.CharField(verbose_name='Tasks', max_length=200, choices=TASKS)
-    DG_Serial_Number = models.TextField(verbose_name='DG Serial Number')
+    DG_Serial_Number = models.TextField(verbose_name='DG Serial Number', null=True)
     DG_HMR_Status = models.CharField(verbose_name='DG HMR Status', max_length=30, choices=WORKING_NOTWORKING, null=True)
     DG_HMR_Reading = models.IntegerField(verbose_name='DG HMR Reading', null=True)
     DG_PIU_Status = models.CharField(verbose_name='DG PIU Status', max_length=30, choices=WORKING_NOTWORKING, null=True)
     Current_DG_PIU_Reading = models.IntegerField(verbose_name='Current DG PIU Reading', null=True)
     Diesel_Filling_Done = models.CharField(verbose_name='Diesel Filling Done', max_length=20, choices=IS_YES_OR_NO, null=True)
     Date_Of_Diesel_Filling = models.DateField(verbose_name='Date of Diesel Filling', null=True)
-    Time_Of_Diesel_Filling = models.TimeField(verbose_name='Time of Diesel Filling', null=True)
     Diesel_Balance_Before_Filling = models.IntegerField(verbose_name='Diesel Balance Before Filling', null=True)
     Fuel_Qty_Filled = models.IntegerField(verbose_name='Fuel Qty. Filled', null=True)
     Current_Diesel_Balance = models.IntegerField(verbose_name='Current Diesel Balance', null=True)
@@ -140,16 +139,65 @@ class EnergyFuel(models.Model):
     DG_Running_Hours_Reading_Image = models.ImageField(verbose_name='DG Running Hours Reading (As Per HMR Meter) Image', null=True, upload_to='DG Running Hours Reading (As Per HMR Meter)/%y')
     DG_Running_Hours_as_per_piu_Reading_Image = models.ImageField(verbose_name='DG Running Hours Reading (As Per PIU/12PMS/AMF) Image', null=True, upload_to='DG Running Hours Reading (As Per PIU/12PMS/AMF)/%y')
     Diesel_Bill_Number_Image = models.ImageField(verbose_name='Diesel Bill Number Image', null=True, upload_to='Diesel Bill Number/%y')
-    DG_Running_HRS = models.TextField(verbose_name='DG Running Hrs')
-    CPH_CPH_Comparison_With_Last_CPH = models.TextField(verbose_name='CPH and CPH Comparioson with Approved')
+    DG_Running_HRS = models.TextField(verbose_name='DG Running Hrs', null=True)
+    CPH_CPH_Comparison_With_Last_CPH = models.TextField(verbose_name='CPH and CPH Comparioson with Approved', null=True)
     CPH_as_par_HMR = models.TextField(verbose_name='CPH', null=True)	
     CPH_as_par_PIU = models.TextField(verbose_name='CPH', null=True)	
-    EB_KWH = models.TextField(verbose_name='EB KWH')
+    EB_KWH = models.TextField(verbose_name='EB KWH', null=True)
 
     def __str__(self):
         return str(self.global_id.global_id)
 
 
+
+STATIC_SELECT = (
+    ('Static','Static'),
+    ('Mobile','Mobile'),
+)
+
+class EnergyDieelFilling(models.Model):
+    file = models.FileField(verbose_name='File', upload_to='Diesel_Filling_PDF_Files/%y', null=True)
+    File_id = models.CharField(verbose_name='File ID', max_length=50, unique=True, primary_key=True)
+    Global_ID = models.ForeignKey(SiteFixed ,on_delete=models.CASCADE)
+    Circle = models.TextField(verbose_name='Circle', null=True)
+    Site_Name = models.TextField(verbose_name='Site Name', null=True)
+    Cluster = models.TextField(verbose_name='Cluster', null=True)
+    Region = models.TextField(verbose_name='Region', null=True)
+    User_Name = models.TextField(verbose_name='User Name', null=True)
+    Assign_Date = models.DateField(verbose_name='Assign Date', null=True)
+    Status = models.TextField(verbose_name='Status', null=True)
+    Previous_Reading_Date_Time = models.DateTimeField(verbose_name='Previous Reading Date Time', null=True)
+    Current_Reading_Date_Time = models.DateTimeField(verbose_name='Current Reading Date Time', null=True)
+    Previous_EB_Cumulative_KWH_As_Per_EB_Meter = models.TextField(verbose_name='Previous EB Cumulative KWH As Per EB Meter', null=True)
+    Current_EB_Cumulative_KWH_As_Per_EB_Meter = models.TextField(verbose_name='Current EB Cumulative KWH As Per EB Meter', null=True)
+    Previous_EB_Running_Hours_Cumulative_Available_Not_Available = models.CharField(verbose_name='Previous EB Running Hours Cumulative Available Not Available', max_length=20, null=True, choices=WORKING_NOTWORKING)
+    Current_EB_Running_Hours_Cumulative_Available_Not_Available = models.CharField(verbose_name='Current EB Running Hours Cumulative Available Not Available', max_length=20, null=True, choices=WORKING_NOTWORKING)
+    Previous_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF = models.TextField(verbose_name='Previous EB Running Hours Cumulative As per PIU I2PMS AMF', null=True)
+    Current_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF = models.TextField(verbose_name='Current EB Running Hours Cumulative As per PIU I2PMS AMF', null=True)
+    Type_of_DG_Static_Mobile = models.CharField(verbose_name='Type of DG Static Mobile', max_length=20, null=True, choices=STATIC_SELECT)
+    Previous_DG_Running_Hours_Reading_As_Per_HMR = models.TextField(verbose_name='Previous DG Running Hours Reading (As Per HMR)', null=True)
+    Current_DG_Running_Hours_Reading_As_Per_HMR = models.TextField(verbose_name='Current DG Running Hours Reading (As Per HMR)', null=True)
+    Previous_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF = models.TextField(verbose_name='Previous DG Running Hours Reading(As Per PIU/I2PMS/AMF)', null=True)
+    Current_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF = models.TextField(verbose_name='Current DG Running Hours Reading(As Per PIU/I2PMS/AMF)', null=True)
+    Previous_Opening_Diesel_stock_Before_Filling = models.TextField(verbose_name='Previous Opening Diesel stock Before Filling', null=True)
+    Current_Opening_Diesel_stock_Before_Filling = models.TextField(verbose_name='Current Opening Diesel stock Before Filling', null=True)
+    Previous_Filled_Ltrs = models.TextField(verbose_name='Previous Filled Ltrs', null=True)
+    Current_Filled_Ltrs = models.TextField(verbose_name='Current Filled Ltrs', null=True)
+    Previous_Diesel_Bill_Number = models.TextField(verbose_name='Previous Diesel Bill Number', null=True)
+    Current_Diesel_Bill_Number = models.TextField(verbose_name='Current Diesel Bill Number', null=True)
+    Previous_Remarks_If_any = models.TextField(verbose_name='Previous Remarks If any', null=True)
+    Current_Remarks_If_any = models.TextField(verbose_name='Current Remarks If any', null=True)
+    No_of_days_since_previous_filling  = models.TextField(verbose_name='No of days since previous filling', null=True)
+    Calculated_CPH_HMR  = models.TextField(verbose_name='Calculated CPH (HMR)', null=True)
+    Calculated_CPH_As_per_PIU_I2PMS_AMF = models.TextField(verbose_name='Calculated CPH (As per PIU/I2PMS/AMF)', null=True)
+    Calculated_DG_HR_HMR = models.TextField(verbose_name='Calculated DG HR (HMR)', null=True)
+    Calculated_DG_HR_As_per_PIU_I2PMS_AMF = models.TextField(verbose_name='Calculated DG HR (As per PIU/I2PMS/AMF)', null=True)
+    Calculated_EB_KWH_As_per_Meter = models.TextField(verbose_name='Calculated EB KWH (As per Meter)', null=True)
+    Calculated_EB_HR_As_per_PIU_I2PMS_AMF = models.TextField(verbose_name='Calculated EB HR (As per PIU/I2PMS/AMF)', null=True)
+    Deviation = models.TextField(verbose_name='Deviation', null=True)
+
+    def __str__(self):
+        return str(self.File_id)
     
 
 
