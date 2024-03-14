@@ -10,22 +10,16 @@
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
     <link rel=”stylesheet” href=”https://use.fontawesome.com/releases/v5.7.0/css/all.css”
         integrity=”sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ” crossorigin=”anonymous”>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <title>PowerHF • Energy Filter</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>PowerHF • ATC Form</title>
 </head>
 
 <body>
     <div id="loader" class="center"></div>
     <div class="container-fluid p-0">
         <div class="card border-0 bg-card">
-            <div class="row g-0 row-dt_col">
+            <div class="row g-0">
                 <div class="col-md-2 card-2-side">
                     <div class="sidebar sticky-top">
                         <div class="sidebar-headers">
@@ -50,13 +44,13 @@
                                     <li class="inner-bar-li">
                                         <div class="accordion accordion-flush" id="accordionFlushExample">
                                             <div class="accordion-item" style="background-color: #f5f5f5;">
-                                                <button class="collapsed btn_col d-flex" id="btn-for-click"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                                    aria-controls="panelsStayOpen-collapseOne">
+                                                <button class="collapsed btn_col d-flex" type="button"
+                                                    id="btn-for-click" data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                                    aria-controls="flush-collapseOne" onclick="RotateArrow()">
                                                     <div class="fefu">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                                            viewBox="0 0 512 512" style="margin-bottom: 5px;">
+                                                            style="margin-bottom: 5px;" viewBox="0 0 512 512">
                                                             <path
                                                                 d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z" />
                                                         </svg>
@@ -74,9 +68,8 @@
                                                         </div>
                                                     </div>
                                                 </button>
-                                                <div id="panelsStayOpen-collapseOne"
-                                                    class="accordion-collapse collapse show mb-2 p-0"
-                                                    style="width: 90%;">
+                                                <div id="flush-collapseOne" class="accordion-collapse collapse mb-2 p-0"
+                                                    data-bs-parent="#accordionFlushExample" style="width: 90%;">
                                                     <div class="accordion-body p-0 m-0 d-flex justify-content-end">
                                                         <div class="hhuwe">
                                                             <a href="{% url 'hoto_report' %}" class="inner_group-li">
@@ -90,7 +83,7 @@
                                                                 </span>
                                                             </a>
                                                             <a href="{% url 'atc_site_report' %}"
-                                                                class="inner_group-li code-famy">
+                                                                class="inner_group-li">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.875em"
                                                                     style="margin-bottom: 5px;"
                                                                     viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -108,13 +101,13 @@
                                     <li class="inner-bar-li">
                                         <div class="accordion accordion-flush" id="formsaccordionFlushExample">
                                             <div class="accordion-item" style="background-color: #f5f5f5;">
-                                                <button class="accordion collapsed btn_col d-flex" type="button"
-                                                    id="btn-for-click" data-bs-toggle="collapse"
-                                                    data-bs-target="#forms-flush-collapseOne" aria-expanded="false"
-                                                    aria-controls="forms-flush-collapseOne">
+                                                <button class="collapsed btn_col d-flex" id="btn-for-click"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                                    aria-controls="panelsStayOpen-collapseOne">
                                                     <div class="fefu">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
-                                                            viewBox="0 0 576 512" style="margin-bottom: 5px;">
+                                                            style="margin-bottom: 5px;" viewBox="0 0 576 512">
                                                             <path
                                                                 d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" />
                                                         </svg>
@@ -132,15 +125,16 @@
                                                         </div>
                                                     </div>
                                                 </button>
-                                                <div id="forms-flush-collapseOne"
-                                                    class="accordion-collapse collapse mb-2 p-0"
+                                                <div id="panelsStayOpen-collapseOne"
+                                                    class="accordion-collapse collapse show mb-2 p-0"
                                                     data-bs-parent="#formsaccordionFlushExample" style="width: 90%;">
                                                     <div class="accordion-body p-0 m-0 d-flex justify-content-end">
                                                         <div class="hhuwe">
-                                                            <a href="{% url 'atcform' %}" class="inner_group-li">
+                                                            <a href="{% url 'atcform' %}"
+                                                                class="inner_group-li code-famy">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" height="14"
-                                                                    width="14" viewBox="0 0 576 512"
-                                                                    style="margin-bottom: 3px;">
+                                                                    style="margin-bottom: 3px;" width="14"
+                                                                    viewBox="0 0 576 512">
                                                                     <path
                                                                         d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" />
                                                                 </svg>
@@ -187,9 +181,9 @@
                                                     </a>
                                                 </span>
                                                 <span> / </span>
-                                                <span class="inner-top-link-atg"> Reports</span>
+                                                <span class="inner-top-link-atg">Forms</span>
                                                 <span> / </span>
-                                                <span class="inner-top-link-atg"> Energy Tracking</span>
+                                                <span class="inner-top-link-atg">DFR & Reading</span>
                                             </div>
                                             <div class="group-dt-2">
                                                 <button type="button" class="offconvas-btn" data-bs-toggle="offcanvas"
@@ -204,8 +198,9 @@
                                         </div>
                                     </div>
                                     <div class="p-2">
+                                        {% if request.user.is_authenticated %}
                                         <button onclick="myFunction()" class="user-link-dt dropbtn">
-                                            <svg height="1em" viewBox="0 0 448 512">
+                                            <svg height="1.2em" viewBox="0 0 448 512">
                                                 <path
                                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                                             </svg>
@@ -238,191 +233,72 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        {% else %}
+                                        <a href="{% url 'auth' %}" class="user-link-dt dropbtn text-decoration-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"
+                                                viewBox="0 0 512 512">
+                                                <path
+                                                    d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
+                                            </svg>
+                                            Login
+                                        </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card right-middel-card expand-table border-0 mt-4">
-                            <div class="headings fh7y_u8y">
-                                <div style="margin-left: 15px; margin-right: 15px; margin-top: 10px;">
-                                    <div class="row row-cols-1 row-cols-md-2 g-2">
-                                        <div class="col-md-6">
-                                            <h5 class="fw-normal">Energy Report</h5>
-                                        </div>                                        
-                                        <div class="col-md-6 text-end">
-                                            {% if fuel_report %}
-                                            <button type="button" id="btn-download-id"
-                                                class="btn btn-secondary btn-sm p-2 rounded-circle">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15"
-                                                    style="margin-bottom: 4px;" viewBox="0 0 512 512">
-                                                    <path fill="#ffffff"
-                                                        d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                        <div class="card border-0 right-middel-card mt-4 mb-5">
+                            <div class="mt-4 mb-3">
+                                <div class="headings mb-4" style="padding-left: 15px;">
+                                    <h5 class="fw-normal">Diesel Filling / Energy Reading Form</h5>
+                                </div>
+                                {% if messages %}
+                                {% for msg in messages %}
+                                <div class="card {{msg.tags}} mb-5 p-2" id="Error-close"
+                                    style="margin-left: 0.8rem; margin-right: 1.5rem;">
+                                    <div class="d-flex">
+                                        <div class="inr-success-int1" style="width: 100%; padding-top: 4;">
+                                            <span>{{msg}}</span>
+                                        </div>
+                                        <div class="inr-success-int2">
+                                            <button class="btn-close-err-msg" id="btncloseerrmsg"
+                                                onclick="BtnErrorClose()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                    viewBox="0 0 384 512" class="text-white">
+                                                    <path fill="#545454"
+                                                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                                                 </svg>
                                             </button>
-                                            {% endif %}
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="filter-reports mt-4">
-                                    <div class="hfy-ty665">
-                                        <form action="{% url 'energy_dfr_filter' %}" method="GET">
-                                            <div class="inner-filters">
-                                                <input type="text" id="search_data_fuel_drawn" name="search_name"
-                                                    class="inputformsfill" placeholder="Search your data"
-                                                    style="width: 250px; margin-left: 1rem; margin-right: 2rem;">
-
-                                                <input type="date" id="date_df1" name="start_date"
-                                                    class="inputformsfill dateFilter" style="width: 200px; margin-left: 1rem;">
-
-                                                <span style="margin-left: 10px;margin-right: 10px;">To</span>
-
-                                                <input type="date" id="date_df2" name="end_date"
-                                                    class="inputformsfill dateFilter"
-                                                    style="width: 200px;margin-right: 10px;">
-
-                                                <input type="submit" class="btn_filter_dt bg-secondary" value="Show">                                               
+                                {% endfor %}
+                                {% endif %}
+                                <form action="{% url 'atcform' %}" method="POST" class="m-3" enctype="multipart/form-data" id="myForm">
+                                    {% csrf_token %}
+                                    <div class="erger-56ty">
+                                        <div class="inner-dtg54 mb-5">
+                                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="mb-2 label_input">Upload your diesel filling pdf file</label>
+                                                        <input type="file" class="img-input" name="pdf_diesel" id="pdf_upload" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="inner-table mt-3">
-                                    <div class="d-flex fhy865">
-                                        <div class="">
-                                            <a href="{% url 'atc_site_report' %}" class="list-dt-energy">DFR</a>
-                                        </div>
-                                        <div class="">
-                                            <a href="{% url 'fuel_drawn' %}" class="list-dt-energy">Fuel Drawn</a>
-                                        </div>
-                                        <div class="">
-                                            <a href="{% url 'diesel_filling' %}" class="list-dt-energy">Energy
-                                                Reading</a>
                                         </div>
                                     </div>
-
-                                    <div class="innerderf mt-3">
-                                        {% if fuel_report %}
-                                        <table class="table dt-table">
-                                            <thead>
-                                                <tr class="table-head">
-                                                    <th scope="col" class="read-status">Global ID</th>
-                                                    <th scope="col" class="read-status">Site Name</th>
-                                                    <th scope="col" class="size-expand">Site Address</th>
-                                                    <th scope="col" class="read-status">Cluster</th>
-                                                    <th scope="col" class="read-status">CE</th>
-                                                    <th scope="col" class="read-status">Site Tenancy</th>
-                                                    <th scope="col" class="read-status">DG NON DG</th>
-                                                    <th scope="col" style="min-width: 150px;">DG Capacity kva</th>
-                                                    <th scope="col" class="read-status">EB Status</th>
-                                                    <th scope="col" class="read-status">Card Number</th>
-                                                    <th scope="col" style="min-width: 200px;">Last Month Approved CPH
-                                                    </th>
-                                                    <th scope="col" style="min-width: 150px;">DG Serial Number</th>
-                                                    <th scope="col" style="min-width: 150px;">DG HMR Status</th>
-                                                    <th scope="col" style="min-width: 150px;">DG HMR Reading</th>
-                                                    <th scope="col" style="min-width: 150px;">DG PIU Status</th>
-                                                    <th scope="col" style="min-width: 200px;">Current DG PIU Reading
-                                                    </th>
-                                                    <th scope="col" style="min-width: 150px;">Diesel Filling Done</th>
-                                                    <th scope="col" style="min-width: 150px;">Date Of Diesel
-                                                        Filling</th>
-                                                    <th scope="col" style="min-width: 200px;">Diesel Balance Before
-                                                        Filling</th>
-                                                    <th scope="col" style="min-width: 150px;">Fuel Qty Filled</th>
-                                                    <th scope="col" style="min-width: 150px;">Current Diesel Balance
-                                                    </th>
-                                                    <th scope="col" style="min-width: 130px;">EB Meter Status</th>
-                                                    <th scope="col" style="min-width: 150px;">Current EB MTR KWH</th>
-                                                    <th scope="col" style="min-width: 150px;">EB PIU Meter Status</th>
-                                                    <th scope="col" style="min-width: 180px;">Current EB PIU Reading
-                                                    </th>
-                                                    <th scope="col" class="read-status">Remarks</th>
-                                                    <th scope="col" class="read-status">FT ID</th>
-                                                    <th scope="col" class="read-status">FT Name</th>
-                                                    <th scope="col" style="min-width: 150px;">FT Mobile Number</th>
-                                                    <th scope="col" class="read-status">Receipt No</th>
-                                                    <th scope="col" class="read-status">Card Number</th>
-                                                    <th scope="col" class="read-status">Vehicle Plate</th>
-                                                    <th scope="col" style="min-width: 140px;">DG Running HRS</th>
-                                                    <th scope="col" style="min-width: 300px;">CPH & Comparison With
-                                                        Approved CPH</th>
-                                                    <th scope="col" class="read-status">CPH as par HMR</th>
-                                                    <th scope="col" class="read-status">CPH as par PIU</th>
-                                                    <th scope="col" class="read-status">EB KWH</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="report-fkift6t">
-                                                {% for feul in fuel_report %}
-                                                <tr class="table-dt-data">
-                                                    <td>{{feul.global_id}}</td>
-                                                    <td>{{feul.global_id.site_name}}</td>
-                                                    <td>{{feul.global_id.site_address}}</td>
-                                                    <td>{{feul.global_id.cluster}}</td>
-                                                    <td>{{feul.global_id.CE}}</td>
-                                                    <td>{{feul.global_id.site_tenancy}}</td>
-                                                    <td>{{feul.global_id.DG_NON_DG}}</td>
-                                                    <td>{{feul.global_id.DG_capacity_kva}}</td>
-                                                    <td>{{feul.global_id.EB_status}}</td>
-                                                    <td>{{feul.global_id.card_number}}</td>
-                                                    <td>{{feul.global_id.last_month_approved_CPH}}</td>
-                                                    <td>{{feul.DG_Serial_Number}}</td>
-                                                    <td>{{feul.DG_HMR_Status}}</td>
-                                                    <td>{{feul.DG_HMR_Reading}}</td>
-                                                    <td>{{feul.DG_PIU_Status}}</td>
-                                                    <td>{{feul.Current_DG_PIU_Reading}}</td>
-                                                    <td>{{feul.Diesel_Filling_Done}}</td>
-                                                    <td>{{feul.Date_Of_Diesel_Filling | date:"d M Y"}}</td>
-                                                    <td>{{feul.Diesel_Balance_Before_Filling}}</td>
-                                                    <td>{{feul.Fuel_Qty_Filled}}</td>
-                                                    <td>{{feul.Current_Diesel_Balance}}</td>
-                                                    <td>{{feul.EB_Meter_Status}}</td>
-                                                    <td>{{feul.Current_EB_MTR_KWH}}</td>
-                                                    <td>{{feul.EB_PIU_Meter_Status}}</td>
-                                                    <td>{{feul.Current_EB_PIU_Reading}}</td>
-                                                    <td>{{feul.Remarks}}</td>
-                                                    <td>{{feul.FT_ID}}</td>
-                                                    <td>{{feul.FT_name}}</td>
-                                                    <td>{{feul.FT_mobile_no}}</td>
-                                                    <td>{{feul.Receipt_No}}</td>
-                                                    <td>{{feul.Card_Number}}</td>
-                                                    <td>{{feul.Vehicle_Plate}}</td>
-                                                    <!-- <td>
-                                                        {% if feul.Before_Fuel_CM_Photo != '' %}
-                                                        <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
-                                                            <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px"
-                                                                width="100" alt="{{feul.Before_Fuel_CM_Photo}}">
-                                                        </a>
-                                                        {% else %}
-                                                        No
-                                                        {% endif %}
-                                                    </td>
-                                                    <td>
-                                                        {% if feul.After_Fuel_Filling_CM_Photo != '' %}
-                                                        <a href="{{feul.After_Fuel_Filling_CM_Photo.url}}"
-                                                            target="_blank">
-                                                            <img src="{{feul.After_Fuel_Filling_CM_Photo.url}}"
-                                                                height="50px" width="100"
-                                                                alt="{{feul.After_Fuel_Filling_CM_Photo}}">
-                                                        </a>
-                                                        {% else %}
-                                                        No
-                                                        {% endif %}
-                                                    </td> -->
-                                                    <td>{{feul.DG_Running_HRS}}</td>
-                                                    <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
-                                                    <td>{{feul.CPH_as_par_HMR}}</td>
-                                                    <td>{{feul.CPH_as_par_PIU}}</td>
-                                                    <td>{{feul.EB_KWH}}</td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                        {% else %}
-                                        <div class="mt-5 pt-5 text-center">
-                                            <h6 class="fw-5 text-secondary">No Data has been found</h6>
-                                        </div>
-                                        {% endif %}
+                                    <div class="button_for_form_filling mt-5 text-end mb-4" style="margin-right: 1rem;">
+                                        <button type="submit" class="btn-filling_data">
+                                            <span id="gj7uj86">Upload</span>
+                                            <div id="loading-bar" style="display: none;">
+                                                <div class="spinner-border spinner-border-sm text-light" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -455,9 +331,9 @@
                         <li class="inner-bar-li">
                             <div class="accordion accor-gt6 accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item" style="background-color: #fff;">
-                                    <button class="collapsed btn_col d-flex" id="btn-for-click" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
-                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    <button class="collapsed btn_col d-flex" type="button" id="btn-for-click"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne" onclick="RotateArrow()">
                                         <div class="fefu">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
                                                 style="margin-bottom: 5px;">
@@ -471,15 +347,15 @@
                                         <div class="df54r" id="down-id">
                                             <div id="to-arrow">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="0.875em"
-                                                    viewBox="0 0 448 512" class="svg-rote">
+                                                    style="margin-bottom: 5px;" viewBox="0 0 448 512" class="svg-rote">
                                                     <path
                                                         d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
                                                 </svg>
                                             </div>
                                         </div>
                                     </button>
-                                    <div id="panelsStayOpen-collapseOne"
-                                        class="accordion-collapse collapse show mb-2 p-0" style="width: 90%;">
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse mb-2 p-0"
+                                        data-bs-parent="#accordionFlushExample" style="width: 90%;">
                                         <div class="accordion-body p-0 m-0 d-flex justify-content-end">
                                             <div class="hhuwe">
                                                 <a href="{% url 'hoto_report' %}" class="inner_group-li">
@@ -491,14 +367,14 @@
                                                     </svg>
                                                     <span class="report-dt">HOTO</span>
                                                 </a>
-                                                <a href="{% url 'atc_site_report' %}" class="inner_group-li code-famy">
+                                                <a href="{% url 'atc_site_report' %}" class="inner_group-li">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="0.875em"
                                                         style="margin-bottom: 5px;"
                                                         viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                                         <path
                                                             d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
                                                     </svg>
-                                                    <span class="report-dt">Energy Tracking</span>
+                                                    <span class="report-dt">Energy</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -509,9 +385,9 @@
                         <li class="inner-bar-li">
                             <div class="accordion accordion-flush" id="formsaccordionFlushExample">
                                 <div class="accordion-item" style="background-color: #fff;">
-                                    <button class="accordion collapsed btn_col d-flex" type="button" id="btn-for-click"
-                                        data-bs-toggle="collapse" data-bs-target="#forms-flush-collapseOne"
-                                        aria-expanded="false" aria-controls="forms-flush-collapseOne">
+                                    <button class="collapsed btn_col d-flex" id="btn-for-click" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                         <div class="fefu">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
                                                 style="margin-bottom: 5px;" viewBox="0 0 576 512">
@@ -532,13 +408,14 @@
                                             </div>
                                         </div>
                                     </button>
-                                    <div id="forms-flush-collapseOne" class="accordion-collapse collapse mb-2 p-0"
+                                    <div id="panelsStayOpen-collapseOne"
+                                        class="accordion-collapse collapse show mb-2 p-0"
                                         data-bs-parent="#formsaccordionFlushExample" style="width: 90%;">
                                         <div class="accordion-body p-0 m-0 d-flex justify-content-end">
                                             <div class="hhuwe">
-                                                <a href="{% url 'atcform' %}" class="inner_group-li">
+                                                <a href="{% url 'atcform' %}" class="inner_group-li code-famy">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"
-                                                        viewBox="0 0 576 512" style="margin-bottom: 3px;">
+                                                        style="margin-bottom: 3px;" viewBox="0 0 576 512">
                                                         <path
                                                             d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" />
                                                     </svg>
@@ -574,27 +451,24 @@
         crossorigin="anonymous"></script>
     <script src="{% static 'app/js/style.js' %}"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"
-        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
-    <script>
-        function RemoveBGColor() {
-            document.getElementsByClassName("accordion-button").stylle.backgroundColor = 'white'
-        } 
-    </script>
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#search_data_fuel_drawn").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#report-fkift6t tr").filter(function () {
-                    $(this).toggle($(this).text()
-                        .toLowerCase().indexOf(value) > -1)
-                });
+            $('#myForm').submit(function () {
+                $(".btn-filling_data").prop("disabled", true)
+                $('#loading-bar').show();
+                $('#gj7uj86').hide();
             });
-        }); 
+        });
     </script>
-
+    <script>
+        // In your Javascript
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
     <script>
         document.onreadystatechange = function () {
             if (document.readyState !== "complete") {
@@ -609,20 +483,6 @@
                     "body").style.visibility = "visible";
             }
         };
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $("#btn-download-id").click(function () {
-                let table = document.getElementsByTagName("table");
-                TableToExcel.convert(table[0], {
-                    name: `energy_ATC_download_data.xlsx`,
-                    sheet: {
-                        name: 'Energy ATC'
-                    }
-                });
-            });
-        });
     </script>
 </body>
 
