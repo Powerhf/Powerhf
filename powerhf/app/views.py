@@ -613,8 +613,6 @@ class PDFUploading(TemplateView):
                 New_time = datetime.strftime(naive_datetime, '%H:%M:%S')      
                 # timezone_obj = pytz.timezone('UTC')
                 # aware_datetime2 = timezone_obj.localize(New_dt)
-                aware_datetime2 = f'{New_dt} and {New_time}'
-                print(aware_datetime2)
             else:
                 Reading_Date_Time = ''           
 
@@ -634,8 +632,6 @@ class PDFUploading(TemplateView):
                             New_time = datetime.strftime(naive_datetime, '%H:%M:%S')      
                             # timezone_obj = pytz.timezone('UTC')
                             # aware_datetime2 = timezone_obj.localize(New_dt)
-                            aware_datetime = f'{New_dt} and  {New_time}'
-                            print(aware_datetime)
                         else:
                             Reading_Date_Time = ''
 
@@ -651,7 +647,7 @@ class PDFUploading(TemplateView):
                         else:
                             current_DG_running_piu_reading = 0
 
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("418.53, 628.93, 459.1, 638.93")').text() != 'Available':
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("418.53, 628.93, 459.1, 638.93")').text() == 'Available':
                             EB_Running_Hours_Cumulative_Available_Not_Available = pdf.pq('LTTextLineHorizontal:in_bbox("418.53, 628.93, 459.1, 638.93")').text()
                         else:
                             EB_Running_Hours_Cumulative_Available_Not_Available = 'Not-Available'
