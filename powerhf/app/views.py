@@ -604,17 +604,7 @@ class PDFUploading(TemplateView):
         if request.user.is_authenticated:
             pdf_file = request.FILES['pdf_diesel'] 
             pdf = PDFQuery(pdf_file)
-            pdf.load()
-
-            if pdf.pq('LTTextLineHorizontal:in_bbox("463.6, 661.93, 555.34, 671.93")').text() != '':
-                Reading_Date_Time = pdf.pq('LTTextLineHorizontal:in_bbox("463.6, 661.93, 555.34, 671.93")').text()
-                naive_datetime = datetime.strptime(Reading_Date_Time, '%d/%m/%Y %H:%M:%S')  
-                New_dt = datetime.strftime(naive_datetime, '%Y-%m-%d')      
-                New_time = datetime.strftime(naive_datetime, '%H:%M:%S')      
-                # timezone_obj = pytz.timezone('UTC')
-                # aware_datetime2 = timezone_obj.localize(New_dt)
-            else:
-                Reading_Date_Time = ''           
+            pdf.load()          
 
             if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text():
                 SIteGlobalID = pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text()
@@ -625,64 +615,168 @@ class PDFUploading(TemplateView):
 
             Static_ATC_data = SiteFixed.objects.get(global_id=SIteGlobalID)
 
-            if not EnergyFuel.objects.filter(global_id=Static_ATC_data.global_id, Date_Of_Diesel_Filling=New_dt, Time_Of_Diesel_Filling=New_time):
+            if not EnergyDieelFilling.objects.filter(global_id=Static_ATC_data.global_id):
 
                 if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text() == Static_ATC_data.global_id:
 
                     if pdf.pq('LTTextLineHorizontal:in_bbox("260.49, 689.516, 334.518, 701.516")').text() == 'Diesel Filling':
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("207.95, 757.93, 245.74, 767.93")').text() != '':
+                            circle = pdf.pq('LTTextLineHorizontal:in_bbox("207.95, 757.93, 245.74, 767.93")').text()
+                        else:
+                            circle = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("188.49, 743.93, 265.2, 753.93")').text() != '':
+                            site_name = pdf.pq('LTTextLineHorizontal:in_bbox("188.49, 743.93, 265.2, 753.93")').text()
+                        else:
+                            site_name = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("201.82, 715.93, 251.86, 725.93")').text() != '':
+                            assign_date = pdf.pq('LTTextLineHorizontal:in_bbox("201.82, 715.93, 251.86, 725.93")').text()
+                        else:
+                            assign_date = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("478.9, 743.93, 540.04, 753.93")').text() != '':
+                            cluster = pdf.pq('LTTextLineHorizontal:in_bbox("478.9, 743.93, 540.04, 753.93")').text()
+                        else:
+                            cluster = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("477.23, 729.93, 541.71, 739.93")').text() != '':
+                            user_name = pdf.pq('LTTextLineHorizontal:in_bbox("477.23, 729.93, 541.71, 739.93")').text()
+                        else:
+                            user_name = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("461.12, 715.93, 557.82, 725.93")').text() != '':
+                            status = pdf.pq('LTTextLineHorizontal:in_bbox("461.12, 715.93, 557.82, 725.93")').text()
+                        else:
+                            status = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("213.78, 729.93, 239.9, 739.93")').text() != '':
+                            region = pdf.pq('LTTextLineHorizontal:in_bbox("213.78, 729.93, 239.9, 739.93")').text()
+                        else:
+                            region = ''
+                        
+                        # Date Time
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("322.29, 661.93, 414.03, 671.93")').text() != '':
+                            Reading_Date_Time = pdf.pq('LTTextLineHorizontal:in_bbox("322.29, 661.93, 414.03, 671.93")').text()
+                            naive_datetime1 = datetime.strptime(Reading_Date_Time, '%d/%m/%Y %H:%M:%S')  
+                            New_dt1 = datetime.strftime(naive_datetime1, '%Y-%m-%d')      
+                            New_time1 = datetime.strftime(naive_datetime1, '%H:%M:%S')
+                            previous_date_time = f'{New_dt1} {New_time1}'  
+                        else:
+                            previous_date_time = ''
                         
                         if pdf.pq('LTTextLineHorizontal:in_bbox("463.6, 661.93, 555.34, 671.93")').text() != '':
                             Reading_Date_Time = pdf.pq('LTTextLineHorizontal:in_bbox("463.6, 661.93, 555.34, 671.93")').text()
-                            New_dt = datetime.strftime(naive_datetime, '%Y-%m-%d')      
-                            New_time = datetime.strftime(naive_datetime, '%H:%M:%S')      
-                            # timezone_obj = pytz.timezone('UTC')
-                            # aware_datetime2 = timezone_obj.localize(New_dt)
+                            naive_datetime2 = datetime.strptime(Reading_Date_Time, '%d/%m/%Y %H:%M:%S')  
+                            New_dt2 = datetime.strftime(naive_datetime2, '%Y-%m-%d')      
+                            New_time2 = datetime.strftime(naive_datetime2, '%H:%M:%S')
+                            current_date_time = f'{New_dt2} {New_time2}'  
                         else:
-                            Reading_Date_Time = ''
+                            current_date_time = ''
 
                         # DG HMR
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text() != '': 
-                            current_DG_running_reading = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text())))
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 571.93, 379.28, 581.93")').text() != '': 
+                            previous_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 571.93, 379.28, 581.93")').text()
                         else:
-                            current_DG_running_reading = 0
+                            previous_DG_running_reading = ''
+
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text() != '': 
+                            current_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text()
+                        else:
+                            current_DG_running_reading = ''
 
                         # DG PIU
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text() != '':
-                            current_DG_running_piu_reading = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text())))
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("358.43, 552.93, 377.89, 562.93")').text() != '':
+                            previous_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("358.43, 552.93, 377.89, 562.93")').text()
                         else:
-                            current_DG_running_piu_reading = 0
+                            previous_DG_running_piu_reading = ''
 
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text() != '':
+                            current_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text()
+                        else:
+                            current_DG_running_piu_reading = ''
+
+
+                        # EB
                         if pdf.pq('LTTextLineHorizontal:in_bbox("418.53, 628.93, 459.1, 638.93")').text() == 'Available':
                             EB_Running_Hours_Cumulative_Available_Not_Available = pdf.pq('LTTextLineHorizontal:in_bbox("418.53, 628.93, 459.1, 638.93")').text()
                         else:
                             EB_Running_Hours_Cumulative_Available_Not_Available = 'Not-Available'
 
-                        # EB 
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 647.93, 526.15, 657.93")').text() != '':
-                            current_EB_meters_reading = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 647.93, 526.15, 657.93")').text())))
+                         
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("351.48, 647.93, 384.84, 657.93")').text() != '':
+                            previou_EB_meter_reading = pdf.pq('LTTextLineHorizontal:in_bbox("351.48, 647.93, 384.84, 657.93")').text()
                         else:
-                            current_EB_meters_reading = 0
+                            previou_EB_meter_reading = ''
+                        
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 647.93, 526.15, 657.93")').text() != '':
+                            current_EB_meters_reading = pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 647.93, 526.15, 657.93")').text()
+                        else:
+                            current_EB_meters_reading = ''
 
                         # EB PIU
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("352.87, 604.93, 383.45, 614.93")').text() != '':
+                            previou_EB_meters_PIU_reading = pdf.pq('LTTextLineHorizontal:in_bbox("352.87, 604.93, 383.45, 614.93")').text()
+                        else:
+                            previou_EB_meters_PIU_reading = ''
+                        
                         if pdf.pq('LTTextLineHorizontal:in_bbox("494.18, 604.93, 524.76, 614.93")').text() != '':
-                            current_EB_meters_PIU_reading = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("494.18, 604.93, 524.76, 614.93")').text())))
+                            current_EB_meters_PIU_reading = pdf.pq('LTTextLineHorizontal:in_bbox("494.18, 604.93, 524.76, 614.93")').text()
                         else:
-                            current_EB_meters_PIU_reading = 0
+                            current_EB_meters_PIU_reading = ''
+                        
+                        
+                        # Static
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("355.65, 585.93, 380.66, 595.93")').text() != '':
+                            Previous_Type_of_DG_Static_Mobile = pdf.pq('LTTextLineHorizontal:in_bbox("355.65, 585.93, 380.66, 595.93")').text()
+                        else:
+                            Previous_Type_of_DG_Static_Mobile = ''
 
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("496.96, 585.93, 521.97, 595.93")').text() != '':
+                            Current_Type_of_DG_Static_Mobile = pdf.pq('LTTextLineHorizontal:in_bbox("496.96, 585.93, 521.97, 595.93")').text()
+                        else:
+                            Current_Type_of_DG_Static_Mobile = ''
+                        
+                        # Before Filling
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("365.38, 533.93, 370.94, 543.93")').text() != '':
+                            Previous_Opening_Diesel_stock_Before_Filling = pdf.pq('LTTextLineHorizontal:in_bbox("365.38, 533.93, 370.94, 543.93")').text()
+                        else:
+                            Previous_Opening_Diesel_stock_Before_Filling = ''
+                        
                         if pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 533.93, 515.03, 543.93")').text() != '':
-                            Opening_Diesel_stock_Before_Filling = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 533.93, 515.03, 543.93")').text())))
+                            Current_Opening_Diesel_stock_Before_Filling = pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 533.93, 515.03, 543.93")').text()
                         else:
-                            Opening_Diesel_stock_Before_Filling = 0
+                            Current_Opening_Diesel_stock_Before_Filling = ''
 
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 519.93, 515.03, 529.93")').text() != '':
-                            Filled_Ltrs = int(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 519.93, 515.03, 529.93")').text())))
+                        # Filled Ltr
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("362.6, 519.93, 373.72, 529.93")').text() != '':
+                            Previous_Filled_Ltrs = pdf.pq('LTTextLineHorizontal:in_bbox("362.6, 519.93, 373.72, 529.93")').text()
                         else:
-                            Filled_Ltrs = 0
+                            Previous_Filled_Ltrs = ''
+                        
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 519.93, 515.03, 529.93")').text() != '':
+                            Current_Filled_Ltrs = pdf.pq('LTTextLineHorizontal:in_bbox("503.91, 519.93, 515.03, 529.93")').text()
+                        else:
+                            Current_Filled_Ltrs = ''
+
+                        # Diesel_Bill_Number
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("354.26, 505.93, 382.06, 515.93")').text() != '':
+                            Previous_Diesel_Bill_Number = pdf.pq('LTTextLineHorizontal:in_bbox("354.26, 505.93, 382.06, 515.93")').text()
+                        else:
+                            Previous_Diesel_Bill_Number = ''
                         
                         if pdf.pq('LTTextLineHorizontal:in_bbox("495.57, 505.93, 523.37, 515.93")').text() != '':
-                            Diesel_Bill_Number = pdf.pq('LTTextLineHorizontal:in_bbox("495.57, 505.93, 523.37, 515.93")').text()
+                            Current_Diesel_Bill_Number = pdf.pq('LTTextLineHorizontal:in_bbox("495.57, 505.93, 523.37, 515.93")').text()
                         else:
-                            Diesel_Bill_Number = ''
+                            Current_Diesel_Bill_Number = ''
+
+
+                        # Remarks
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("332.86, 491.93, 403.45, 501.93")').text() != '':
+                            Previous_Remarks  = pdf.pq('LTTextLineHorizontal:in_bbox("332.86, 491.93, 403.45, 501.93")').text()
+                        else:
+                            Previous_Remarks = ''
                         
                         if pdf.pq('LTTextLineHorizontal:in_bbox("444.16, 491.93, 574.77, 501.93")').text() != '':
                             Remarks1  = pdf.pq('LTTextLineHorizontal:in_bbox("444.16, 491.93, 574.77, 501.93")').text()
@@ -694,62 +788,53 @@ class PDFUploading(TemplateView):
                         else:
                             Remarks2 = ''
 
-                        if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text() != '':
-                            CPH_HMR  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text()
+                        # Calculated Field:
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 429.93, 479.59, 439.93")').text() != '':
+                            No_of_days_since_previous_filling = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 429.93, 479.59, 439.93")').text()
                         else:
-                            CPH_HMR = ''
+                            No_of_days_since_previous_filling = ''
+                        
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text() != '':
+                            cph_hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text()
+                        else:
+                            cph_hmr = ''
 
                         if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 411.93, 476.81, 421.93")').text() != '':
-                            CPH_PIU  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 411.93, 476.81, 421.93")').text()
+                            cph_piu  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 411.93, 476.81, 421.93")').text()
                         else:
-                            CPH_PIU = ''
+                            cph_piu = ''
 
                         if pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 397.93, 479.59, 407.93")').text() != '':
-                            HMR_data  = str(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 397.93, 479.59, 407.93")').text())))
-                            if HMR_data[:1] == '-':
-                                HMR = HMR_data[1:]
-                            else:
-                                HMR = HMR_data
+                            hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 397.93, 479.59, 407.93")').text()
                         else:
-                            HMR = ''
+                            hmr = ''
 
                         if pdf.pq('LTTextLineHorizontal:in_bbox("441.78, 369.93, 492.37, 379.93")').text() != '':
-                            KWH_data  = str(round(float(pdf.pq('LTTextLineHorizontal:in_bbox("441.78, 369.93, 492.37, 379.93")').text())))
-                            if KWH_data[:1] == '-':
-                                KWH = KWH_data[1:]
-                            else:
-                                KWH = KWH_data
+                            kwh  = pdf.pq('LTTextLineHorizontal:in_bbox("441.78, 369.93, 492.37, 379.93")').text()
                         else:
-                            KWH = ''
+                            kwh = ''
                         
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 373.93, 476.81, 383.93")').text() != '':
+                            hmr_piu = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 373.93, 476.81, 383.93")').text() 
+                        else:
+                            hmr_piu = ''
+                        
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 345.93, 476.81, 355.93")').text() != '':
+                            kwh_piu = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 345.93, 476.81, 355.93")').text()
+                        else:
+                            kwh_piu = ''
+                        
+                        if pdf.pq('LTTextLineHorizontal:in_bbox("425.39, 331.93, 508.77, 341.93")').text() != '':
+                            Deviation  = pdf.pq('LTTextLineHorizontal:in_bbox("425.39, 331.93, 508.77, 341.93")').text() 
+                        else:
+                            Deviation = ''
+                                           
 
-                        total_filling = int(Opening_Diesel_stock_Before_Filling) + int(Filled_Ltrs)
-                        
-                        if CPH_HMR == '':
-                            cph_of_hmr = 0
-                        else:
-                            cph_of_hmr = CPH_HMR
-                        
-                        minus_cph = float(cph_of_hmr) - float(Static_ATC_data.last_month_approved_CPH)
-                        div_cph = minus_cph / float(Static_ATC_data.last_month_approved_CPH)
-                        lastcph = str(round(div_cph, 1))
-                        if lastcph[:1] == '-':
-                            last_approved_cph = lastcph[1:]
-                        else:
-                            last_approved_cph = lastcph                        
-
-                        pdf_data_reg = EnergyFuel(
-                            global_id=Static_ATC_data, Tasks='Diesel Filling and Energy Reading', DG_HMR_Reading=current_DG_running_reading,
-                            Current_DG_PIU_Reading=current_DG_running_piu_reading, Diesel_Filling_Done = 'Yes', Date_Of_Diesel_Filling=New_dt,Time_Of_Diesel_Filling=New_time,
-                            Diesel_Balance_Before_Filling=Opening_Diesel_stock_Before_Filling, Fuel_Qty_Filled=Filled_Ltrs, Current_Diesel_Balance=total_filling,
-                            EB_Meter_Status=EB_Running_Hours_Cumulative_Available_Not_Available, Current_EB_MTR_KWH=current_EB_meters_reading,
-                            Current_EB_PIU_Reading=current_EB_meters_PIU_reading, Remarks=f'{Remarks1} {Remarks2}', Receipt_No=Diesel_Bill_Number,DG_Running_HRS=HMR,
-                            CPH_as_par_HMR=CPH_HMR,CPH_as_par_PIU=CPH_PIU, CPH_CPH_Comparison_With_Last_CPH=last_approved_cph,EB_KWH=KWH
-                        )
+                        # pdf_data_reg = EnergyFuel()
 
                         messages.success(request, 'Your PDF file has been uploaded successfully.')
 
-                        pdf_data_reg.save()
+                        # pdf_data_reg.save()
 
                         return redirect('atcform')                    
                 else:
