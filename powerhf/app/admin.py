@@ -35,7 +35,7 @@ class EnergyDieselFillingAdmin(admin.ModelAdmin):
         'Current_Reading_Date_Time','Previous_EB_Cumulative_KWH_As_Per_EB_Meter','Current_EB_Cumulative_KWH_As_Per_EB_Meter',
         'Previous_EB_Running_Hours_Cumulative_Available_Not_Available','Current_EB_Running_Hours_Cumulative_Available_Not_Available',
         'Previous_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF','Current_EB_Running_Hours_Cumulative_As_per_PIU_I2PMS_AMF',
-        'Type_of_DG_Static_Mobile','Previous_DG_Running_Hours_Reading_As_Per_HMR','Current_DG_Running_Hours_Reading_As_Per_HMR',
+        'Previous_Type_of_DG_Static_Mobile','Current_Type_of_DG_Static_Mobile','Previous_DG_Running_Hours_Reading_As_Per_HMR','Current_DG_Running_Hours_Reading_As_Per_HMR',
         'Previous_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF','Current_DG_Running_Hours_Reading_As_Per_PIU_I2PMS_AMF',
         'Previous_Opening_Diesel_stock_Before_Filling','Current_Opening_Diesel_stock_Before_Filling','Previous_Filled_Ltrs',
         'Current_Filled_Ltrs','Previous_Diesel_Bill_Number','Current_Diesel_Bill_Number','Previous_Remarks_If_any','Current_Remarks_If_any',

@@ -231,3 +231,11 @@ class FuelDrawnFTForm(forms.ModelForm):
                   'Customer','Fuel_Station_Name','Diesel_Purchased_Qty','Diesel_Per_Ltr_Cost_Rs','Total_Diesel_Cost_Rs',
                   'Receipt_No','Receipt_Image_Upload','Vehicle_Plate','Remarks']        
         
+
+class EnergyPDFFIleUpload(forms.ModelForm):
+    file = forms.FileField(required=True, widget=forms.FileInput(
+        attrs={'class':'img-input', 'accept':'application/pdf'}
+    ))
+    class Meta:
+        model = EnergyDieelFilling
+        fields = ['file']
