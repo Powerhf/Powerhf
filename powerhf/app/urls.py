@@ -23,7 +23,7 @@ urlpatterns = [
     # path('forms/diesel-meter/filling-reading-fill-form/', DieselFillingOrReadingViewsDuplicate.as_view(), name='atcform'),
 
     # PDF Upload
-    path('forms/diesel-meter/filling-reading-fill-form/', PDFUploading.as_view(), name='atcform'),
+    path('forms/diesel-meter/diesel-filling-form/', PDFUploading.as_view(), name='atcform'),
 
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),

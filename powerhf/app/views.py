@@ -68,12 +68,12 @@ def Reports_Hoto(request):
 class DRFReport(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
-            pagination_fuel_report = EnergyFuel.objects.filter(Tasks='Diesel Filling and Energy Reading').order_by('-Date_Of_Diesel_Filling')
+            pagination_fuel_report = EnergyDieelFilling.objects.all()
             paginator = Paginator(pagination_fuel_report, 50, orphans=1)
             page_number = request.GET.get('page')
             data_obj = paginator.get_page(page_number)
             context = {'fuel_report':data_obj, 'all_dfr_data':pagination_fuel_report}
-            return render(request, 'app/reports/energy_report_drf.html', context)
+            return render(request, 'app/reports/energy_diesel_filling_report.html', context)
         else:
             return redirect('auth')
 
@@ -651,11 +651,21 @@ class PDFUploading(TemplateView):
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("477.23, 729.93, 541.71, 739.93")').text() != '':
                                 user_name = pdf.pq('LTTextLineHorizontal:in_bbox("477.23, 729.93, 541.71, 739.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("467.78, 729.93, 551.16, 739.93")').text() != '':
+                                user_name = pdf.pq('LTTextLineHorizontal:in_bbox("467.78, 729.93, 551.16, 739.93")').text()
                             else:
                                 user_name = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("461.12, 715.93, 557.82, 725.93")').text() != '':
                                 status = pdf.pq('LTTextLineHorizontal:in_bbox("461.12, 715.93, 557.82, 725.93")').text()
+                                if status == 'Rejected by CE/CI Close':
+                                    messages.error(request, "This PDF file is rejected, Please upload approved file.")
+                                    return redirect('atcform')
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("454.17, 715.93, 564.76, 725.93")').text() != '':
+                                status = pdf.pq('LTTextLineHorizontal:in_bbox("454.17, 715.93, 564.76, 725.93")').text()
+                                if status == 'Rejected by CE/CI Close':
+                                    messages.error(request, "This PDF file is rejected, Please upload approved file.")
+                                    return redirect('atcform')
                             else:
                                 status = ''
 
@@ -686,22 +696,30 @@ class PDFUploading(TemplateView):
                             # DG HMR
                             if pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 571.93, 379.28, 581.93")').text() != '': 
                                 previous_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 571.93, 379.28, 581.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("354.26, 571.93, 382.06, 581.93")').text() != '': 
+                                previous_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("354.26, 571.93, 382.06, 581.93")').text()
                             else:
                                 previous_DG_running_reading = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text() != '': 
                                 current_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 571.93, 520.59, 581.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("495.57, 571.93, 523.37, 581.93")').text() != '': 
+                                current_DG_running_reading = pdf.pq('LTTextLineHorizontal:in_bbox("495.57, 571.93, 523.37, 581.93")').text()
                             else:
                                 current_DG_running_reading = ''
 
                             # DG PIU
                             if pdf.pq('LTTextLineHorizontal:in_bbox("358.43, 552.93, 377.89, 562.93")').text() != '':
                                 previous_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("358.43, 552.93, 377.89, 562.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 552.93, 379.28, 562.93")').text() != '':
+                                previous_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("357.04, 552.93, 379.28, 562.93")').text()
                             else:
                                 previous_DG_running_piu_reading = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text() != '':
                                 current_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("499.74, 552.93, 519.2, 562.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 552.93, 520.59, 562.93")').text() != '':
+                                current_DG_running_piu_reading = pdf.pq('LTTextLineHorizontal:in_bbox("498.35, 552.93, 520.59, 562.93")').text()
                             else:
                                 current_DG_running_piu_reading = ''
 
@@ -749,6 +767,8 @@ class PDFUploading(TemplateView):
                             # Before Filling
                             if pdf.pq('LTTextLineHorizontal:in_bbox("365.38, 533.93, 370.94, 543.93")').text() != '':
                                 Previous_Opening_Diesel_stock_Before_Filling = pdf.pq('LTTextLineHorizontal:in_bbox("365.38, 533.93, 370.94, 543.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("362.6, 533.93, 373.72, 543.93")').text() != '':
+                                Previous_Opening_Diesel_stock_Before_Filling = pdf.pq('LTTextLineHorizontal:in_bbox("362.6, 533.93, 373.72, 543.93")').text()
                             else:
                                 Previous_Opening_Diesel_stock_Before_Filling = ''
                             
@@ -799,41 +819,61 @@ class PDFUploading(TemplateView):
                             # Calculated Field:
                             if pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 429.93, 479.59, 439.93")').text() != '':
                                 No_of_days_since_previous_filling = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 429.93, 479.59, 439.93")').text()
+                            if pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 439.93, 479.59, 449.93")').text() != '':
+                                No_of_days_since_previous_filling = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 439.93, 479.59, 449.93")').text()
                             else:
                                 No_of_days_since_previous_filling = ''
                             
                             if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text() != '':
                                 cph_hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 425.93, 476.81, 435.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 425.93, 479.59, 435.93")').text() != '':
+                                cph_hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 425.93, 479.59, 435.93")').text()
                             else:
                                 cph_hmr = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 411.93, 476.81, 421.93")').text() != '':
                                 cph_piu  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 411.93, 476.81, 421.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 411.93, 479.59, 421.93")').text() != '':
+                                cph_piu  = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 411.93, 479.59, 421.93")').text()
                             else:
                                 cph_piu = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 397.93, 479.59, 407.93")').text() != '':
                                 hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 397.93, 479.59, 407.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 387.93, 479.59, 397.93")').text() != '':
+                                hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("454.57, 387.93, 479.59, 397.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 397.93, 476.81, 407.93")').text() != '':
+                                hmr  = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 397.93, 476.81, 407.93")').text()
                             else:
                                 hmr = ''
 
                             if pdf.pq('LTTextLineHorizontal:in_bbox("441.78, 369.93, 492.37, 379.93")').text() != '':
                                 kwh  = pdf.pq('LTTextLineHorizontal:in_bbox("441.78, 369.93, 492.37, 379.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("446.23, 369.93, 487.93, 379.93")').text() != '':
+                                kwh  = pdf.pq('LTTextLineHorizontal:in_bbox("446.23, 369.93, 487.93, 379.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("449.01, 359.93, 485.15, 369.93")').text() != '':
+                                kwh  = pdf.pq('LTTextLineHorizontal:in_bbox("449.01, 359.93, 485.15, 369.93")').text()
                             else:
                                 kwh = ''
                             
                             if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 373.93, 476.81, 383.93")').text() != '':
                                 hmr_piu = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 373.93, 476.81, 383.93")').text() 
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 383.93, 476.81, 393.93")').text() != '':
+                                hmr_piu = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 383.93, 476.81, 393.93")').text() 
                             else:
                                 hmr_piu = ''
                             
                             if pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 345.93, 476.81, 355.93")').text() != '':
                                 kwh_piu = pdf.pq('LTTextLineHorizontal:in_bbox("457.35, 345.93, 476.81, 355.93")').text()
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("451.79, 355.93, 482.37, 365.93")').text() != '':
+                                kwh_piu = pdf.pq('LTTextLineHorizontal:in_bbox("451.79, 355.93, 482.37, 365.93")').text()
                             else:
                                 kwh_piu = ''
                             
                             if pdf.pq('LTTextLineHorizontal:in_bbox("425.39, 331.93, 508.77, 341.93")').text() != '':
                                 Deviation  = pdf.pq('LTTextLineHorizontal:in_bbox("425.39, 331.93, 508.77, 341.93")').text() 
+                            elif pdf.pq('LTTextLineHorizontal:in_bbox("428.31, 341.93, 505.84, 351.93")').text() != '':
+                                Deviation  = pdf.pq('LTTextLineHorizontal:in_bbox("428.31, 341.93, 505.84, 351.93")').text() 
                             else:
                                 Deviation = ''                            
                                             
@@ -862,6 +902,10 @@ class PDFUploading(TemplateView):
                         return redirect('atcform')
                 else:
                     messages.error(request, 'This PDf data is already registered.')
+
+                    return redirect('atcform')
+            else:
+                    messages.error(request, 'Somethings went wrong, Please check the uploded file.')
 
                     return redirect('atcform')
         else:
