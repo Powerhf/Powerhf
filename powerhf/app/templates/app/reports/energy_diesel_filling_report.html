@@ -245,7 +245,7 @@
                                             <h5 class="fw-normal">Energy Report</h5>
                                         </div>
                                         <div class="col-md-6 text-end">
-                                            {% if all_reading_data %}
+                                            {% if all_dfr_data %}
                                             <button type="button" id="btn-download-id"
                                                 class="bg-secondary btn-downloadall">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12"
@@ -266,7 +266,7 @@
                                                 class="inputformsfill" placeholder="Search your data"
                                                 style="width: 250px; margin-left: 1rem; margin-right: 2rem;">
                                         </div>
-                                        <form action="{% url 'energy_reading_filter' %}" method="GET">
+                                        <!-- <form action="{% url 'energy_reading_filter' %}" method="GET">
                                             <div class="inner-filters">
                                                 <input type="date" id="date_df1" name="start_date"
                                                     class="inputformsfill dateFilter"
@@ -280,7 +280,7 @@
 
                                                 <input type="submit" class="btn_filter_dt bg-secondary" value="Show">
                                             </div>
-                                        </form>
+                                        </form> -->
                                     </div>
                                 </div>
                                 <div class="inner-table mt-3">
@@ -600,109 +600,6 @@
         </div>
         <!-- Hidden Table -->
         <div class="hide-dfr-data">
-            <!-- <table class="table dt-table hidden-reading-table">
-                <thead>
-                    <tr class="table-head">
-                        <th scope="col" class="read-status">Global ID</th>
-                        <th scope="col" class="read-status">Site Name</th>
-                        <th scope="col" class="size-expand">Site Address</th>
-                        <th scope="col" class="read-status">Cluster</th>
-                        <th scope="col" class="read-status">CE</th>
-                        <th scope="col" class="read-status">Site Tenancy</th>
-                        <th scope="col" class="read-status">DG NON DG</th>
-                        <th scope="col" style="min-width: 150px;">DG Capacity kva</th>
-                        <th scope="col" class="read-status">EB Status</th>
-                        <th scope="col" class="read-status">Card Number</th>
-                        <th scope="col" style="min-width: 200px;">Last Month Approved CPH
-                        </th>
-                        <th scope="col" style="min-width: 150px;">DG Serial Number</th>
-                        <th scope="col" style="min-width: 150px;">DG HMR Status</th>
-                        <th scope="col" style="min-width: 150px;">DG HMR Reading</th>
-                        <th scope="col" style="min-width: 150px;">DG PIU Status</th>
-                        <th scope="col" style="min-width: 200px;">Current DG PIU Reading
-                        </th>
-                        <th scope="col" style="min-width: 150px;">Date Of Reading</th>
-                        <th scope="col" style="min-width: 200px;">Diesel Balance Before
-                            Filling</th>
-                        <th scope="col" style="min-width: 200px;">Current Diesel Balance (in
-                            Ltr)
-                        </th>
-                        <th scope="col" style="min-width: 150px;">EB Meter Status</th>
-                        <th scope="col" style="min-width: 150px;">Current EB MTR KWH</th>
-                        <th scope="col" style="min-width: 150px;">EB PIU Meter Status</th>
-                        <th scope="col" style="min-width: 200px;">Current EB PIU Reading
-                        </th>
-                        <th scope="col" style="min-width: 150px;">Total DC Load</th>
-                        <th scope="col" style="min-width: 280px;">Total EB KWH Reading From
-                            All Channels</th>
-                        <th scope="col" style="min-width: 150px;">Remarks</th>
-                        <th scope="col" style="min-width: 100px;">FT ID</th>
-                        <th scope="col" style="min-width: 150px;">FT Name</th>
-                        <th scope="col" style="min-width: 150px;">FT Mobile Number</th>
-                        <th scope="col" style="min-width: 100px;">Receipt No</th>
-                        <th scope="col" style="min-width: 150px;">Card Number</th>
-                        <th scope="col" style="min-width: 150px;">Vehicle Plate</th>
-                        <th scope="col" style="min-width: 250px;">Before Fuel CM Photo</th>
-                        <th scope="col" style="min-width: 150px;">DG Running HRS</th>
-                        <th scope="col" style="min-width: 280px;">CPH & Comparison With
-                            Approved CPH</th>
-                        <th scope="col" style="min-width: 100px;">CPH as par HMR</th>
-                        <th scope="col" style="min-width: 100px;">CPH as par PIU</th>
-                        <th scope="col" style="min-width: 100px;">EB KWH</th>
-                    </tr>
-                </thead>
-                <tbody id="report-fkift6t">
-                    <tr class="table-dt-data">
-                        <td>{{feul.global_id}}</td>
-                        <td>{{feul.global_id.site_name}}</td>
-                        <td>{{feul.global_id.site_address}}</td>
-                        <td>{{feul.global_id.cluster}}</td>
-                        <td>{{feul.global_id.CE}}</td>
-                        <td>{{feul.global_id.site_tenancy}}</td>
-                        <td>{{feul.global_id.DG_NON_DG}}</td>
-                        <td>{{feul.global_id.DG_capacity_kva}}</td>
-                        <td>{{feul.global_id.EB_status}}</td>
-                        <td>{{feul.global_id.card_number}}</td>
-                        <td>{{feul.global_id.last_month_approved_CPH}}</td>
-                        <td>{{feul.DG_Serial_Number}}</td>
-                        <td>{{feul.DG_HMR_Status}}</td>
-                        <td>{{feul.DG_HMR_Reading}}</td>
-                        <td>{{feul.DG_PIU_Status}}</td>
-                        <td>{{feul.Current_DG_PIU_Reading}}</td>
-                        <td>{{feul.Diesel_Filling_Done}}</td>
-                        <td>{{feul.Date_Of_Diesel_Filling | date:"d M Y"}}</td>
-                        <td>{{feul.Diesel_Balance_Before_Filling}}</td>
-                        <td>{{feul.EB_Meter_Status}}</td>
-                        <td>{{feul.Current_EB_MTR_KWH}}</td>
-                        <td>{{feul.EB_PIU_Meter_Status}}</td>
-                        <td>{{feul.Current_EB_PIU_Reading}}</td>
-                        <td>{{feul.Total_DC_Load}}</td>
-                        <td>{{feul.Total_EB_KWH_Reading_from_all_Channels}}</td>
-                        <td>{{feul.Remarks}}</td>
-                        <td>{{feul.FT_ID}}</td>
-                        <td>{{feul.FT_name}}</td>
-                        <td>{{feul.FT_mobile_no}}</td>
-                        <td>{{feul.Receipt_No}}</td>
-                        <td>{{feul.Card_Number}}</td>
-                        <td>{{feul.Vehicle_Plate}}</td>
-                        <td>
-                            {% if feul.Before_Fuel_CM_Photo != '' %}
-                            <a href="{{feul.Before_Fuel_CM_Photo.url}}" target="_blank">
-                                <img src="{{feul.Before_Fuel_CM_Photo.url}}" height="50px" width="100"
-                                    alt="{{feul.Before_Fuel_CM_Photo}}">
-                            </a>
-                            {% else %}
-                            No
-                            {% endif %}
-                        </td>
-                        <td>{{feul.DG_Running_HRS}}</td>
-                        <td>{{feul.CPH_CPH_Comparison_With_Last_CPH}}</td>
-                        <td>{{feul.CPH_as_par_HMR}}</td>
-                        <td>{{feul.CPH_as_par_PIU}}</td>
-                        <td>{{feul.EB_KWH}}</td>
-                    </tr>
-                </tbody>
-            </table> -->
             {% if all_dfr_data %}
             <table class="table dt-table hidden-reading-table">
                 <thead>
