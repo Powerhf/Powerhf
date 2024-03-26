@@ -232,6 +232,8 @@ class FuelDrawnFTForm(forms.ModelForm):
                   'Receipt_No','Receipt_Image_Upload','Vehicle_Plate','Remarks']        
         
 
+
+
 class EnergyPDFFIleUpload(forms.ModelForm):
     file = forms.FileField(required=True, widget=forms.FileInput(
         attrs={'class':'img-input', 'accept':'application/pdf'}

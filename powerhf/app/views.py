@@ -253,8 +253,6 @@ class Diesel_Filling_FSR_Transactions(TemplateView):
 
                 file_id = f'{SIteGlobalID}-{assign_date}'
 
-                # file_name = 
-
                 if not EnergyDieelFilling.objects.filter(File_id=file_id):
 
                     if pdf.pq('LTTextLineHorizontal:in_bbox("492.79, 757.93, 526.15, 767.93")').text() == SIteGlobalID:
@@ -538,7 +536,7 @@ class Diesel_Filling_FSR_Transactions(TemplateView):
 
                         return redirect('diese_filling_fsr_transactions')
                 else:
-                    messages.error(request, 'This PDf data is already registered.')
+                    messages.error(request, 'This PDF data is already registered.')
 
                     return redirect('diese_filling_fsr_transactions')
             else:
@@ -1022,7 +1020,6 @@ class FuelDrawnViews(TemplateView):
 
 
 # End Forms    
-
 
 class LogOut(LogoutView):
     next_page = '/accounts/authentications/'

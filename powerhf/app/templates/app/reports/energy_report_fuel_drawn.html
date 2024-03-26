@@ -54,12 +54,12 @@
                                 <form action="{% url 'fuel_drawn_filter' %}" method="GET">
                                     <div class="inner-filters">
                                         <input type="date" id="date_df1" name="start_date"
-                                            class="inputformsfill dateFilter" style="width: 200px; margin-left: 1rem;">
+                                            class="inputformsfill dateFilter" style="width: 200px; margin-left: 1rem;" required>
 
                                         <span style="margin-left: 10px;margin-right: 10px;">To</span>
 
                                         <input type="date" id="date_df2" name="end_date"
-                                            class="inputformsfill dateFilter" style="width: 200px;margin-right: 10px;">
+                                            class="inputformsfill dateFilter" style="width: 200px;margin-right: 10px;" required>
 
                                         <input type="submit" class="btn_filter_dt bg-secondary" value="Show">
                                     </div>
