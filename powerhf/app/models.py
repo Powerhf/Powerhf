@@ -158,7 +158,7 @@ STATIC_SELECT = (
 class EnergyDieelFilling(models.Model):
     file = models.FileField(verbose_name='File', upload_to='Diesel_Filling_PDF_Files/%y', null=True)
     File_id = models.CharField(verbose_name='File ID', max_length=50, unique=True, primary_key=True)
-    Global_ID = models.ForeignKey(SiteFixed ,on_delete=models.CASCADE)
+    Global_ID = models.CharField(verbose_name='Global ID', max_length=50)
     Circle = models.TextField(verbose_name='Circle', null=True)
     Site_Name = models.TextField(verbose_name='Site Name', null=True)
     Cluster = models.TextField(verbose_name='Cluster', null=True)

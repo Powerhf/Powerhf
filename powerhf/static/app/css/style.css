@@ -474,13 +474,14 @@ td {
 
 .fhy865 {
     margin-left: 10px;
+    display: flex;
 }
 
 .list-dt-energy {
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     text-decoration: none;
     color: #7e7e7e;
     font-size: 13px
@@ -689,6 +690,10 @@ h3 {
         margin-top: 0;
     }
 
+    .headings{
+        margin-right: 10px;
+    }
+
     .prof-nm,
     .first_show_top {
         display: none;
@@ -740,6 +745,10 @@ h3 {
 
     .hfy-ty665 {
         display: inline;
+    }
+    
+    .fhy865 {
+        margin-left: 0px;
     }
 }
 
