@@ -652,6 +652,12 @@ h3 {
     padding: 7px;
 }
 
+.menu_by_DT{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 /* Media Query */
 
@@ -678,6 +684,10 @@ h3 {
 
     .fdgfgh {
         display: none;
+    }
+
+    .fgu7y{
+        padding: 20px;
     }
 
     .top-card {
