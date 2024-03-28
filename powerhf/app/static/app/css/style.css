@@ -607,6 +607,11 @@ h3 {
     padding-left: 0;
 }
 
+.fh7-i8u{
+    height: 10rem; 
+    object-fit: cover;
+}
+
 
 /* Spinner */
 
@@ -661,21 +666,28 @@ h3 {
 .ughyt-56ty{
     border-top-left-radius: 20px; 
     border-bottom-left-radius: 20px;
-    height: 100%; 
+    height: 28rem; 
+    width: 100%; 
     filter: brightness(60%);
 }
 
 .dowhy-76{
     border-top-right-radius: 20px; 
     border-bottom-right-radius: 20px;
-    height: 100%; 
+    height: 28rem; 
+    width: 100%; 
     filter: brightness(60%);
 }
 
 .fhyt7-7uy{
-    height: 100%; 
+    height: 28rem; 
     width: 100%; 
     filter: brightness(60%);
+}
+
+.fmkluig8{
+    font-size: 25px; 
+    font-weight: 550;
 }
 
 
@@ -784,11 +796,28 @@ h3 {
     .ughyt-56ty{
         border-top-left-radius: 0px; 
         border-bottom-left-radius: 0px;
+        height: 10rem;
+        width: 100%;
     }
     
     .dowhy-76{
         border-top-right-radius: 0px; 
         border-bottom-right-radius: 0px;
+        height: 10rem;
+        width: 100%;
+    }
+    
+    .fhyt7-7uy{
+        height: 10rem;
+        width: 100%;
+    }
+
+    .after_mobile_img{
+        display: flex;
+    }
+
+    .fmkluig8{
+        font-size: 17px;
     }
 }
 
