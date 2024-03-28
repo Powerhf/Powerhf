@@ -658,6 +658,26 @@ h3 {
     padding-right: 10px;
 }
 
+.ughyt-56ty{
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    height: 100%; 
+    filter: brightness(60%);
+}
+
+.dowhy-76{
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    height: 100%; 
+    filter: brightness(60%);
+}
+
+.fhyt7-7uy{
+    height: 100%; 
+    width: 100%; 
+    filter: brightness(60%);
+}
+
 
 /* Media Query */
 
@@ -759,6 +779,16 @@ h3 {
     
     .fhy865 {
         margin-left: 0px;
+    }
+
+    .ughyt-56ty{
+        border-top-left-radius: 0px; 
+        border-bottom-left-radius: 0px;
+    }
+    
+    .dowhy-76{
+        border-top-right-radius: 0px; 
+        border-bottom-right-radius: 0px;
     }
 }
 
