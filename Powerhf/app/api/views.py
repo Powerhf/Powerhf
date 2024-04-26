@@ -40,7 +40,7 @@ class MonsoonChecklistViewset(viewsets.ViewSet):
     def list(self, request):
         monsoon_checklist = PMCL.objects.all().order_by('-date')
         checklist_data = monsoon_checklist.values(
-            'user__first_name', 'user__last_name','Q1_Status','Q1_Material_Required','Q1_Remarks','Q2_Status',
+            'user__first_name', 'global_id', 'user__last_name','Q1_Status','Q1_Material_Required','Q1_Remarks','Q2_Status',
             'Q2_Material_Required','Q2_Remarks','Q3_Status','Q3_Material_Required','Q3_Remarks','Q4_Status',
             'Q4_Material_Required','Q4_Remarks','Q5_Status','Q5_Material_Required','Q5_Remarks','Q6_Status',
             'Q6_Material_Required','Q6_Remarks','Q7_Status','Q7_Material_Required','Q7_Remarks','Q8_Status',
