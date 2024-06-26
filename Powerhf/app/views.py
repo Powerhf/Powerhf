@@ -1180,3 +1180,45 @@ class PreMonsoonFilterReport(TemplateView):
 
 class LogOut(LogoutView):
     next_page = '/accounts/authentications/'
+
+
+
+class GilbarcoViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/projects_forms/gilbarco.html')
+        else:
+            return redirect('auth')
+
+
+class EVViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/projects_forms/ev.html')
+        else:
+            return redirect('auth')
+
+
+class RNRViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/projects_forms/rnr.html')
+        else:
+            return redirect('auth')
+
+
+class SiteIDViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/projects_forms/siteid.html')
+        else:
+            return redirect('auth')
+
+
+class AttachmentsProjectsViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/projects_forms/attachments.html')
+        else:
+            return redirect('auth')
+

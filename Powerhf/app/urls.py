@@ -38,6 +38,13 @@ urlpatterns = [
 
     path('reports/pre-monsoon-checklist-report/', PreMonsoonReport.as_view(), name='mon_check_report'),
 
+    # Projects:
+    path('projects/gilbarco/', GilbarcoViews.as_view(), name='gilbarco'),
+    path('projects/evs/', EVViews.as_view(), name='ev'),
+    path('projects/rnr/', RNRViews.as_view(), name='rnr'),
+    path('projects/siteid/', SiteIDViews.as_view(), name='siteid'),
+    path('projects/attachments/', AttachmentsProjectsViews.as_view(), name='attachments'),
+
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),
 ]

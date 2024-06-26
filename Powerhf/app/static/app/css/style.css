@@ -673,6 +673,14 @@ h3 {
     padding-right: 10px;
 }
 
+.menu_by_DT_for_project_tab {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 20rem;
+    overflow: auto;
+}
+
 .ughyt-56ty {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
