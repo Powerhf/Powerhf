@@ -355,3 +355,25 @@ class PMCL_Forms(forms.ModelForm):
             'Q9_Status':forms.Select(attrs={'class':'text-monsson-box', 'id':'Q9_Status'}),
             'Q10_Status':forms.Select(attrs={'class':'text-monsson-box', 'id':'Q10_Status'}),
         }
+
+
+
+# Documents Repository:
+
+class DocumentsRepositoryForm(forms.ModelForm):
+    site_docs_id = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'class':'inputformsfill'}
+    ))
+    documents = forms.FileField(required=True, widget=forms.TextInput(
+        attrs={'class':'mon-box-img-input', 'multiple':True, 'type': 'file'}
+    ))
+    class Meta:
+        model = DocumentRepository
+        fields = ['project_type','region','site_docs_id','documents']
+        widgets = {
+            'project_type': forms.Select(attrs={'class':'inputformsfill'}),
+            'region': forms.Select(attrs={'class':'inputformsfill'}),
+        }
+
+# Documents Repository END
+

@@ -1178,47 +1178,46 @@ class PreMonsoonFilterReport(TemplateView):
 
 # End Forms    
 
+
+# Documents Repo:
+
+class DocumentsRepoFormViews(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            forms = DocumentsRepositoryForm()
+            context = {'forms':forms}
+            return render(request, 'app/Docs_repo_forms/documents_repo_form.html', context)
+        else:
+            return redirect('auth')
+
+    def post(self, request):
+        if request.user.is_authenticated:
+            form = DocumentsRepositoryForm(data=request.POST, files=request.FILES)
+            if form.is_valid():
+                project_type = form.cleaned_data['project_type']
+                region = form.cleaned_data['region']
+                site_docs_id = form.cleaned_data['site_docs_id']
+                documents = form.cleaned_data['documents']
+                reg = DocumentRepository(user=request.user, project_type=project_type,region=region,site_docs_id=site_docs_id)
+                reg.save()
+                # Save Images:
+                for dox in documents:
+                    docs = DocumentsOfRepository.objects.create(documents=dox)
+                    reg.documents.add(dox)
+
+                messages.success(request, 'Your data has been upload successfully.')
+
+                return redirect('documentsrepositoryform')
+            else:
+                messages.error(request, 'Something went wrong please try again or contact to IT team.')
+
+                return redirect('documentsrepositoryform')
+        else:
+            return redirect('auth')
+
+# Documents Repo END
+
+
 class LogOut(LogoutView):
     next_page = '/accounts/authentications/'
-
-
-
-class GilbarcoViews(TemplateView):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'app/projects_forms/gilbarco.html')
-        else:
-            return redirect('auth')
-
-
-class EVViews(TemplateView):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'app/projects_forms/ev.html')
-        else:
-            return redirect('auth')
-
-
-class RNRViews(TemplateView):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'app/projects_forms/rnr.html')
-        else:
-            return redirect('auth')
-
-
-class SiteIDViews(TemplateView):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'app/projects_forms/siteid.html')
-        else:
-            return redirect('auth')
-
-
-class AttachmentsProjectsViews(TemplateView):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, 'app/projects_forms/attachments.html')
-        else:
-            return redirect('auth')
 

@@ -9,7 +9,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">
-        <div class="inner-bar-second-tag mt-4">
+        <div class="inner-bar-second-tag border mt-4">
             <ul class="inner-bar-ul" style="margin-right: 2rem;">
                 <li class="inner-bar-li">
                     <a href="/" class="inner-a-atg">
@@ -21,7 +21,7 @@
                         <div class="accordion-item" style="background-color: #fff;">
                             <button class="accordion collapsed btn_col d-flex" type="button" id="btn-for-click"
                                 data-bs-toggle="collapse" data-bs-target="#forms-flush-collapseOne"
-                                aria-expanded="false" aria-controls="forms-flush-collapseOne" onclick="RemoveBGColor()">
+                                aria-expanded="false" aria-controls="forms-flush-collapseOne">
                                 <div style="width: 100%;">
                                     <span>Transactions</span>
                                 </div>
@@ -102,6 +102,45 @@
                                         </a>
                                         <a href="{% url 'mon_check_report' %}" class="inner_group-li">
                                             <span class="report-dt">PML Checklist</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="inner-bar-li">
+                    <div class="accordion accordion-flush" id="DocumentsRepoaccordionFlushExample">
+                        <div class="accordion-item" style="background-color: #fff;">
+                            <button class="accordion collapsed btn_col d-flex" type="button" id="btn-for-click"
+                                data-bs-toggle="collapse" data-bs-target="#Document-repo-flush-collapseOne"
+                                aria-expanded="false" aria-controls="Document-repo-flush-collapseOne" onclick="RemoveBGColor()">
+                                <div style="width: 100%;">
+                                    <span>Document Repository</span>
+                                </div>
+                                <div class="df54r" id="down-id">
+                                    <div id="to-arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="0.875em" viewBox="0 0 448 512"
+                                            class="svg-rote">
+                                            <path
+                                                d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </button>
+                            <div id="Document-repo-flush-collapseOne" class="accordion-collapse collapse mb-2 p-0"
+                                data-bs-parent="#DocumentsRepoaccordionFlushExample" style="width: 90%;">
+                                <div class="accordion-body p-0 m-0 d-flex justify-content-end">
+                                    <div class="hhuwe">
+                                        <a href="{% url 'documentsrepositoryform' %}" class="inner_group-li">
+                                            <span class="report-dt">
+                                                Posting
+                                            </span>
+                                        </a>
+                                        <a href="" class="inner_group-li">
+                                            <span class="report-dt">
+                                                View
+                                            </span>
                                         </a>
                                     </div>
                                 </div>

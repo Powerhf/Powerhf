@@ -305,3 +305,49 @@ class PMCL(models.Model):
     time = models.TimeField(verbose_name='Time', auto_now_add=True)
 
 # Pre Monsoon Model End:    
+
+
+# Documents Reporsitory:
+
+PEOJECT_TYPES = (
+    ('Feul Pump Automation Work For Gilbarco','Feul Pump Automation Work For Gilbarco'),
+    ('DG RNR, For ATC, Ascend, TVI','DG RNR, For ATC, Ascend, TVI'),
+    ('EV Charger I&C, PM & BDN Calls For Gilbarco','EV Charger I&C, PM & BDN Calls For Gilbarco'),
+    ('Retail DG Repair','Retail DG Repair'),
+    ('5G Upgradation For ATC','5G Upgradation For ATC'),
+    ('FTTH For Microscan','FTTH For Microscan'),
+)
+
+REGIONS = (
+    ('East','East'),
+    ('West','West'),
+    ('North','North'),
+    ('South','South'),
+)
+
+class  DocumentsOfRepository(models.Model):
+    documents = models.FileField(verbose_name='Documents', upload_to='Documents_repository')
+
+    def __str__(self):
+        return self.documents
+    
+    class Meta:
+        db_table = 'Documents_of_Document_repository'
+    
+
+class DocumentRepository(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    project_type = models.CharField(verbose_name='Project Types', max_length=100, choices=PEOJECT_TYPES)
+    region = models.CharField(verbose_name='Regions', max_length=100, choices=REGIONS)
+    site_docs_id = models.CharField(verbose_name='SiteID & DocumentID', max_length=150)
+    documents = models.ManyToManyField(DocumentsOfRepository, related_name='Documents')
+
+    def __str__(self):
+        return str(self.site_docs_id)
+    
+    class Meta:
+        db_table = 'Document_repository'
+    
+
+
+# Documents Reporsitory END
