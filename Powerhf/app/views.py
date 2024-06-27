@@ -1198,8 +1198,8 @@ class DocumentsRepoFormViews(TemplateView):
                 region = form.cleaned_data['region']
                 site_docs_id = form.cleaned_data['site_docs_id']
                 documents = form.cleaned_data['documents']
-                reg = DocumentRepository(user=request.user, project_type=project_type,region=region,site_docs_id=site_docs_id)
-                reg.save()
+                reg = DocumentRepository.objects.create(user=request.user, project_type=project_type,region=region,
+                site_docs_id=site_docs_id)
                 # Save Images:
                 for dox in documents:
                     docs = DocumentsOfRepository.objects.create(documents=dox)
