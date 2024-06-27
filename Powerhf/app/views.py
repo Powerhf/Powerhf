@@ -1203,7 +1203,7 @@ class DocumentsRepoFormViews(TemplateView):
                 # Save Images:
                 for dox in documents:
                     docs = DocumentsOfRepository.objects.create(documents=dox)
-                    reg.documents.add(dox)
+                    reg.documents.add(docs)
 
                 messages.success(request, 'Your data has been upload successfully.')
 
