@@ -1231,8 +1231,9 @@ class DocumentRepoViwerFilter(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:            
             if request.GET.get('site_docs_id_dt') or request.GET.get('project_dt_types') or request.GET.get('regions_dt') or request.GET.get('circles_dt'):
-                data = DocumentRepository.objects.filter(project_type=request.GET.get('project_dt_types'),
-                region=request.GET.get('regions_dt'),site_docs_id=request.GET.get('site_docs_id_dt'),circles=request.GET.get('circles_dt'))
+                data = DocumentRepository.objects.filter(project_type__icontains=request.GET.get('project_dt_types'),
+                region__icontains=request.GET.get('regions_dt'),site_docs_id__icontains=request.GET.get('site_docs_id_dt'),
+                circles__icontains=request.GET.get('circles_dt'))
                 context = {'search':'', 'docs_data':data}
                 return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
         else:

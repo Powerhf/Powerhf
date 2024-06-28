@@ -1,0 +1,51 @@
+Health Status,Name,IP,OS,Protection,Last user,Last active,Group,Tamper protection
+Healthy,Birendra-Mishra-Lap-124,192.168.1.9;2401:4900:1c84:7a68:ba1a:3af9:352:acae;2401:4900:1c84:7a68:7d52:f06f:53ea:3c0b,Windows 11 Pro,Intercept X Advanced,Birendra_Mishra,6/28/2024 12:21,,On
+Healthy,Ashwani,192.168.1.5;,Windows 11 Pro,Intercept X Advanced,AshwaniKumar,6/28/2024 12:18,,On
+Healthy,DTP-034,192.168.1.58;,Windows 11 Home,Intercept X Advanced,Pallavi Rajguru,6/28/2024 12:17,,On
+Healthy,JYOTHI-LAP-128,192.168.1.39;,Windows 10 Pro,Intercept X Advanced,Jyothi_LAP128,6/28/2024 12:15,,On
+Healthy,NiketA-LAP-116,192.168.3.38;,Windows 10 Pro,Intercept X Advanced,Niket.Agarwal,6/28/2024 12:12,,On
+Healthy,TEJBIR-LAP-144,192.168.1.90;,Windows 10 Pro,Intercept X Advanced,Admin,6/28/2024 12:11,,On
+Healthy,NIHAR-LAP-148,192.168.29.237;2405:201:a016:280f:64:ae2d:cca9:edde;2405:201:a016:280f:a95f:e9a4:ef81:8a9f,Windows 11 Pro,Intercept X Advanced,DELL,6/28/2024 12:05,,On
+Healthy,KAILASHB-LAP-100,192.168.1.38;,Windows 10 Pro,Intercept X Advanced,Kailash Barik,6/28/2024 11:58,,On
+Healthy,MINAKSHEEPLAP-083,192.168.125.45;2401:4900:1721:48fe:197c:a9a8:1a56:5ff5;2401:4900:1721:48fe:b99b:8610:8af6:100b;2401:4900:1d04:198a:7d36:a44e:2c65:20d9;2401:4900:1d04:198a:ac2f:a1b5:a7de:7,Windows 10 Pro,Intercept X Advanced,Minakshee Pillai,6/28/2024 11:58,,On
+Healthy,FRANCISN-LAP-138,192.168.1.46;,Windows 11 Pro,Intercept X Advanced,Francis Nadar,6/28/2024 11:52,,On
+Healthy,DEVANAND-LAP-143,192.168.0.103;,Windows 11 Pro,Intercept X Advanced,Devanand Dubey,6/28/2024 11:50,,On
+Healthy,NIHAR-LAP-034,192.168.29.51;2405:201:a016:280f:86f:1c09:f159:bc47;2405:201:a016:280f:617d:1c0c:fc24:834f,Windows 10 Pro,Intercept X Advanced,user,6/28/2024 11:50,,On
+Healthy,MANOJMISHRA-LAP-103,192.168.29.253;,Windows 11 Pro,Intercept X Advanced,Manoj Kumar Mishra,6/28/2024 11:47,,On
+Healthy,REEMAS-LAP-142,192.168.3.13;,Windows 11 Pro,Intercept X Advanced,Dell,6/28/2024 11:44,,On
+Healthy,SAMEER-LAP-123,192.168.3.19;,Windows 11 Home Single Language,Intercept X Advanced,Sameer Bhatia,6/28/2024 11:43,,On
+Healthy,GULABY-LAP-118,192.168.161.252;2409:4089:be8e:4b9f:2104:7e16:3bc0:d68c;2409:4089:be8e:4b9f:6534:7d15:d711:9e08,Windows 11 Pro,Intercept X Advanced,Gulab Yadav,6/28/2024 11:38,,On
+Healthy,DIPAK-LAP-093,192.168.0.104;,Windows 10 Pro,Intercept X Advanced,Dipak Kshirsagar,6/28/2024 11:36,,On
+Healthy,SujitSikdar-LAP133,192.168.12.60;,Windows 10 Pro,Intercept X Advanced,AjeetKumar,6/28/2024 11:30,,On
+Healthy,ShashikantMishra,192.168.1.25;,Windows 10 Pro,Intercept X Advanced,Shashikant Mishra,6/28/2024 11:20,,On
+Healthy,RAHULJ-LAP-134,192.168.3.6;,Windows 10 Pro,Intercept X Advanced,Rahul Jain,6/28/2024 11:15,,On
+Healthy,DESKTOP-RHPITBE,172.20.10.2;2401:4900:6279:2a32:f7fa:ee95:9f34:cefc;2401:4900:6279:2a32:6d9d:a427:f84b:c8ce,Windows 11 Pro,Intercept X Advanced,DELL,6/28/2024 11:00,,On
+Healthy,SANDESH-LAP-131,192.168.1.34;,Windows 11 Pro,Intercept X Advanced,Sandesh Pawar,6/28/2024 10:54,,On
+Healthy,LAP129-NitinGawande,192.168.0.108;,Windows 10 Pro,Intercept X Advanced,NitinGawande,6/28/2024 10:49,,On
+Healthy,ARVINDSINGH-LAP-122,192.168.3.7;192.168.1.104;,Windows 10 Pro,Intercept X Advanced,LENOVO,6/28/2024 10:42,,On
+Healthy,Nutan-LAP-137,192.168.1.104;192.168.3.12;,Windows 10 Pro,Intercept X Advanced,user,6/28/2024 10:37,,On
+Healthy,VIKRAM_LAP091,192.168.1.49;,Windows 10 Home Single Language,Intercept X Advanced,admin,6/28/2024 10:35,,On
+Healthy,SAGARK-LAP-089,192.168.127.139;2409:40c2:105e:f515:97c4:a0a8:b367:901f;2409:40c2:105e:f515:d068:cc1e:b314:d3cd,Windows 10 Pro,Intercept X Advanced,Sagar Korgaonkar,6/28/2024 10:17,,On
+Healthy,HARISHJERE-LAP-140,192.168.225.83;2409:4040:e1b:f07e:7701:4c1f:2bda:2262;2409:4040:e1b:f07e:6ccf:562c:6142:2018,Windows 10 Pro,Intercept X Advanced,Harish Jere,6/28/2024 7:53,,On
+Questionable,BIKASHGIRI-LAP-096,192.168.235.176;2401:4900:7591:7d90:f4db:8840:930:47f6;2401:4900:7591:7d90:7da8:eceb:f965:cac9,Windows 10 Pro,Intercept X Advanced,Bikash Giri,6/27/2024 20:09,,On
+Healthy,SANTOSH-LAP-149,192.168.29.123;2405:201:a016:280f:fcb7:a399:6292:bef4;2405:201:a016:280f:c1d0:632a:b7b2:13f0,Windows 11 Pro,Intercept X Advanced,Santosh Rout,6/27/2024 20:09,,On
+Healthy,VIVEKK-LAP-126,192.168.43.5;2401:4900:3cb1:3f1b:456b:f764:1ab3:3a52;2401:4900:3cb1:3f1b:51fe:32f8:32d8:3d68,Windows 10 Pro,Intercept X Advanced,VIVEK KUMAR,6/27/2024 18:14,,On
+Healthy,LAP-111-MANOKARAN,192.168.43.189;2409:408d:4d8c:122c:3488:70d1:f053:eda8;2409:408d:4d8c:122c:c198:4b70:d400:3719,Windows 10 Pro,Intercept X Advanced,MANOKARAN,6/27/2024 18:11,,On
+Healthy,ANIKET-DTP-033,192.168.1.23;,Windows 11 Pro,Intercept X Advanced,Abhijeet Apandkar,6/27/2024 17:01,,On
+Healthy,AjeetKumar-LAP132,192.168.129.241;,Windows 10 Pro,Intercept X Advanced,AjeetSikdar,6/27/2024 16:31,,On
+Healthy,BIPLAPP-LAP-121,192.168.233.195;2409:40e6:32:ad02:4f31:ebbb:2b87:55a4;2409:40e6:32:ad02:c9b6:db01:bf1d:6b00,Windows 10 Pro,Intercept X Advanced,Biplab Paul,6/27/2024 13:30,,On
+Healthy,SANJAYI-LAP-039,192.168.1.101;,Windows 10 Pro,Intercept X Advanced,Sanjay Ingale,6/26/2024 19:04,,On
+Healthy,MAHENDRAS-LAP-135,192.168.1.10;,Windows 10 Pro,Intercept X Advanced,Mahendra Singh,6/26/2024 17:28,,On
+Healthy,DESKTOP-M5PTJEN,192.168.9.160;2409:4063:4c08:d594:97c7:e86b:67d7:bcf4;2409:4063:4c08:d594:6c1a:fd36:ad7f:e019,Windows 10 Pro,Intercept X Advanced,Lenovo,6/26/2024 9:01,,On
+Healthy,TAPANMANDAL-LAP-114,192.168.29.126;2405:201:a801:100e:391b:ffbf:2938:e795;2405:201:a801:100e:acdf:894b:68f4:3785,Windows 11 Pro,Intercept X Advanced,Tapan,6/21/2024 11:41,,On
+Questionable,RAYMONDC-LAP-130,192.168.1.55;,Windows 11 Pro,Intercept X Advanced,Raymond Carvalho,6/20/2024 16:08,,On
+Healthy,PRIYAS-LAP-102,192.168.1.156;192.168.0.108;,Windows 10 Pro,Intercept X Advanced,Ganesh Karad,6/20/2024 15:38,,On
+Healthy,Admin,192.168.1.76;,Windows 11 Pro,Intercept X Advanced,itadmin,6/20/2024 9:52,,On
+Questionable,CHANDAN-ANGURALA-LAP-027,192.168.3.5;,Windows 10 Pro,Intercept X Advanced,Lenovo,6/20/2024 9:48,,On
+Healthy,AMIT-DTP-031,192.168.1.68;,Windows 11 Pro,Intercept X Advanced,ADMIN,6/18/2024 10:34,,On
+Healthy,Reshma-LAP066,192.168.1.108;,Windows 10 Pro,Intercept X Advanced,Reshma,6/17/2024 17:56,,On
+Questionable,SAMEER-LAP-006,192.168.3.12;,Windows 10 Pro,Intercept X Advanced,Sameer Bhatia,6/12/2024 15:59,,On
+Questionable,PRIYANKA-LAP-009,192.168.1.37;172.27.240.1;,Windows 10 Pro,Intercept X Advanced,PRIYANKA,6/6/2024 18:46,,On
+Questionable,VIKRAMP-LAP-011,192.168.1.24;,Windows 10 Pro,Intercept X Advanced,Suraj Kamble,6/3/2024 18:06,,On
+Questionable,NITINK-LAP-120,192.168.182.163;172.20.192.1;2401:4900:51e7:214f:205d:7bdd:ff69:cb70;2401:4900:51e7:214f:d8ad:e102:94a1:ad1f,Windows 10 Pro,Intercept X Advanced,Nitin Kumar,5/31/2024 11:29,,On
+Questionable,SANJAYN-LAP-088,192.168.99.79;2401:4900:7c6e:9b69:302:388e:d83b:5990;2401:4900:7c6e:9b69:142c:f59b:dc76:8460,Windows 10 Pro,Intercept X Advanced,lenovo,5/30/2024 14:22,,On
