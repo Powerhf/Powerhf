@@ -362,18 +362,37 @@ class PMCL_Forms(forms.ModelForm):
 
 class DocumentsRepositoryForm(forms.ModelForm):
     site_docs_id = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'class':'inputformsfill'}
+        attrs={'class':'inputformsfill', 'name':'site_docs_id_dt'}
     ))
     documents = forms.FileField(required=True, widget=forms.TextInput(
         attrs={'class':'mon-box-img-input', 'multiple':True, 'id':'documents', 'type': 'file', 'accept':'*/*'}
     ))
     class Meta:
         model = DocumentRepository
-        fields = ['project_type','region','site_docs_id','documents']
+        fields = ['project_type','region','site_docs_id','documents','circles']
         widgets = {
-            'project_type': forms.Select(attrs={'class':'inputformsfill'}),
-            'region': forms.Select(attrs={'class':'inputformsfill'}),
+            'project_type': forms.Select(attrs={'class':'inputformsfill', 'name':'project_dt_types'}),
+            'region': forms.Select(attrs={'class':'inputformsfill', 'name':'regions_dt'}),
+            'circles': forms.Select(attrs={'class':'inputformsfill', 'name':'circles_dt'}),
         }
+
+
+class DocumentsRepositoryFilterForm(forms.ModelForm):
+    site_docs_id = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={'class':'inputformsfill', 'name':'site_docs_id_dt'}
+    ))
+    project_type = forms.CharField(required=False, widget=forms.Select(
+        attrs={'class':'inputformsfill', 'name':'project_dt_types'}
+    ))
+    region = forms.CharField(required=False, widget=forms.Select(
+        attrs={'class':'inputformsfill', 'name':'regions_dt'}
+    ))
+    circles = forms.CharField(required=False, widget=forms.Select(
+        attrs={'class':'inputformsfill', 'name':'circles_dt'}
+    ))
+    class Meta:
+        model = DocumentRepository
+        fields = ['project_type','region','site_docs_id','circles']
 
 # Documents Repository END
 

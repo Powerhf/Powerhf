@@ -1197,9 +1197,10 @@ class DocumentsRepoFormViews(TemplateView):
                 project_type = forms.cleaned_data['project_type']
                 region = forms.cleaned_data['region']
                 site_docs_id = forms.cleaned_data['site_docs_id']
+                circles = forms.cleaned_data['circles']
                 documents = request.FILES.getlist('documents')
                 reg = DocumentRepository.objects.create(user=request.user, project_type=project_type,region=region,
-                site_docs_id=site_docs_id)
+                site_docs_id=site_docs_id, circles=circles)
                 # Save Images:
                 for dox in documents:
                     docs = DocumentsOfRepository.objects.create(files=dox)
@@ -1219,9 +1220,24 @@ class DocumentsRepoFormViews(TemplateView):
 class DocumentRepoViwer(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
-            return render(request, 'app/Docs_repo/documents_repo_data.html')
+            forms = DocumentsRepositoryFilterForm()
+            context = {'search':'Search For Documents', 'forms':forms}
+            return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
         else:
             return redirect('auth')
+
+
+class DocumentRepoViwerFilter(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            context = {'search':''}
+            if request.GET.get('site_docs_id_dt') or request.GET.get('project_dt_types') or request.GET.get('regions_dt') or request.GET.get('circles_dt'):
+
+                return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
+        else:
+            return redirect('auth')
+        
+    
 
 # Documents Repo END
 

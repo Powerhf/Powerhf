@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    <link rel=”stylesheet” href=”https://use.fontawesome.com/releases/v5.7.0/css/all.css”
+        integrity=”sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ” crossorigin=”anonymous”>
+    <title>PowerHF • Documents Repository Reports</title>
+</head>
+
+<body>
+    <div id="loader" class="center"></div>
+    <div class="container-fluid p-0">
+        <div class="card border-0 bg-card">
+            <div class="container upper-body-tag p-0" style="width: 100%;">
+                <div class="card border-0 top-card sticky-top">
+                    {% include 'app/upper_navbar.html' %}
+                </div>
+                <div class="card border-0 right-middel-card mt-4 mb-5">
+                    <div class="card border-0 p-3 pt-2">
+                        <form action="{% url 'documentsrepository_reports_filters' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row row-cols-3 row-cols-md-5 g-3 mt-0 mb-0 mb-1 align-items-start m-3">
+                                <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Site / Documents ID</label>
+                                    {{forms.site_docs_id}}
+                                </div>
+                                <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Region</label>
+                                    {{forms.region}}
+                                </div>
+                                <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Project Type</label>
+                                    {{forms.project_type}}
+                                </div>
+                                <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Circles</label>
+                                    {{forms.circles}}
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="bg-secondary btn-downloadall p-2" style="margin-top: 25px;">View</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% if search == "" %}
+                <div class="card border-0 right-middel-card mt-2 mb-5 p-4">
+                    <div class="card border-0 mb-3 p-4 pt-0">
+                        <div class="row row-cols-2 row-cols-md-4 g-3 mt-0 align-items-start">
+                            <div class="col-md-9 border-end" style="height: 5rem; overflow: auto;">
+                                <table class="table border-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-size: 10px;" scope="col">Site / Document ID</th>
+                                            <th style="font-size: 10px;" scope="col">Project Types</th>
+                                            <th style="font-size: 10px;" scope="col">Region</th>
+                                            <th style="font-size: 10px;" scope="col">Circle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-0">
+                                            <td class="border-0" style="font-size: 10px;">2343253</td>
+                                            <td class="border-0" style="font-size: 10px;">Feul Pump Automation Work For Gilbarco</td>
+                                            <td class="border-0" style="font-size: 10px;">North</td>
+                                            <td class="border-0" style="font-size: 10px;">HP, HR & PB</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-3" style="height: 5rem;">
+                                <div class="dochf-4fe" style="height: 5rem; overflow: auto;">
+                                    <!-- <div class="docs-data74">
+                                        <ol class="gergr5">
+                                            <li style="font-size: 12px;" class="mb-2">
+                                                <a href="" class="text-decoration-none text-secondary">fergr rtgrtgrtgtg rtg</a>
+                                            </li>
+                                        </ol>
+                                    </div> -->
+                                    <div class="no-docs-4f4">
+                                        <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 8px;">No Documents
+                                            Attached</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="mt-5 pt-5">
+                    <h6 class="text-center mt-5" style="color: #adadad;">Search For Documents</h6>
+                </div>
+                {% endif %}
+            </div>
+            {% include 'app/offcanvas_down.html' %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
+        <script src="{% static 'app/js/style.js' %}"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script>
+            document.onreadystatechange = function () {
+                if (document.readyState !== "complete") {
+                    document.querySelector(
+                        "body").style.visibility = "hidden";
+                    document.querySelector(
+                        "#loader").style.visibility = "visible";
+                } else {
+                    document.querySelector(
+                        "#loader").style.display = "none";
+                    document.querySelector(
+                        "body").style.visibility = "visible";
+                }
+            };
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#myForm').submit(function () {
+                    $(".btn-filling_data").prop("disabled", true);
+                    $('#loading-bar').show();
+                    $('#gj7uj86').hide();
+                });
+            });
+        </script>
+</body>
+
+</html>

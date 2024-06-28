@@ -204,12 +204,14 @@ body {
     font-weight: 550;
 }
 
-.top-card,
-.right-middel-card {
-    /* border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; */
+.top-card{
     border-radius: 20px;
     padding-left: 10px;
+    background-color: #ffffff;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+.right-middel-card {
+    border-radius: 20px;
     background-color: #ffffff;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }

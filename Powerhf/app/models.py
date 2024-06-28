@@ -325,6 +325,26 @@ REGIONS = (
     ('South','South'),
 )
 
+CIRCLES = (
+    ('JK','JK'),
+    ('UPE','UPE'),
+    ('UPW','UPW'),
+    ('HP, HR & PB','HP, HR & PB'),
+    ('DL','DL'),
+    ('MU, MH & GJ','MU, MH & GJ'),
+    ('RJ & MP','RJ & MP'),
+    ('CG','CG'),
+    ('AS & NE','AS & NE'),
+    ('WB & KOL','WB & KOL'),
+    ('OD','OD'),
+    ('JH','JH'),
+    ('BH','BH'),
+    ('AP & TS','AP & TS'),
+    ('TN','TN'),
+    ('KN','KN'),
+    ('KL','KL'),
+)
+
 class  DocumentsOfRepository(models.Model):
     files = models.FileField(verbose_name='Files', upload_to='Documents_repository/%y', null=True)
 
@@ -334,11 +354,15 @@ class  DocumentsOfRepository(models.Model):
 
 class DocumentRepository(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    project_type = models.CharField(verbose_name='Project Types', max_length=250, choices=PEOJECT_TYPES, null=True)
-    region = models.CharField(verbose_name='Regions', max_length=250, choices=REGIONS, null=True)
-    site_docs_id = models.CharField(verbose_name='SiteID & DocumentID', max_length=250, null=True)
+    project_type = models.CharField(verbose_name='Project Types', max_length=100, choices=PEOJECT_TYPES, null=True)
+    region = models.CharField(verbose_name='Regions', max_length=100, choices=REGIONS, null=True)
+    site_docs_id = models.CharField(verbose_name='SiteID & DocumentID', max_length=100, null=True)
+    circles = models.CharField(verbose_name='Circles', max_length=50, choices=CIRCLES)
     documents = models.ManyToManyField(DocumentsOfRepository, related_name='Documents')
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     
-
+    def __str__(self):
+        return str(self.circles)
 
 # Documents Reporsitory END
