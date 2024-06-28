@@ -740,13 +740,13 @@ h3 {
 
 /* Attachments Modal */
 
-.open-modal-for-img{
+.open-modal-for-img {
     border: none;
     color: royalblue;
     background-color: #fff;
 }
 
-.upper-modals-gdt{
+.upper-modals-gdt {
     /* display: none; */
     position: fixed;
     top: 0;
@@ -758,37 +758,36 @@ h3 {
     background: rgb(0, 0, 0, 0.7)
 }
 
-.inner-ofdtgmodal{
+.inner-ofdtgmodal {
     top: 30%;
     left: 50%;
     position: fixed;
     border-radius: 10px;
-    background-color: #fff;    
+    background-color: #fff;
     padding: 10px;
     height: 4rem;
     width: 60%;
     transform: translate(-50%, -50%);
 }
 
-.inner-modal-content{
+.inner-modal-content {
     overflow: auto;
     height: 24rem;
 }
 
-.closed-ghymodal{
+.closed-ghymodal {
     font-size: 25px;
     font-weight: bold;
 }
 
 .closed-ghymodal:hover,
 .closed-ghymodal:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Attachments Modal End */
-
 
 
 /* Media Query */
@@ -921,7 +920,7 @@ h3 {
         font-size: 17px;
     }
 
-    .q1-modal-content{
+    .q1-modal-content {
         width: 90%;
     }
 }

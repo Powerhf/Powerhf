@@ -326,27 +326,18 @@ REGIONS = (
 )
 
 class  DocumentsOfRepository(models.Model):
-    documents = models.FileField(verbose_name='Documents', upload_to='Documents_repository')
+    files = models.FileField(verbose_name='Files', upload_to='Documents_repository/%y', null=True)
 
     def __str__(self):
-        return self.documents
-    
-    class Meta:
-        db_table = 'Documents_of_Document_repository'
+        return self.files
     
 
 class DocumentRepository(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    project_type = models.CharField(verbose_name='Project Types', max_length=100, choices=PEOJECT_TYPES)
-    region = models.CharField(verbose_name='Regions', max_length=100, choices=REGIONS)
-    site_docs_id = models.CharField(verbose_name='SiteID & DocumentID', max_length=150)
+    project_type = models.CharField(verbose_name='Project Types', max_length=250, choices=PEOJECT_TYPES, null=True)
+    region = models.CharField(verbose_name='Regions', max_length=250, choices=REGIONS, null=True)
+    site_docs_id = models.CharField(verbose_name='SiteID & DocumentID', max_length=250, null=True)
     documents = models.ManyToManyField(DocumentsOfRepository, related_name='Documents')
-
-    def __str__(self):
-        return str(self.site_docs_id)
-    
-    class Meta:
-        db_table = 'Document_repository'
     
 
 

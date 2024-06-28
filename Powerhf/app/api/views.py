@@ -65,3 +65,4 @@ class MonsoonChecklistViewset(viewsets.ViewSet):
             return Response({'status':'true','checklist':checklist_data})
         else:
             return Response({'status':'false'})
+        

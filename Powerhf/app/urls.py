@@ -38,8 +38,9 @@ urlpatterns = [
 
     path('reports/pre-monsoon-checklist-report/', PreMonsoonReport.as_view(), name='mon_check_report'),
 
-    # Projects:
-    path('projects/documents-repository-form/', DocumentsRepoFormViews.as_view(), name='documentsrepositoryform'),
+    # Document Repository:
+    path('document-repository/documents-repository-form/', DocumentsRepoFormViews.as_view(), name='documentsrepository_form'),
+    path('document-repository/documents-repository-reports/', DocumentRepoViwer.as_view(), name='documentsrepository_reports'),
 
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),

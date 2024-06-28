@@ -1184,34 +1184,42 @@ class PreMonsoonFilterReport(TemplateView):
 class DocumentsRepoFormViews(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
-            forms = DocumentsRepositoryForm()
-            context = {'forms':forms}
-            return render(request, 'app/Docs_repo_forms/documents_repo_form.html', context)
+            form = DocumentsRepositoryForm()
+            context = {'forms':form}
+            return render(request, 'app/Docs_repo/documents_repo_form.html', context)
         else:
             return redirect('auth')
 
     def post(self, request):
         if request.user.is_authenticated:
-            form = DocumentsRepositoryForm(data=request.POST, files=request.FILES)
-            if form.is_valid():
-                project_type = form.cleaned_data['project_type']
-                region = form.cleaned_data['region']
-                site_docs_id = form.cleaned_data['site_docs_id']
-                documents = form.cleaned_data['documents']
+            forms = DocumentsRepositoryForm(data=request.POST, files=request.FILES)
+            if not forms.is_valid():
+                project_type = forms.cleaned_data['project_type']
+                region = forms.cleaned_data['region']
+                site_docs_id = forms.cleaned_data['site_docs_id']
+                documents = request.FILES.getlist('documents')
                 reg = DocumentRepository.objects.create(user=request.user, project_type=project_type,region=region,
                 site_docs_id=site_docs_id)
                 # Save Images:
                 for dox in documents:
-                    docs = DocumentsOfRepository.objects.create(documents=dox)
+                    docs = DocumentsOfRepository.objects.create(files=dox)
                     reg.documents.add(docs)
 
                 messages.success(request, 'Your data has been upload successfully.')
 
-                return redirect('documentsrepositoryform')
+                return redirect('documentsrepository_form')
             else:
-                messages.error(request, 'Something went wrong please try again or contact to IT team.')
+                messages.error(request, 'Something went wrong, Please try again later or Contact with IT team.')
 
-                return redirect('documentsrepositoryform')
+                return redirect('documentsrepository_form')
+        else:
+            return redirect('auth')
+        
+
+class DocumentRepoViwer(TemplateView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'app/Docs_repo/documents_repo_data.html')
         else:
             return redirect('auth')
 

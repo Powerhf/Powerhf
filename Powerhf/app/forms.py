@@ -365,7 +365,7 @@ class DocumentsRepositoryForm(forms.ModelForm):
         attrs={'class':'inputformsfill'}
     ))
     documents = forms.FileField(required=True, widget=forms.TextInput(
-        attrs={'class':'mon-box-img-input', 'multiple':True, 'type': 'file'}
+        attrs={'class':'mon-box-img-input', 'multiple':True, 'id':'documents', 'type': 'file', 'accept':'*/*'}
     ))
     class Meta:
         model = DocumentRepository
