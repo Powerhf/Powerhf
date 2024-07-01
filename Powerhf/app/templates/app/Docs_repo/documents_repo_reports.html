@@ -109,8 +109,8 @@
                     </div>
                 </div>
                 {% if search == "" %}
+                {% if docs_data %}
                 <div class="card border-0 right-middel-card mt-2 mb-5 p-4">
-                    {% if docs_data %}
                     {% for docs in docs_data %}
                     <div class="card border-0 border-bottom mb-3 p-4 pt-0">
                         <div class="row row-cols-2 row-cols-md-4 g-3 mt-0 align-items-start">
@@ -163,12 +163,12 @@
                         </div>
                     </div>
                     {% endfor %}
-                    {% else %}
-                    <div class="mt-5 pt-5">
-                        <h6 class="text-center mt-5" style="color: #adadad;">No data found</h6>
-                    </div>
-                    {% endif %}
                 </div>
+                {% else %}
+                <div class="mt-5 pt-5">
+                    <h6 class="text-center mt-5" style="color: #adadad;">No data found</h6>
+                </div>
+                {% endif %}
                 {% else %}
                 <div class="mt-5 pt-5">
                     <h6 class="text-center mt-5" style="color: #adadad;">Search For Documents</h6>
