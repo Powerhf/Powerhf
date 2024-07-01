@@ -75,6 +75,11 @@ body {
     color: rgb(218, 71, 71);
 }
 
+.warning {
+    border: 1px solid #ebcc52;
+    color: #ebcc52;
+}
+
 .btn-sm {
     width: 45px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

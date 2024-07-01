@@ -21,29 +21,88 @@
                 <div class="card border-0 top-card sticky-top">
                     {% include 'app/upper_navbar.html' %}
                 </div>
+                {% if messages %}
+                {% for msg in messages %}
+                <div class="card {{msg.tags}} mb-3 mt-3 p-2" id="Error-close"
+                    style="margin-left: 0.8rem; margin-right: 1.5rem;">
+                    <div class="d-flex">
+                        <div class="inr-success-int1" style="width: 100%; padding-top: 4;">
+                            <span style="padding-left: 1rem;"><strong>Warning </strong>{{msg}}</span>
+                        </div>
+                        <div class="inr-success-int2">
+                            <button class="btn-close-err-msg" id="btncloseerrmsg" onclick="BtnErrorClose()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"
+                                    class="text-dark">
+                                    <path fill="#545454"
+                                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
                 <div class="card border-0 right-middel-card mt-4 mb-5">
                     <div class="card border-0 p-3 pt-2">
                         <form action="{% url 'documentsrepository_reports_filters' %}" method="GET">
                             {% csrf_token %}
                             <div class="row row-cols-3 row-cols-md-5 g-3 mt-0 mb-0 mb-1 align-items-start m-3">
                                 <div class="col">
-                                    <label style="font-size: 13px;" class="m-1 text-secondary">Site / Documents ID</label>
-                                    {{forms.site_docs_id}}
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Site / Documents
+                                        ID</label>
+                                    <input type="text" name="site_docs_id_dt" class="inputformsfill">
                                 </div>
                                 <div class="col">
                                     <label style="font-size: 13px;" class="m-1 text-secondary">Region</label>
-                                    {{forms.region}}
+                                    <select name="regions_dt" class="inputformsfill">
+                                        <option value="">Select</option>
+                                        <option value="East">East</option>
+                                        <option value="West">West</option>
+                                        <option value="North">North</option>
+                                        <option value="South">South</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label style="font-size: 13px;" class="m-1 text-secondary">Project Type</label>
-                                    {{forms.project_type}}
+                                    <select name="project_dt_types" class="inputformsfill">
+                                        <option value="">Select</option>
+                                        <option value="Feul Pump Automation Work For Gilbarco">Feul Pump Automation Work
+                                            For Gilbarco</option>
+                                        <option value="DG RNR, For ATC, Ascend, TVI">DG RNR, For ATC, Ascend, TVI
+                                        </option>
+                                        <option value="EV Charger I&C, PM & BDN Calls For Gilbarco">EV Charger I&C, PM &
+                                            BDN Calls For Gilbarco</option>
+                                        <option value="Retail DG Repair">Retail DG Repair</option>
+                                        <option value="5G Upgradation For ATC">5G Upgradation For ATC</option>
+                                        <option value="FTTH For Microscan">FTTH For Microscan</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label style="font-size: 13px;" class="m-1 text-secondary">Circles</label>
-                                    {{forms.circles}}
+                                    <select name="circles_dt" class="inputformsfill">
+                                        <option value="">Select</option>
+                                        <option value="JK">JK</option>
+                                        <option value="UPE">UPE</option>
+                                        <option value="UPW">UPW</option>
+                                        <option value="HP, HR & PB">HP, HR & PB</option>
+                                        <option value="DL">DL</option>
+                                        <option value="MU, MH & GJ">MU, MH & GJ</option>
+                                        <option value="RJ & MP">RJ & MP</option>
+                                        <option value="CG">CG</option>
+                                        <option value="AS & NE">AS & NE</option>
+                                        <option value="WB & KOL">WB & KOL</option>
+                                        <option value="OD">OD</option>
+                                        <option value="JH">JH</option>
+                                        <option value="BH">BH</option>
+                                        <option value="AP & TS">AP & TS</option>
+                                        <option value="TN">TN</option>
+                                        <option value="KN">KN</option>
+                                        <option value="KL">KL</option>
+                                    </select>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="bg-secondary btn-downloadall p-2" style="margin-top: 25px;">View</button>
+                                    <button type="submit" class="bg-secondary btn-downloadall p-2"
+                                        style="margin-top: 25px;">View</button>
                                 </div>
                             </div>
                         </form>
@@ -53,16 +112,20 @@
                 <div class="card border-0 right-middel-card mt-2 mb-5 p-4">
                     {% if docs_data %}
                     {% for docs in docs_data %}
-                    <div class="card border-0 mb-3 p-4 pt-0">
+                    <div class="card border-0 border-bottom mb-3 p-4 pt-0">
                         <div class="row row-cols-2 row-cols-md-4 g-3 mt-0 align-items-start">
                             <div class="col-md-9 border-end" style="height: 5rem; overflow: auto;">
                                 <table class="table border-0">
                                     <thead>
                                         <tr>
-                                            <th style="font-size: 10px;" scope="col">Site / Document ID</th>
-                                            <th style="font-size: 10px;" scope="col">Project Types</th>
-                                            <th style="font-size: 10px;" scope="col">Region</th>
-                                            <th style="font-size: 10px;" scope="col">Circle</th>
+                                            <th class="border-bottom" style="font-size: 10px; width: 150px;"
+                                                scope="col">Site / Doc's ID</th>
+                                            <th class="border-bottom" style="font-size: 10px; width: 350px;"
+                                                scope="col">Project Types</th>
+                                            <th class="border-bottom" style="font-size: 10px; width: 100px;"
+                                                scope="col">Region</th>
+                                            <th class="border-bottom" style="font-size: 10px; width: 100px;"
+                                                scope="col">Circle</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,14 +145,16 @@
                                         <ol class="gergr5">
                                             {% for do in docs.documents.all %}
                                             <li style="font-size: 12px;" class="mb-2">
-                                                <a href="{{do.documents.urls}}" class="text-decoration-none text-secondary">{{do.documents.urls}}</a>
+                                                <a href="{{do.files.url}}" target="_blank"
+                                                    class="text-decoration-none text-secondary">{{do.files.url}}</a>
                                             </li>
                                             {% endfor %}
                                         </ol>
                                     </div>
                                     {% else %}
                                     <div class="no-docs-4f4">
-                                        <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 8px;">No Documents
+                                        <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 8px;">No
+                                            Documents
                                             Attached</h6>
                                     </div>
                                     {% endif %}

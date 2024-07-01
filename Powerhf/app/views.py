@@ -1220,8 +1220,7 @@ class DocumentsRepoFormViews(TemplateView):
 class DocumentRepoViwer(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
-            forms = DocumentsRepositoryFilterForm()
-            context = {'search':'Search For Documents', 'forms':forms}
+            context = {'search':'Search For Documents'}
             return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
         else:
             return redirect('auth')
@@ -1235,6 +1234,11 @@ class DocumentRepoViwerFilter(TemplateView):
                 region__icontains=request.GET.get('regions_dt'),site_docs_id__icontains=request.GET.get('site_docs_id_dt'),
                 circles__icontains=request.GET.get('circles_dt'))
                 context = {'search':'', 'docs_data':data}
+                return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
+            
+            elif request.GET.get('site_docs_id_dt') == '' and request.GET.get('project_dt_types') == '' and request.GET.get('regions_dt') =='' and request.GET.get('circles_dt') == '':
+                messages.warning(request, 'Please enter or select field to search.')
+                context = {'search':'Search For Documents'}
                 return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
         else:
             return redirect('auth')

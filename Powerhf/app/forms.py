@@ -377,61 +377,61 @@ class DocumentsRepositoryForm(forms.ModelForm):
         }
 
 
-PEOJECT_TYPES = (
-    ('None','None'),
-    ('Feul Pump Automation Work For Gilbarco','Feul Pump Automation Work For Gilbarco'),
-    ('DG RNR, For ATC, Ascend, TVI','DG RNR, For ATC, Ascend, TVI'),
-    ('EV Charger I&C, PM & BDN Calls For Gilbarco','EV Charger I&C, PM & BDN Calls For Gilbarco'),
-    ('Retail DG Repair','Retail DG Repair'),
-    ('5G Upgradation For ATC','5G Upgradation For ATC'),
-    ('FTTH For Microscan','FTTH For Microscan'),
-)
+# PEOJECT_TYPES = (
+#     ('None','None'),
+#     ('Feul Pump Automation Work For Gilbarco','Feul Pump Automation Work For Gilbarco'),
+#     ('DG RNR, For ATC, Ascend, TVI','DG RNR, For ATC, Ascend, TVI'),
+#     ('EV Charger I&C, PM & BDN Calls For Gilbarco','EV Charger I&C, PM & BDN Calls For Gilbarco'),
+#     ('Retail DG Repair','Retail DG Repair'),
+#     ('5G Upgradation For ATC','5G Upgradation For ATC'),
+#     ('FTTH For Microscan','FTTH For Microscan'),
+# )
 
-REGIONS = (
-    ('None','None'),
-    ('East','East'),
-    ('West','West'),
-    ('North','North'),
-    ('South','South'),
-)
+# REGIONS = (
+#     ('None','None'),
+#     ('East','East'),
+#     ('West','West'),
+#     ('North','North'),
+#     ('South','South'),
+# )
 
-CIRCLES = (
-    ('None','None'),
-    ('JK','JK'),
-    ('UPE','UPE'),
-    ('UPW','UPW'),
-    ('HP, HR & PB','HP, HR & PB'),
-    ('DL','DL'),
-    ('MU, MH & GJ','MU, MH & GJ'),
-    ('RJ & MP','RJ & MP'),
-    ('CG','CG'),
-    ('AS & NE','AS & NE'),
-    ('WB & KOL','WB & KOL'),
-    ('OD','OD'),
-    ('JH','JH'),
-    ('BH','BH'),
-    ('AP & TS','AP & TS'),
-    ('TN','TN'),
-    ('KN','KN'),
-    ('KL','KL'),
-)
+# CIRCLES = (
+#     ('None','None'),
+#     ('JK','JK'),
+#     ('UPE','UPE'),
+#     ('UPW','UPW'),
+#     ('HP, HR & PB','HP, HR & PB'),
+#     ('DL','DL'),
+#     ('MU, MH & GJ','MU, MH & GJ'),
+#     ('RJ & MP','RJ & MP'),
+#     ('CG','CG'),
+#     ('AS & NE','AS & NE'),
+#     ('WB & KOL','WB & KOL'),
+#     ('OD','OD'),
+#     ('JH','JH'),
+#     ('BH','BH'),
+#     ('AP & TS','AP & TS'),
+#     ('TN','TN'),
+#     ('KN','KN'),
+#     ('KL','KL'),
+# )
 
-class DocumentsRepositoryFilterForm(forms.ModelForm):
-    site_docs_id = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={'class':'inputformsfill', 'name':'site_docs_id_dt'}
-    ))
-    project_type = forms.ChoiceField(choices=PEOJECT_TYPES,required=False, widget=forms.Select(
-        attrs={'class':'inputformsfill', 'name':'project_dt_types'}
-    ))
-    region = forms.ChoiceField(choices=REGIONS,required=False, widget=forms.Select(
-        attrs={'class':'inputformsfill', 'name':'regions_dt'}
-    ))
-    circles = forms.ChoiceField(choices=CIRCLES,required=False, widget=forms.Select(
-        attrs={'class':'inputformsfill', 'name':'circles_dt'}
-    ))
-    class Meta:
-        model = DocumentRepository
-        fields = ['project_type','region','site_docs_id','circles']
+# class DocumentsRepositoryFilterForm(forms.ModelForm):
+#     site_docs_id = forms.CharField(required=False, widget=forms.TextInput(
+#         attrs={'class':'inputformsfill', 'name':'site_docs_id_dt'}
+#     ))
+#     project_type = forms.ChoiceField(choices=PEOJECT_TYPES,required=False, widget=forms.Select(
+#         attrs={'class':'inputformsfill', 'name':'project_dt_types'}
+#     ))
+#     region = forms.ChoiceField(choices=REGIONS,required=False, widget=forms.Select(
+#         attrs={'class':'inputformsfill', 'name':'regions_dt'}
+#     ))
+#     circles = forms.ChoiceField(choices=CIRCLES,required=False, widget=forms.Select(
+#         attrs={'class':'inputformsfill', 'name':'circles_dt'}
+#     ))
+#     class Meta:
+#         model = DocumentRepository
+#         fields = ['project_type','region','site_docs_id','circles']
 
 # Documents Repository END
 
