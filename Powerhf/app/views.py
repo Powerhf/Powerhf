@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from app.forms import *
 from app.models import *
 from django.http import HttpResponse, JsonResponse
@@ -1185,7 +1185,7 @@ class DocumentsRepoFormViews(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
             form = DocumentsRepositoryForm()
-            context = {'forms':form}
+            context = {'forms':form, 'search':''}
             return render(request, 'app/Docs_repo/documents_repo_form.html', context)
         else:
             return redirect('auth')
@@ -1242,7 +1242,43 @@ class DocumentRepoViwerFilter(TemplateView):
                 return render(request, 'app/Docs_repo/documents_repo_reports.html', context)
         else:
             return redirect('auth')
+
+
+
+class DocumentsRepositoryAddandUpdate(TemplateView):
+    def get(self, request, repo_id):
+        if request.user.is_authenticated:
+            instance = get_object_or_404(DocumentRepository, pk=repo_id)
+            docs_data = DocumentRepository.objects.get(pk=repo_id)
+            repo_data = DocumentRepository.objects.filter(pk=repo_id)
+            context = {'search':'Search For Documents', 'docs_data':repo_data, 'id_dt':docs_data.id, 'instance':instance}
+            return render(request, 'app/Docs_repo/documents_repo_update.html', context)
+        else:
+            return redirect('auth')
         
+    def post(self, request, repo_id):
+        if request.user.is_authenticated:
+            instance = get_object_or_404(DocumentRepository, pk=repo_id)
+            instance.user = request.user
+            instance.project_type = request.POST.get('project_type')
+            instance.region = request.POST.get('region')
+            instance.site_docs_id = request.POST.get('site_docs_id')
+            instance.circles = request.POST.get('circles')
+            instance.save()
+
+            if 'documents_dt' in request.FILES:
+                for files in request.FILES.getlist('documents_dt'):
+                    file_instance = DocumentsOfRepository(files=files)
+                    file_instance.save()
+            
+            docs_data = DocumentRepository.objects.get(pk=repo_id)
+
+            messages.success(request, 'The data has been updated successfully.')
+
+            return redirect('documentsrepository_add_update', docs_data.pk)
+        else:
+            return redirect('auth')
+            
     
 
 # Documents Repo END

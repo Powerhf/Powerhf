@@ -16,14 +16,14 @@
 <body>
     <div id="loader" class="center"></div>
     <div class="container-fluid p-0">
-        <div class="card border-0 bg-card">
+        <div class="card border-0 bg-card mb-5">
             <div class="container upper-body-tag p-0" style="width: 100%;">
                 <div class="card border-0 top-card sticky-top">
                     {% include 'app/upper_navbar.html' %}
                 </div>
                 {% if messages %}
                 {% for msg in messages %}
-                <div class="card {{msg.tags}} mb-3 mt-3 p-2" id="Error-close"
+                <div class="card {{msg.tags}} mb-3 mt-4 p-2" id="Error-close"
                     style="margin-left: 0.8rem; margin-right: 1.5rem;">
                     <div class="d-flex">
                         <div class="inr-success-int1" style="width: 100%; padding-top: 4;">
@@ -48,23 +48,8 @@
                             {% csrf_token %}
                             <div class="row row-cols-3 row-cols-md-5 g-3 mt-0 mb-0 mb-1 align-items-start m-3">
                                 <div class="col">
-                                    <label style="font-size: 13px;" class="m-1 text-secondary">Site / Documents
-                                        ID</label>
-                                    <input type="text" name="site_docs_id_dt" class="inputformsfill">
-                                </div>
-                                <div class="col">
-                                    <label style="font-size: 13px;" class="m-1 text-secondary">Region</label>
-                                    <select name="regions_dt" class="inputformsfill">
-                                        <option value="">Select</option>
-                                        <option value="East">East</option>
-                                        <option value="West">West</option>
-                                        <option value="North">North</option>
-                                        <option value="South">South</option>
-                                    </select>
-                                </div>
-                                <div class="col">
                                     <label style="font-size: 13px;" class="m-1 text-secondary">Project Type</label>
-                                    <select name="project_dt_types" class="inputformsfill">
+                                    <select name="project_dt_types" class="inputformsfill border">
                                         <option value="">Select</option>
                                         <option value="Feul Pump Automation Work For Gilbarco">Feul Pump Automation Work
                                             For Gilbarco</option>
@@ -78,8 +63,18 @@
                                     </select>
                                 </div>
                                 <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Region</label>
+                                    <select name="regions_dt" class="inputformsfill border">
+                                        <option value="">Select</option>
+                                        <option value="East">East</option>
+                                        <option value="West">West</option>
+                                        <option value="North">North</option>
+                                        <option value="South">South</option>
+                                    </select>
+                                </div>
+                                <div class="col">
                                     <label style="font-size: 13px;" class="m-1 text-secondary">Circles</label>
-                                    <select name="circles_dt" class="inputformsfill">
+                                    <select name="circles_dt" class="inputformsfill border">
                                         <option value="">Select</option>
                                         <option value="JK">JK</option>
                                         <option value="UPE">UPE</option>
@@ -101,6 +96,11 @@
                                     </select>
                                 </div>
                                 <div class="col">
+                                    <label style="font-size: 13px;" class="m-1 text-secondary">Site / Documents
+                                        ID</label>
+                                    <input type="text" name="site_docs_id_dt" class="inputformsfill border">
+                                </div>
+                                <div class="col">
                                     <button type="submit" class="bg-secondary btn-downloadall p-2"
                                         style="margin-top: 25px;">View</button>
                                 </div>
@@ -110,9 +110,9 @@
                 </div>
                 {% if search == "" %}
                 {% if docs_data %}
-                <div class="card border-0 right-middel-card mt-2 mb-5 p-4">
-                    {% for docs in docs_data %}
-                    <div class="card border-0 border-bottom mb-3 p-4 pt-0">
+                {% for docs in docs_data %}
+                <div class="card border-0 right-middel-card mb-4 p-4" style="margin-bottom: 15px;">
+                    <div class="card border-0 mb-2 p-4 pb-0 pt-0">
                         <div class="row row-cols-2 row-cols-md-4 g-3 mt-0 align-items-start">
                             <div class="col-md-9 border-end" style="height: 5rem; overflow: auto;">
                                 <table class="table border-0">
@@ -161,9 +161,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-4 d-flex justify-content-end">
+                            <button class="btn btn-secondary" style="font-size: 8px; font-weight: 550;"
+                                onclick="DocumentRepoAddUpdate('{{docs.id}}')">Add / Update</button>
+                        </div>
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
                 {% else %}
                 <div class="mt-5 pt-5">
                     <h6 class="text-center mt-5" style="color: #adadad;">No data found</h6>
@@ -209,6 +213,11 @@
                     $('#gj7uj86').hide();
                 });
             });
+        </script>
+        <script>
+            function DocumentRepoAddUpdate(docs_id){
+                window.location.href = `/documents-repository-add-update/${docs_id}/`;
+            }
         </script>
 </body>
 
