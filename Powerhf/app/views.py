@@ -10,6 +10,7 @@ from django.core.paginator import Paginator
 from pdfquery import PDFQuery
 from datetime import datetime
 import pandas as pd
+import os
 
 
 
@@ -1185,7 +1186,7 @@ class DocumentsRepoFormViews(TemplateView):
     def get(self, request):
         if request.user.is_authenticated:
             form = DocumentsRepositoryForm()
-            context = {'forms':form, 'search':''}
+            context = {'forms':form}
             return render(request, 'app/Docs_repo/documents_repo_form.html', context)
         else:
             return redirect('auth')
@@ -1203,7 +1204,7 @@ class DocumentsRepoFormViews(TemplateView):
                 site_docs_id=site_docs_id, circles=circles)
                 # Save Images:
                 for dox in documents:
-                    docs = DocumentsOfRepository.objects.create(files=dox)
+                    docs = DocumentsOfRepository.objects.create(user=request.user, files=dox)
                     reg.documents.add(docs)
 
                 messages.success(request, 'Your data has been upload successfully.')
@@ -1251,34 +1252,52 @@ class DocumentsRepositoryAddandUpdate(TemplateView):
             instance = get_object_or_404(DocumentRepository, pk=repo_id)
             docs_data = DocumentRepository.objects.get(pk=repo_id)
             repo_data = DocumentRepository.objects.filter(pk=repo_id)
-            context = {'search':'Search For Documents', 'docs_data':repo_data, 'id_dt':docs_data.id, 'instance':instance}
-            return render(request, 'app/Docs_repo/documents_repo_update.html', context)
+            form = DocumentsRepositoryForm(instance=docs_data)
+            context = {'docs_data':repo_data, 'id_dt':docs_data.id, 'instance':instance,
+                       'forms':form}
+            return render(request, 'app/Docs_repo/documents_repo_updates.html', context)
         else:
             return redirect('auth')
         
     def post(self, request, repo_id):
         if request.user.is_authenticated:
             instance = get_object_or_404(DocumentRepository, pk=repo_id)
-            instance.user = request.user
-            instance.project_type = request.POST.get('project_type')
-            instance.region = request.POST.get('region')
-            instance.site_docs_id = request.POST.get('site_docs_id')
-            instance.circles = request.POST.get('circles')
-            instance.save()
+            if instance:
+                instance.user = request.user
+                instance.project_type = request.POST.get('project_type')
+                instance.region = request.POST.get('region')
+                instance.site_docs_id = request.POST.get('site_docs_id')
+                instance.circles = request.POST.get('circles')
+                instance.save()
 
-            if 'documents_dt' in request.FILES:
-                for files in request.FILES.getlist('documents_dt'):
-                    file_instance = DocumentsOfRepository(files=files)
-                    file_instance.save()
-            
-            docs_data = DocumentRepository.objects.get(pk=repo_id)
+                if 'documents_dt' in request.FILES:
+                    for files in request.FILES.getlist('documents_dt'):
+                        file_instance = DocumentsOfRepository.objects.create(user=request.user,files=files)
+                        instance.documents.add(file_instance)
+                
+                docs_data = DocumentRepository.objects.get(pk=repo_id)
 
-            messages.success(request, 'The data has been updated successfully.')
+                messages.success(request, 'The data has been updated successfully.')
 
-            return redirect('documentsrepository_add_update', docs_data.pk)
+                return redirect('documentsrepository_add_update', docs_data.pk)
+            else:
+                messages.error(request, 'Something went wrong, Please try again or contact with IT team.')
         else:
             return redirect('auth')
-            
+
+
+
+class DeleteDocumentsFIlesRepo(TemplateView):
+    def post(self, request, repo_id, docs_id):
+        if request.user.is_authenticated:
+            repo_instance = get_object_or_404(DocumentRepository, pk=repo_id)
+            docs_instance = get_object_or_404(DocumentsOfRepository, pk=docs_id)
+            repo_instance.documents.remove(docs_instance)
+            if docs_instance.files or os.path.isfile(docs_instance.files.path):
+                os.remove(docs_instance.files.path)
+            return redirect('documentsrepository_add_update', repo_instance.id)
+        else:
+            return redirect('auth')
     
 
 # Documents Repo END

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+import os
 
 DEPARTMENTS = (
     ('None','None'),
@@ -346,7 +347,10 @@ CIRCLES = (
 )
 
 class  DocumentsOfRepository(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     files = models.FileField(verbose_name='Files', upload_to='Documents_repository/%y', null=True)
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
 
     def __str__(self):
         return self.files

@@ -43,6 +43,7 @@ urlpatterns = [
     path('document-repository/documents-repository-reports/', DocumentRepoViwer.as_view(), name='documentsrepository_reports'),
     path('document-repository/documents-repository-filter/', DocumentRepoViwerFilter.as_view(), name='documentsrepository_reports_filters'),
     path('documents-repository-add-update/<repo_id>/', DocumentsRepositoryAddandUpdate.as_view(), name='documentsrepository_add_update'),
+    path('documents-repository-delete/<repo_id>/<docs_id>/', DeleteDocumentsFIlesRepo.as_view(), name='documentsrepository_delete'),
 
     # Logout:
     path('user/logout/', LogOut.as_view(), name='logout'),

@@ -308,3 +308,112 @@
 
 
 
+<div class="row row-cols-1 row-cols-md-2 g-3 mb-5">
+    <div class="col">
+        <div class="mb-3">
+            <label class="mb-2 label_input">Project Type</label>
+            <select name="project_type" class="inputformsfill">
+                <option value="Feul Pump Automation Work For Gilbarco" {% if instance.project_type == 'Feul Pump Automation Work For Gilbarco' %}selected{% endif %}>Feul Pump
+                    Automation Work
+                    For Gilbarco</option>
+                <option value="DG RNR, For ATC, Ascend, TVI" {% if instance.project_type == 'DG RNR, For ATC, Ascend, TVI' %}selected{% endif %}>DG RNR, For ATC, Ascend,
+                    TVI
+                </option>
+                <option value="EV Charger I&C, PM & BDN Calls For Gilbarco" {% if instance.project_type == 'EV Charger I&C, PM & BDN Calls For Gilbarco' %}selected{% endif %}>EV Charger
+                    I&C, PM &
+                    BDN Calls For Gilbarco</option>
+                <option value="Retail DG Repair" {% if instance.project_type == 'Retail DG Repair' %}selected{% endif %}>Retail DG Repair</option>
+                <option value="5G Upgradation For ATC" {% if instance.project_type == '5G Upgradation For ATC' %}selected{% endif %}>5G Upgradation For ATC</option>
+                <option value="FTTH For Microscan" {% if instance.project_type == 'FTTH For Microscan' %}selected{% endif %}>FTTH For Microscan</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="mb-2 label_input">Region</label>
+            <select name="region" class="inputformsfill">
+                <option value="East" {% if instance.region == 'East' %}selected{% endif %}>East</option>
+                <option value="West" {% if instance.region == 'West' %}selected{% endif %}>West</option>
+                <option value="North" {% if instance.region == 'North' %}selected{% endif %}>North</option>
+                <option value="South" {% if instance.region == 'South' %}selected{% endif %}>South</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="mb-2 label_input">Circles</label>
+            <select name="circles" class="inputformsfill">
+                <option value="JK" {% if instance.circles == 'JK' %}selected{% endif %}>JK</option>
+                <option value="UPE" {% if instance.circles == 'UPE' %}selected{% endif %}>UPE</option>
+                <option value="UPW" {% if instance.circles == 'UPW' %}selected{% endif %}>UPW</option>
+                <option value="HP, HR & PB" {% if instance.circles == 'HP, HR & PB' %}selected{% endif %}>HP, HR & PB</option>
+                <option value="DL" {% if instance.circles == 'DL' %}selected{% endif %}>DL</option>
+                <option value="MU, MH & GJ" {% if instance.circles == 'MU, MH & GJ' %}selected{% endif %}>MU, MH & GJ</option>
+                <option value="RJ & MP" {% if instance.circles == 'RJ & MP' %}selected{% endif %}>RJ & MP</option>
+                <option value="CG" {% if instance.circles == 'CG' %}selected{% endif %}>CG</option>
+                <option value="AS & NE" {% if instance.circles == 'AS & NE' %}selected{% endif %}>AS & NE</option>
+                <option value="WB & KOL" {% if instance.circles == 'WB & KOL' %}selected{% endif %}>WB & KOL</option>
+                <option value="OD" {% if instance.circles == 'OD' %}selected{% endif %}>OD</option>
+                <option value="JH" {% if instance.circles == 'JH' %}selected{% endif %}>JH</option>
+                <option value="BH" {% if instance.circles == 'BH' %}selected{% endif %}>BH</option>
+                <option value="AP & TS" {% if instance.circles == 'AP & TS' %}selected{% endif %}>AP & TS</option>
+                <option value="TN" {% if instance.circles == 'TN' %}selected{% endif %}>TN</option>
+                <option value="KN" {% if instance.circles == 'KN' %}selected{% endif %}>KN</option>
+                <option value="KL" {% if instance.circles == 'KL' %}selected{% endif %}>KL</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="mb-2 label_input">Site ID / Document IDe</label>
+            <input type="text" name="site_docs_id" class="inputformsfill" value="{{instance.site_docs_id}}">
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="mb-2 label_input">Documents</label>
+            <input type="file" class="mon-box-img-input" name="documents_dt" multiple
+                accept="*/*">
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3 mt-4 mb-3 p-3" style="height: 8rem; overflow: auto;">
+            {% if docs_data %}
+            <div class="gegrtg-5g5f54">
+                <ol class="gergr5">
+                    {% for docs in docs_data %}
+                    {% if docs.documents.all %}
+                    {% for do in docs.documents.all %}
+                    <li style="font-size: 12px;" class="mb-2">
+                        <div class="row row-cols-2 row-cols-md-2 g-3 mb-2">
+                            <div class="col-md-9">
+                                <a href="{{do.files.url}}" target="_blank"
+                                    class="text-decoration-none text-secondary">{{do.files.url}}</a>
+                            </div>
+                            <div class="col-md-3">
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger"
+                                        style="font-size: 7px; font-weight: 550;">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+            {% else %}
+            <div class="no-docs-4f4">
+                <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 10px;">
+                    No
+                    Documents
+                    Attached</h6>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
