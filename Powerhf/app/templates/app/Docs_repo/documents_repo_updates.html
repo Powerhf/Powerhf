@@ -111,7 +111,8 @@
                                                     class="text-decoration-none text-secondary">{{do.files.url}}</a>
                                             </div>
                                             <div class="col-md-2 text-center">
-                                                <form action="/documents-repository-delete/{{instance.id}}/{{do.id}}/" method="POST">
+                                                <form action="/documents-repository-delete/{{instance.id}}/{{do.id}}/"
+                                                    method="POST">
                                                     {% csrf_token %}
                                                     <button type="submit" class="btn btn-danger"
                                                         style="font-size: 7px; font-weight: 550;">Remove</button>
@@ -120,16 +121,16 @@
                                         </div>
                                     </li>
                                     {% endfor %}
+                                    {% else %}
+                                    <div class="no-docs-4f4">
+                                        <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 10px;">
+                                            No
+                                            Documents
+                                            Attached</h6>
+                                    </div>
                                     {% endif %}
                                     {% endfor %}
                                 </ol>
-                            </div>
-                            {% else %}
-                            <div class="no-docs-4f4">
-                                <h6 class="text-danger mt-4 pt-3 text-center" style="font-size: 10px;">
-                                    No
-                                    Documents
-                                    Attached</h6>
                             </div>
                             {% endif %}
                         </div>
