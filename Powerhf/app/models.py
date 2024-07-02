@@ -311,7 +311,7 @@ class PMCL(models.Model):
 # Documents Reporsitory:
 
 PEOJECT_TYPES = (
-    ('Feul Pump Automation Work For Gilbarco','Feul Pump Automation Work For Gilbarco'),
+    ('Fuel Pump Automation Work For Gilbarco','Feul Pump Automation Work For Gilbarco'),
     ('DG RNR, For ATC, Ascend, TVI','DG RNR, For ATC, Ascend, TVI'),
     ('EV Charger I&C, PM & BDN Calls For Gilbarco','EV Charger I&C, PM & BDN Calls For Gilbarco'),
     ('Retail DG Repair','Retail DG Repair'),
@@ -350,7 +350,7 @@ class  DocumentsOfRepository(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
     files = models.FileField(verbose_name='Files', upload_to='Documents_repository/%y', null=True)
     date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True) 
 
     def __str__(self):
         return self.files
